@@ -29,8 +29,8 @@ class OrderController extends AdminController
         $grid = new Grid(new Order());
 
 //        $grid->column('id', __('Id'));
-        $grid->column('customer.name', __('Customer'));
-        $grid->column('payment_kind', __('Payment kind'))->filter();
+        $grid->column('customer.name', __('氏名'));
+        $grid->column('payment_kind', __('支払方法'))->filter();
         $grid->column('paid', __('Paid'));
         $grid->column('amount', __('Amount'));
         $grid->column('tax', __('Tax'));
