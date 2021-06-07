@@ -27,13 +27,31 @@ class OrderController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Order());
-
+//        $grid->model()->where('payment_kind', '=', '2');
+        $grid->filter(function ($filter) {
+            $filter->column(1/2, function ($filter) {
+                $filter->disableIdFilter();
+                $filter->startsWith('name','氏名'); 
+            });
+        });
 //        $grid->column('id', __('Id'));
         $grid->column('customer.name', __('氏名'));
-        $grid->column('payment_kind', __('支払方法'))->filter();
-        $grid->column('paid', __('Paid'));
-        $grid->column('amount', __('Amount'));
-        $grid->column('tax', __('Tax'));
+        $grid->column('payment_kind', __('支払方法'))->display(function ($payment_kind) {
+            if ($payment_kind == 1) {
+                return "<span class='label label-warning'>Credit</span>";
+            }
+            if ($payment_kind == 2) {
+                return "<span class='label label-warning'>Conveni</span>";
+            }
+            return "";
+        });;
+        $grid->column('paid', __('Paid'))->bool()->filter();
+        $grid->column('amount', __('Amount'))->display(function ($amount){
+            return \number_format($amount);
+        });
+        $grid->column('tax', __('Tax'))->display(function ($tax){
+            return \number_format($tax);
+        });;
         $grid->column('shipping', __('Shipping'));
         $grid->column('image', __('Image'));
 //        $grid->column('x', __('X'));
@@ -41,7 +59,14 @@ class OrderController extends AdminController
 //        $grid->column('w', __('W'));
 //        $grid->column('h', __('H'));
         $grid->column('frame', __('Frame'));
-        $grid->column('created_at', __('Created at'));
+        $grid->column('created_at', __('購入日'))->display(function ($created_at){
+            if(! strptime($created_at, '%Y-%m-%d')) {
+                return null;
+            }
+            $result = new \DateTime($created_at);
+            return $result->format('Y年m月d日');
+        });
+//        $grid->column('created_at')->date('Y-m-d');
  //       $grid->column('updated_at', __('Updated at'));
 
         return $grid;

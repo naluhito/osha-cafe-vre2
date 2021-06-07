@@ -14,7 +14,7 @@ class Customer extends Model
     {
         parent::boot();
         static::addGlobalScope('token', function(Builder $builder){
-            $builder->whereNotNull('token');
+            $builder->whereNull('token');
         });
     }
     public function orders()
