@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+ //Route::get('/', function () {
+//    return view('welcome');
+//   return view('top');
+//});
+Route::get('/choice', 'App\Http\Controllers\BuyController@choice');
+Route::get('/buy', 'App\Http\Controllers\BuyController@index');
+Route::get('/login', 'App\Http\Controllers\UserController@index');

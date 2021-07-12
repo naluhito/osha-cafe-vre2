@@ -1,0 +1,408 @@
+@charset "utf-8";
+
+/*
+Theme Name: アドダス
+Author: アドダス
+Author URI: http://addas.jp/
+*/
+
+/* --- お問い合わせ --- */
+/* hissu */
+.badge {
+    display: inline-block;
+    font-size: 10px;
+    color: #fff;
+    background-color: #f20069;
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin-left: 6px;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+/* table */
+th {
+    color: #fff;
+    background-color: #f2b2ce;
+    /*padding-left: 24px !important;*/
+    vertical-align: middle !important;
+    /*font-size: 16px;*/
+}
+
+td {
+    /*padding-left: 24px !important;*/
+    /*font-size: 16px;*/
+}
+
+.last {
+    border-bottom: solid 1px #dee2e6;
+}
+
+@media screen and (max-width: 786px) {
+    .last {
+        width: 100%;
+    }
+
+    .tbl-r02 {
+        width: 100%;
+    }
+
+    .tbl-r02 th,
+    .tbl-r02 td {
+        border-bottom: none;
+        /*display: block;
+        width: 100%;*/
+    }
+}
+
+/* tel */
+.haba {
+    width: calc((100% - 36px) / 3);
+    padding: 1rem 0.5rem !important;
+}
+
+/* form　all */
+.form-control {
+    display: block;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    line-height: 1.5;
+}
+
+/* radio and checkbox */
+.check_style,
+.radio_style {
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.check_style input,
+.radio_style input {
+    margin-right: 5px;
+}
+
+/**
+ * tel and zip
+ */
+.tel-field input[type="text"] {
+    display: inline-block;
+    /*width: auto;*/
+}
+
+.ls-02 {
+    letter-spacing: 0.2rem;
+}
+
+.box {
+    background-color: #ddd;
+}
+
+.btn-gray {
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+}
+.btn:hover {
+    opacity: 0.5;
+}
+
+.graybox {
+	border-radius: 15px;
+    color: #b3b3b3;
+    background-color: #e6e6e6;
+}
+
+.bg-mizuiro {
+    background-color: #a6d1ec;
+    border-radius: 15px;
+}
+
+.button01box {
+    position: relative;
+}
+.okmark {
+    position: absolute;
+    top: -25px;
+    right: -10px;
+}
+
+.button02 {
+    background-color: #ff7bac;    
+}
+.button02:hover {
+   opacity: 0.5;
+}
+
+.button03 {
+    background-color: #e6e6e6;    
+}
+
+.button04 {
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 40px;
+}
+.button04:hover {
+    opacity: 0.5;
+    background-color: #000;
+    color: #fff;
+}
+
+.button05 {
+    background-color: #ec91b9;
+    border-radius: 40px;
+    color: #fff;
+}
+.button05:hover {
+    opacity: 0.8;
+    background-color: #ff7bac;
+    color: #fff;
+}
+
+.button06 {
+    background-color: #a0d2f2;
+    border-radius: 40px;
+    color: #fff;
+}
+.button06:hover {
+    opacity: 0.8;
+    background-color: #62a5d0;
+    color: #fff;
+}
+
+.br-4-2 {
+    border: 2px solid #a6d1ec;
+}
+
+.bb-1 {
+    border-bottom: 1px solid #000;    
+}
+
+.bg-black {
+    background-color: #000;
+}
+
+.button001 {
+	color: #a6d1ec;
+	border-radius: 15px;
+}
+.button001:hover {
+    opacity: 0.5;
+}
+
+.bg-claft {
+    background-image: url(https://oshi-cafe.com/img/bg-claft.jpg);
+    background-size: cover;
+}
+
+
+.btn.btn-primary {
+  border-radius: 15px;
+  background: #f1e767;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f2c1bd), to(#feb645));
+  background: -webkit-linear-gradient(top, #f2c1bd 0% , #ec91b9 100%);
+  background: linear-gradient(to bottom, #f2c1bd 0% ,  #ec91b9 100%);
+}
+
+.btn.btn-primary:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(#be51e8), to(#ec91b9));
+  background: -webkit-linear-gradient(bottom, #be51e8 0%, #ec91b9 100%);
+  background: linear-gradient(to top, #be51e8 0%, #ec91b9 100%);
+}
+
+.modal-header {
+    background-color: #ec91b9;
+    border-bottom: 0px;
+}
+.modal-header h5 {
+    color: #fff;
+    letter-spacing: .2rem;
+}
+
+.modal-header.choice02 {
+	display: block;
+}
+
+.button001.bg-mizuiro {
+	border: 0;
+}
+
+.br-4-black {
+    border: 2px solid #000;
+}
+
+.bb-4-dotted {
+	border-bottom: 4px dotted #8e724e;
+    padding-bottom: 4px;
+}
+
+.text-pink {
+	color: #ec91b9;
+}
+
+.bg-usumizuiro {
+	background-color: #d2e7f3;
+}
+
+
+
+
+
+mw_wp_form .table .mwform-tel-field input[type="text"], .mw_wp_form .table .mwform-zip-field input[type="text"] {
+    width: calc((100% - 42px) / 3);
+    padding: 1rem .5rem;
+}
+
+#contact .tbl-2column tbody tr th {
+    background-color: transparent;
+    font-weight: 600;
+}
+
+#contact .table-bordered th, .table-bordered td {
+    border: 0;
+}
+#contact .table-bordered {
+    border: 0;
+}
+
+#contact .mw_wp_form .table .form-control {
+    padding: 1.5rem;
+    background-color: #ececec;
+   margin-bottom: 25px;
+}
+
+@media (min-width: 768px) {
+  #contact .mw_wp_form .table .form-control {
+     margin-bottom: 0;
+  }
+  
+  #contact .tbl-2column tbody tr th, .tbl-2column tbody tr td {
+    padding-bottom: 40px!important;
+    padding-top: 40px!important;
+    border-bottom: 1px dotted #ccc;
+  }
+}
+
+#contact .form-control {
+  border: 0;
+}
+
+#contact .tbl-2column tbody tr th, .tbl-2column tbody tr td {
+    padding: .5rem;
+}
+
+.mw_wp_form .table .mwform-tel-field input[type="text"],
+.mw_wp_form .table .mwform-zip-field input[type="text"] {
+  width: calc((100% - 44px) / 3);
+}
+
+.main {
+    background-image: url(./img/mains.jpg);
+    width: 100vw;
+    height: 100vh;
+    background-position: top center;
+    background-size: cover;
+    display: flex;
+}
+
+@media(min-width:768px) {
+  .main {
+    background-image: url(./img/main.jpg);
+    width: 100vw;
+    height: 100vh;
+    background-position: top center;
+    background-size: cover;
+    display: flex;
+  }
+}
+
+.category-kijigata .l-page-title {
+  background-image: url(./img/service011.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+
+.contacttable.table-bordered {
+	border: 0px;
+}
+.contacttable.table-bordered th, .contacttable.table-bordered td {
+    border: 0px;
+    color: #806239!important;
+    padding: 2rem 0rem!important;
+}
+.contacttable.tbl-2column tbody tr th {
+    border-radius: 5px;
+    padding: 1rem!important;
+}
+.contacttable input {
+	width: 35%;
+	height: 50px;
+	border: 0px;
+	padding: 10px;
+}
+@media (min-width: 576px) {
+    .contacttable input {
+        width: 42%;
+    }
+}
+
+@media (min-width: 768px) {
+	.contacttable.tbl-2column tbody tr th {
+	    background-color: transparent;
+	    color: #000;
+	}
+	.contacttable.tbl-2column tbody tr {
+		border-bottom: 1px solid #ccc;
+	}
+	.contacttable.tbl-2column tbody tr:first-child {
+		border-top: 1px solid #ccc;
+	}
+	.contacttable.tbl-2column tbody tr th, .contacttable.tbl-2column tbody tr td {
+	    border-bottom: 0px;
+	    padding: 2rem 0rem!important;
+	}
+}
+
+.bg-mizuiro2 {
+	background-color: #a6d1ec;
+}
+
+
+/*2021.6.17追加*/
+.button07 {
+    background: linear-gradient(to bottom, #f2c1bd 0% , #ec91b9 100%);
+    border-radius: 15px;
+    color: #fff;
+}
+
+.button07:hover {
+    background: #a6d1ec;
+    color: #fff;
+}
+
+.button08 {
+    background: #a6d1ec;
+    border-radius: 15px;
+    color: #fff;
+}
+
+.button08:hover {
+    color: #fff;
+}
+
+.text-cha {
+    color: #806239;
+}
+.bg-cha {
+    background-color: #806239;
+}
+
+.b-4-b1 {
+    border: 1px solid #000;
+}
+
+.rouded2 {
+    border-radius: 10px;
+}

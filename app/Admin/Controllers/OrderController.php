@@ -34,9 +34,11 @@ class OrderController extends AdminController
                 $filter->startsWith('name','氏名'); 
             });
         });
-//        $grid->column('id', __('Id'));
-        $grid->column('customer.name', __('氏名'));
-        $grid->column('payment_kind', __('支払方法'))->display(function ($payment_kind) {
+        $grid->column('id', '注文番号')->display(function ($id){
+            return sprintf('%05d', $id);
+        });
+        $grid->column('customer.name', '氏名');
+        $grid->column('payment_kind', '支払方法')->display(function ($payment_kind) {
             if ($payment_kind == 1) {
                 return "<span class='label label-warning'>Credit</span>";
             }
@@ -45,15 +47,13 @@ class OrderController extends AdminController
             }
             return "";
         });;
-        $grid->column('paid', __('Paid'))->bool()->filter();
-        $grid->column('amount', __('Amount'))->display(function ($amount){
-            return \number_format($amount);
+        $grid->column('paid', '支払済')->bool();
+        $grid->column('', '金額')->display(function (){
+                return \number_format($this->amount + $this->tax + $this->shipping);
         });
-        $grid->column('tax', __('Tax'))->display(function ($tax){
-            return \number_format($tax);
-        });;
-        $grid->column('shipping', __('Shipping'));
-        $grid->column('image', __('Image'));
+
+
+        $grid->column('print_image', __('Image'))->downloadable();
 //        $grid->column('x', __('X'));
 //        $grid->column('y', __('Y'));
 //        $grid->column('w', __('W'));
