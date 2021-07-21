@@ -18,4 +18,8 @@ class BuyController extends Controller
         return view('choice',compact('beans'));
     }
     
+    public function basket() {
+        return view('basket');
+    }
+
 }

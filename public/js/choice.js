@@ -9,10 +9,14 @@ jQuery(function($) {
 	var canvasX = 0;
 	var canvasY = 0;
 	var scale = 1;
-	var frameCanvas;
+	var frameWidth = 0;
+	var frameHeight = 0;
+
 	var frameImage = null;
 	var choiceFrame = '';
-	let beans;
+	let beans = {};
+	var photo;
+	var photoURI = null;
 	
 	// フレームを選ぶ
 	$('#btn1_1').click(function(){
@@ -28,7 +32,34 @@ jQuery(function($) {
 	});
 	// 買い物かご
 	$('#btn4').click(function(){
+		var basket;
 
+		var temp = localStorage.getItem('oshiBasket')
+		if (temp) {
+			basket = JSON.parse(temp);
+		} else {
+			basket = [];
+		}
+		var data = {};
+		var file = {};
+		file['name'] = photo.name;
+		file['type']= photo.type;
+		file['uri'] = photoURI;
+		data['photo'] = file;
+		data['frame'] = choiceFrame;
+		var imageInfo = {};
+		imageInfo['width'] = canvas.width;
+		imageInfo['height'] = canvas.height;
+		imageInfo['diffx'] = dragDiffX;
+		imageInfo['diffy'] = dragDiffY;
+		imageInfo['scale'] = scale;
+		imageInfo['frameWidth'] = frameWidth;
+		imageInfo['frameHeight'] = frameHeight;
+		data['imageInfo'] = imageInfo;
+		data['beans'] = beans;
+		basket.push(data);
+		localStorage.setItem('oshiBasket', JSON.stringify(basket));
+		location.href='basket';
 	});
 
 	$('.c01').click(function(){
@@ -68,10 +99,9 @@ jQuery(function($) {
     
     $('#beansOk').click(function(){
 
-		beans = new Map();
 		$('.bean-num').each(function(){
 			if (Number($(this).val()) > 0) {
-				beans.set($(this).data('id'), $(this).val());
+				beans[$(this).data('id')] = $(this).val();
 			}
 		});
 
@@ -152,6 +182,7 @@ jQuery(function($) {
 	
 	function handleFiles(files) {
 		var file = files[0];
+		photo = files[0];
 		var imageType = 'image.*';
 
 		if (! file.type.match(imageType)) {
@@ -160,13 +191,12 @@ jQuery(function($) {
 			return;
 		}
 
-
-
 		var reader = new FileReader();
-		reader.onload = function (e) {  // 読み込みが完了したら
+		reader.onload = function (e) {
+			photoURI = e.target.result;
 			loadImage(e.target.result);
 		}
-		reader.readAsDataURL(file); // ファイル読み込みを非同期でバックグラウンドで開始
+		reader.readAsDataURL(file);
 	}
 	
 	function loadImage(imageFile) {
@@ -175,7 +205,6 @@ jQuery(function($) {
 		$("#img").append(canvas);
 
     	image = new Image();
-    	image.src = imageFile;
     	image.onload = function() {
 			width  = image.width;
 			height = image.height;
@@ -200,6 +229,7 @@ jQuery(function($) {
 				handleFrame(choiceFrame);
 			}
     	}
+    	image.src = imageFile;
     	addEventListener();
 		return false;
 	}
@@ -211,8 +241,6 @@ jQuery(function($) {
     	frameImage.src = frameURL;
 		frameImage.height = $('#drop_area').innerHeight();
 		frameImage.width = $('#drop_area').innerWidth();
-		console.log($('#drop_area').innerHeight());
-		console.log($('#drop_area').innerWidth());
     	frameImage.onload = function() {
 			redraw();
     	}

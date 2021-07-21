@@ -47,7 +47,7 @@
 				<div id='btn4' style="display: none">
 	                <a href="#" class="button05 text-center d-block p-16 mt-40 mt-md-64 w-50 mx-auto"><i class="fas fa-shopping-cart fz-20 pr-8"></i>買い物かごへ</a>
 				</div>
-                <a href="#" class="button04 text-center d-block p-16 mt-24 w-50 mx-auto">リセット</a>
+                <a href="choice" class="button04 text-center d-block p-16 mt-24 w-50 mx-auto">リセット</a>
 			</div>
 		</div>
 	</div>

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //   return view('top');
 //});
+Route::get('/basket', 'App\Http\Controllers\BuyController@basket');
 Route::get('/choice', 'App\Http\Controllers\BuyController@choice');
 Route::get('/buy', 'App\Http\Controllers\BuyController@index');
 Route::get('/login', 'App\Http\Controllers\UserController@index');
