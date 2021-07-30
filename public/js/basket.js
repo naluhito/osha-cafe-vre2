@@ -2,10 +2,40 @@ jQuery(function($) {
     var canvas = document.createElement('canvas');
     var loadFLg = false;
 
-
+    $('.delete').click(function()　{
+        var target = $(this).data('basketid');
+        console.log(target);
+        let url = 'removeBasket';
+        var data = {
+            id: target
+        };
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            datatype: 'json',
+			contentType: "application/json",
+			data: JSON.stringify(data),
+            url: url
+        })
+        .done(function(data){
+            if (data.status === 'OK') {
+                var ids = JSON.parse(localStorage.getItem('oshiBasket'));
+                newlist = ids.filter(function( value ) {
+                    return value != target;
+                });
+                $('#item'+target).remove();
+                console.log(newlist);
+            }
+        })
+        .fail(function(data){
+        });        
+    });
+    
     function createItem(item) {
         loadFLg = true;
-        var uri = item.photo.uri;
+        var uri = item.photo_uri;
         var uriParts = uri.split(",");
         var fileContent = uriParts[1];
         var binary = atob(fileContent);
@@ -13,23 +43,54 @@ jQuery(function($) {
         for (var i = 0; i < binary.length; i++) {
             bytes[i] = binary.charCodeAt(i)
         }
-        var file = new File([bytes], item.photo.name, {type: item.photo.type});
+        var file = new File([bytes], item.photo_name, {type: item.photo_type});
 
-        let clone = $('#item').clone();
+        let clone = $('#item').clone(true);
         var num = 0;
         $.each(item.beans, function() {
             num += Number(this);
         })
         clone.show();
+        clone.find('.delete').data('basketid', item.id);
         var frameEl = clone.find('#frame');
 
         handleFiles(file, item, frameEl);
-        clone.attr('id', '');
-        clone.find('#num').text(num);
-        clone.find('#shipping').text('100');
-        clone.find('#amount').text('200');
-        clone.find('#tax').text('300');
+        clone.attr('id', 'item'+item.id);
+        setItem(item, clone);
         $('#item').before(clone);
+    }
+
+    function setItem(item, basket) {
+        const formatter = new Intl.NumberFormat();
+        $.each(item.beans, function() {
+            if (this.bean.kind == 0) {
+                drip = basket.find('#drip');
+                clone = drip.find("#item-tbl").clone();
+                clone.find("#name").text(this.bean.name);
+                clone.find("#num").text(formatter.format(this.number)+'個');
+                var amount = 200 * this.number;
+                clone.find("#amount").html(formatter.format(amount)+'<span class="fz-14">円</span>');
+                clone.attr('id', '');
+                drip.find("#item-tbl").before(clone);
+                clone.show();
+                drip.show();
+            }
+        })
+        $.each(item.beans, function() {
+            if (this.bean.kind == 1) {
+                coffee = basket.find('#coffee');
+                clone = coffee.find("#item-tbl").clone();
+                clone.find("#name").text(this.bean.name);
+                clone.find("#num").text(formatter.format(this.number)+'個');
+                var amount = 200 * this.number
+                clone.find("#amount").html(formatter.format(amount)+'<span class="fz-14">円</span>');
+                $('#item-tbl').before(clone);
+                clone.attr('id', '');
+                coffee.find("#item-tbl").before(clone);
+                clone.show();
+                coffee.show();
+            }
+        })
     }
 
 	function handleFiles(file, item, frameEl) {
@@ -46,11 +107,11 @@ jQuery(function($) {
             ctx = canvas.getContext('2d');
 			width  = image.width;
 			height = image.height;
-			if (width < item.imageInfo.frameWidth) {
-				width = frameWidth;
+			if (width < item.image_frameWidth) {
+				width = item.image_frameWidth;
 			}
-			if (height < item.imageInfo.frameHeight) {
-				height = frameHeight + 200;
+			if (height < item.image_frameHeight) {
+				height = item.image_frameHeight + 200;
 			}
 			canvas.setAttribute('width' , width);
 			canvas.setAttribute('height', height);
@@ -77,8 +138,8 @@ jQuery(function($) {
 	function handleFrame(item, frameEl, image) {
     	frameURL = 'frame/' + item.frame;
     	frameImage = new Image();
-		frameImage.width = item.imageInfo.frameWidth;
-		frameImage.height = item.imageInfo.frameHeight;
+		frameImage.width = item.image_frameWidth;
+		frameImage.height = item.image_frameHeight;
     	frameImage.onload = function() {
             var data = draw(item, image, frameImage);
             frameEl.attr('src', data);
@@ -93,37 +154,87 @@ jQuery(function($) {
     function draw(item, image, frameImage) {
     	ctx = canvas.getContext('2d');
     	ctx.clearRect(0, 0, canvas.width, canvas.height);
-    	ctx.scale(item.imageInfo.scale, item.imageInfo.scale);
-    	ctx.drawImage(image, item.imageInfo.diffx, item.imageInfo.diffy);
+    	ctx.scale(item.image_scale, item.image_scale);
+    	ctx.drawImage(image, item.image_diffx, item.image_diffy);
 
-    	ctx.scale(1 / item.imageInfo.scale, 1 / item.imageInfo.scale);
+    	ctx.scale(1 / item.image_scale, 1 / item.image_scale);
     	if (frameImage !== null) {
-			x = (canvas.width / 2) - (item.imageInfo.frameWidth / 2);
-			y = (canvas.height / 2) - (item.imageInfo.frameHeight / 2);
-	    	ctx.drawImage(frameImage, x, y, item.imageInfo.frameWidth, item.imageInfo.frameHeight);
+			x = (canvas.width / 2) - (item.image_frameWidth / 2);
+			y = (canvas.height / 2) - (item.image_frameHeight / 2);
+	    	ctx.drawImage(frameImage, x, y, item.image_frameWidth, item.image_frameHeight);
     	}
     	dcanvas = document.createElement('canvas');
     	dctx = dcanvas.getContext('2d');
-        dcanvas.setAttribute('width' , item.imageInfo.frameWidth);
-        dcanvas.setAttribute('height', item.imageInfo.frameHeight);
-        sx = (canvas.width / 2) - (item.imageInfo.frameWidth / 2);
-        sy = (canvas.height / 2) - (item.imageInfo.frameHeight / 2) + 63.5;
-        dctx.drawImage(canvas, sx, sy, item.imageInfo.frameWidth, item.imageInfo.frameHeight, 0, 0, item.imageInfo.frameWidth, item.imageInfo.frameHeight);
+        dcanvas.setAttribute('width' , item.image_frameWidth);
+        dcanvas.setAttribute('height', item.image_frameHeight);
+        sx = (canvas.width / 2) - (item.image_frameWidth / 2);
+        sy = (canvas.height / 2) - (item.image_frameHeight / 2) + 63.5;
+        dctx.drawImage(canvas, sx, sy, item.image_frameWidth, item.image_frameHeight, 0, 0, item.image_frameWidth, item.image_frameHeight);
 
 
         data = dcanvas.toDataURL('image/png');
         return data;
 	}
 
-    var basket = JSON.parse(localStorage.getItem('oshiBasket'));
+    function setTotal(basket) {
+        var amount = 200;
+        var totalAmount = 0;
+        var totalNum = 0;
+        var shipping = 0;
+        var tax = 0;
+        const formatter = new Intl.NumberFormat();
+        $.each(basket, function() {
+            $.each(this.beans, function() {
+                totalNum += this.number;
+            });
+        });
+        totalAmount = amount * totalNum;
+        tax = totalAmount - Math.floor(totalAmount / 1.08);
+        if (totalNum > 10) {
+            shipping = 300; // 仮
+            $('#shipping').text(formatter.format(shipping)+'円');
+        } else {
+            $('#shipping').text('無料');
+        }
+        $('#total-amount').text(formatter.format(totalAmount));
+        $('#pay-amount').text(formatter.format(totalAmount+shipping));
+        $('#tax').text(formatter.format(tax));        
 
-    $.each(basket, function() {
-        var item = this;
-        var timer = setInterval(function(){
-            if (!loadFLg) {
-                clearInterval(timer);
-                createItem(item);
-            }
-         }, 50)
-    })
+    }
+
+    function getBasket() {
+        var ids = JSON.parse(localStorage.getItem('oshiBasket'));
+        var param = {};
+        param['ids'] = ids;
+        let url = 'getBaskets';
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            datatype: 'json',
+			contentType: "application/json",
+			data: JSON.stringify(param),
+            url: url
+        })
+        .done(function(data){
+            if (data.status === 'OK') {
+                console.dir(data.baskets);
+                $.each(data.baskets, function() {
+                    var item = this;
+                    var timer = setInterval(function(){
+                        if (!loadFLg) {
+                            clearInterval(timer);
+                            createItem(item);
+                        }
+                     }, 50)
+                })
+                setTotal(data.baskets);
+			}
+        })
+        .fail(function(data){
+        });        
+
+    }
+    getBasket();
 });

@@ -32,14 +32,6 @@ jQuery(function($) {
 	});
 	// 買い物かご
 	$('#btn4').click(function(){
-		var basket;
-
-		var temp = localStorage.getItem('oshiBasket')
-		if (temp) {
-			basket = JSON.parse(temp);
-		} else {
-			basket = [];
-		}
 		var data = {};
 		var file = {};
 		file['name'] = photo.name;
@@ -57,10 +49,38 @@ jQuery(function($) {
 		imageInfo['frameHeight'] = frameHeight;
 		data['imageInfo'] = imageInfo;
 		data['beans'] = beans;
-		basket.push(data);
-		localStorage.setItem('oshiBasket', JSON.stringify(basket));
-		location.href='basket';
+		storBasket(data);
 	});
+
+	function storBasket(basket) {
+		let url = 'storebasket';
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            datatype: 'json',
+			contentType: "application/json",
+			data: JSON.stringify(basket),
+            url: url
+        })
+        .done(function(data){
+            if (data.status === 'OK') {
+				var temp = localStorage.getItem('oshiBasket')
+				if (temp) {
+					basket = JSON.parse(temp);
+				} else {
+					basket = [];
+				}
+				basket.push(data.id);
+				localStorage.setItem('oshiBasket', JSON.stringify(basket));
+				location.href='basket';
+			}
+        })
+        .fail(function(data){
+        });        
+
+	}
 
 	$('.c01').click(function(){
 		choiceFrame = $(this).val();
@@ -324,8 +344,6 @@ jQuery(function($) {
 
     	ctx.scale(1 / scale, 1 / scale);
     	if (frameImage !== null) {
-			frameWidth = $('#frame').width();
-			frameHeight = $('#frame').height();
 			x = (canvas.width / 2) - (frameWidth / 2);
 			y = (canvas.height / 2) - (frameHeight / 2);
 	    	ctx.drawImage(frameImage, x, y, frameWidth, frameHeight);
@@ -341,8 +359,6 @@ jQuery(function($) {
 			pcanvas.setAttribute('width' , paper.width);
 			pcanvas.setAttribute('height', paper.height);
 	    	ctx.drawImage(paper, 0, 0);
-			frameWidth = $('#frame').width();
-			frameHeight = $('#frame').height();
 			sx = (canvas.width / 2) - (frameWidth / 2);
 			sy = (canvas.height / 2) - (frameHeight / 2) + 63.5;
 			dx = (paper.width / 2) - (frameWidth / 2);
@@ -380,8 +396,6 @@ jQuery(function($) {
 			pcanvas.setAttribute('width' , paper.width);
 			pcanvas.setAttribute('height', paper.height);
 	    	ctx.drawImage(paper, 0, 0);
-			frameWidth = $('#frame').width();
-			frameHeight = $('#frame').height();
 			sx = (canvas.width / 2) - (frameWidth / 2);
 			sy = (canvas.height / 2) - (frameHeight / 2) + 63.5;
 			dx = (paper.width / 2) - (frameWidth / 2);
