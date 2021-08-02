@@ -17,7 +17,7 @@ class CreateBasketsTable extends Migration
             $table->id();
             $table->string('photo_name', 256);
             $table->string('photo_type', 128);
-            $table->text('photo_uri');
+            $table->longText('photo_uri');
             $table->string('frame', 128);
             $table->decimal('image_width', 6, 4);
             $table->decimal('image_height', 6, 4);
