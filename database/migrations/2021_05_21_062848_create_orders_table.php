@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('customer_id')->unsigned()->nullable();
             $table->integer('payment_kind');
-            $table->integer('paid');
+            $table->boolean('paid')->default(false);
             $table->integer('amount');
             $table->integer('tax');
             $table->integer('shipping');

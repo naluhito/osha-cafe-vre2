@@ -25,7 +25,6 @@ class AddcolumOrderTable extends Migration
             $table->string('address2', 64)->nullable()->after('address1');
             $table->string('address3', 64)->nullable()->after('address2');
             $table->string('tel' ,12)->after('address3');
-            $table->boolean('paid')->default(false)->change();
             $table->renameColumn('image', 'org_image');
         });
     }
