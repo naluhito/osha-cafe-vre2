@@ -44,8 +44,9 @@
                                     <em>＊</em>お名前
                                 </th>
                                 <td class="name_td">
-                                    <span class="mr-8">姓</span><input name="name1" id="name1" type="text" value="" style="ime-mode: active" />
+                                    <span class="mr-8">姓</span><input name="name1" id="name1" type="text" value="" style="ime-mode: active" /> 
                                     <span class="ml-16 mr-8">名</span><input name="name2" id="name2" type="text" value="" style="ime-mode: active" />
+                                    <p id="client-name-error" class="text-danger">*未入力</p>
                                 </td>
                             </tr>
                                 <tr id="furikana_row" class="inp1">
@@ -124,6 +125,7 @@
                                 <td>
                                     <input name="address1" id="address1" type="text" value="" style="ime-mode: active" class="w-100" />
                                     <span class="d-block mt-16">(例）横浜市上北町</span>
+                                    <p id="client-name-error" class="text-danger">*未入力</p>
                                 </td>
                             </tr>
                             <tr id="address2_row">
