@@ -28,13 +28,13 @@ class BuyController extends Controller
         $basket->photo_type = $request->input('photo')['type'];
         $basket->photo_uri = $request->input('photo')['uri'];
         $basket->frame = $request->input('frame');
-        $basket->image_width = round(floatval($request->input('imageInfo')['width']), 4);
-        $basket->image_height = round(floatval($request->input('imageInfo')['height']), 4);
-        $basket->image_diffx = round(floatval($request->input('imageInfo')['diffx']), 4);
-        $basket->image_diffy = round(floatval($request->input('imageInfo')['diffy']), 4);
-        $basket->image_scale = round(floatval($request->input('imageInfo')['scale']), 4);
-        $basket->image_frameWidth = round(floatval($request->input('imageInfo')['frameWidth']), 4);
-        $basket->image_frameHeight = round(floatval($request->input('imageInfo')['frameHeight']), 4);
+        $basket->image_width = (float)$request->input('imageInfo')['width'];
+        $basket->image_height = (float)$request->input('imageInfo')['height'];
+        $basket->image_diffx = (float)$request->input('imageInfo')['diffx'];
+        $basket->image_diffy = (float)$request->input('imageInfo')['diffy'];
+        $basket->image_scale = (float)$request->input('imageInfo')['scale'];
+        $basket->image_frameWidth = (float)$request->input('imageInfo')['frameWidth'];
+        $basket->image_frameHeight = (float)$request->input('imageInfo')['frameHeight'];
         $basket->save();
 
         $basket_id = $basket->id;
