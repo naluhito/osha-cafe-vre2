@@ -50,6 +50,7 @@ jQuery(function($) {
 		data['imageInfo'] = imageInfo;
 		data['beans'] = beans;
 		storBasket(data);
+		return false;
 	});
 
 	function storBasket(basket) {
@@ -84,7 +85,6 @@ jQuery(function($) {
 	}
 
 	$('.c01').click(function(){
-		localStorage.setItem('oshiTest', 'test');
 		choiceFrame = $(this).val();
 		$("#confirmFrame").attr('src', 'frame/' + choiceFrame);
 		$('#confirmModal').modal('show');
