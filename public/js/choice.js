@@ -78,8 +78,9 @@ jQuery(function($) {
 			}
         })
         .fail(function(data){
+			console.log('Ajax failed');
         });        
-
+		return false;
 	}
 
 	$('.c01').click(function(){
