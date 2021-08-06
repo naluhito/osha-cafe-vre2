@@ -50,6 +50,8 @@ class BuyController extends Controller
             "status" => "OK",
             "id" => $basket_id,
         ];
+        Log::debug($response);
+
         return response()->json($response);
     }
 
@@ -77,7 +79,6 @@ class BuyController extends Controller
     }
 
     public function removeBasket(Request $request) {
-        Log::debug($request->input('id'));
         $basket = new Basket();
         $b = $basket->find($request->input('id'));
         $b->beans()->each(function($beans){
