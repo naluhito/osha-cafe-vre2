@@ -84,6 +84,7 @@ jQuery(function($) {
 	}
 
 	$('.c01').click(function(){
+		localStorage.setItem('oshiTest', 'test');
 		choiceFrame = $(this).val();
 		$("#confirmFrame").attr('src', 'frame/' + choiceFrame);
 		$('#confirmModal').modal('show');
