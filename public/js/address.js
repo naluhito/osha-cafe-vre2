@@ -87,7 +87,7 @@ jQuery(function($) {
             form.find('#mailaddress2-error').empty();
         }
         if (check) {
-            if (mailaddress1 === mailaddress2) {
+            if (mailaddress1 !== mailaddress2) {
                 form.find('#mailaddress1-error').text('※メールアドレス（確認用）と一致しません');
                 check = false;
             }
