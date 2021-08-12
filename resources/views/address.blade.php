@@ -36,7 +36,8 @@
                     </button>
                 </div>
                 @endauth
-                <form class="my_form" name="address_form" id="address_form" action="#" method="post">
+                <form class="my_form" name="address_form" id="address_form" action="confirm" method="post">
+                    @csrf
                     <table class="table contacttable table-bordered tbl-2column fz-14 mt-32 mt-md-48">
                         <tbody>
                             <tr id="name_row" class="inp1">
@@ -44,29 +45,46 @@
                                     <em>＊</em>お名前
                                 </th>
                                 <td class="name_td">
-                                    <span class="mr-8">姓</span><input name="name1" id="name1" type="text" value="" style="ime-mode: active" /> 
-                                    <span class="ml-16 mr-8">名</span><input name="name2" id="name2" type="text" value="" style="ime-mode: active" />
-                                    <p id="client-name-error" class="text-danger">*未入力</p>
+                                    <div class="row no-gutters">
+                                        <div class="col-6 pr-4">
+                                            <span class="mr-8">姓</span><input name="name1" id="name1" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
+                                            <span id="name1-error" class="d-block text-danger ml-24 lh-32"></span>
+                                        </div>
+                                        <div class="col-6 pl-4">
+                                            <span class="mr-8">名</span><input name="name2" id="name2" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
+                                            <span id="name2-error" class="d-block text-danger ml-24 lh-32"></span>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                                 <tr id="furikana_row" class="inp1">
                                     <th scope="row">フリガナ</th>
                                     <td>
-                                        <span class="mr-8">姓</span><input name="name3" id="name3" type="text" value="" style="ime-mode: active" />
-                                        <span class="ml-16 mr-8">名</span><input name="name4" id="name4" type="text" value="" style="ime-mode: active" />
+                                        <div class="row no-gutters">
+                                            <div class="col-6 pr-4">
+                                                <span class="mr-8">姓</span><input name="name3" id="name3" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
+                                                <span id="name3-error" class="d-block text-danger ml-24 lh-32"></span>
+                                            </div>
+                                            <div class="col-6 pl-4">
+                                                <span class="mr-8">名</span><input name="name4" id="name4" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
+                                                <span id="name4-error" class="d-block text-danger ml-24 lh-32"></span>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             <tr id="zipcode_row">
                                 <th scope="row"><em>＊</em>郵便番号</th>
                                 <td>
-                                    <input name="zipcode" id="zipcode" type="text" value="" class="w-50" style="ime-mode: inactive" /><input type="button" id="search_zipcode" class="search-zipcode button bg-mizuiro2 text-white w-50" value="住所検索" onClick="AjaxZip3.zip2addr('zipcode', '', 'pref', 'address1');"><span class="d-block mt-16">(例）100-1000</span>
+                                    <input name="zipcode" id="zipcode" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}" class="w-50" style="ime-mode: inactive" /><input type="button" id="search_zipcode" class="search-zipcode button bg-mizuiro2 text-white w-50" value="住所検索" onClick="AjaxZip3.zip2addr('zipcode', '', 'pref', 'address1');">
+                                    <span class="d-block mt-16">(例）100-1000</span>
+                                    <span id="zipcode-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
                             <input type="hidden" name="country" id="member_country" value="JP">
                             <tr id="states_row">
                                 <th scope="row"><em>＊</em>都道府県</th>
                                 <td>
-                                    <select name="pref" id="member_pref" class="pref w-50 p-16" style="border: 0px;">
+                                    <select name="pref" id="pref" class="pref w-50 p-16" style="border: 0px;">
                                         <option value="">--選択--</option>
                                         <option value="北海道">北海道</option>
                                         <option value="青森県">青森県</option>
@@ -116,16 +134,17 @@
                                         <option value="鹿児島県">鹿児島県</option>
                                         <option value="沖縄県">沖縄県</option>
                                     </select>
-                                </td>
+                                    <span id="pref-error" class="d-block text-danger ml-24 lh-32"></span>
+                               </td>
                             </tr>
                             <tr id="address1_row" class="inp2">
                                 <th scope="row">
                                     <em>＊</em>市区郡町村
                                 </th>
                                 <td>
-                                    <input name="address1" id="address1" type="text" value="" style="ime-mode: active" class="w-100" />
+                                    <input name="address1" id="address1" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active" class="w-100" />
                                     <span class="d-block mt-16">(例）横浜市上北町</span>
-                                    <p id="client-name-error" class="text-danger">*未入力</p>
+                                    <span id="address1-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
                             <tr id="address2_row">
@@ -133,41 +152,44 @@
                                     <em>＊</em>番地
                                 </th>
                                 <td>
-                                    <input name="address2" id="address2" type="text" value="" style="ime-mode: active" class="w-100" />
+                                    <input name="address2" id="address2" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active" class="w-100" />
                                     <span class="d-block mt-16">(例）3-24-555</span>
+                                    <span id="address2-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
                             <tr id="address3_row">
                                 <th scope="row">ビル名</th>
                                 <td>
-                                    <input name="address3" id="address3" type="text" value="" class="w-100" style="ime-mode: active" />
+                                    <input name="address3" id="address3" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}" class="w-100" style="ime-mode: active" />
                                     <span class="d-block mt-16">(例）通販ビル4F</span>
                                 </td>
                             </tr>
                             <tr id="tel_row">
                                 <th scope="row"><em>＊</em>電話番号</th>
                                 <td>
-                                    <input name="tel" id="tel" type="text" value="" class="w-100" style="ime-mode: inactive" />
+                                    <input name="tel" id="tel" type="text" value="" onKeyDown="if (event.keyCode == 13) {return false;}"  class="w-100" style="ime-mode: inactive" />
                                     <span class="d-block mt-16">(例）1000-10-1000</span>
+                                    <span id="tel-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row"><em>＊</em>メールアドレス</th>
                                 <td colspan="2">
                                     <input name="mailaddress1" class="form-control w-100" id="mailaddress1" type="text" value="" autocomplete="off" />
+                                    <span id="mailaddress1-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row"><em>＊</em>メールアドレス（確認用）</th>
                                 <td colspan="2">
                                     <input name="mailaddress2" class="form-control w-100" id="mailaddress2" type="text" value="" autocomplete="off" />
+                                    <span id="mailaddress2-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="send text-center my-40">
-                        <input name="member_regmode" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="hidden" value="newmemberform" />
-                        <input name="regmember" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="確認する" />
+                        <input id="submit" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="確認する" />
                     </div>
                 </form>
             </div>

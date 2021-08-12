@@ -50,7 +50,6 @@ class BuyController extends Controller
             "status" => "OK",
             "id" => $basket_id,
         ];
-        Log::debug($response);
 
         return response()->json($response);
     }
@@ -97,5 +96,10 @@ class BuyController extends Controller
 
     public function address() {
         return view('address');
+    }
+
+    public function confirm(Request $response) {
+        Log::debug($response);
+        return view('confirm',compact('response'));
     }
 }

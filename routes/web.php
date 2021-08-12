@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //   return view('top');
 //});
+
+Route::post('/confirm', 'App\Http\Controllers\BuyController@confirm');
 Route::get('/basket', 'App\Http\Controllers\BuyController@basket');
 Route::post('/storebasket', 'App\Http\Controllers\BuyController@storebasket');
 Route::post('/getBaskets', 'App\Http\Controllers\BuyController@getBaskets');
