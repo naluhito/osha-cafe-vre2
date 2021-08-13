@@ -6,7 +6,7 @@
     <div class="position-relative d-flex flex-column justify-content-center" id="slider-home">
         <img src="/img/logo-slider.png" alt="Oshi Cafe Factory" class="slider-logo">
         <!-- <div class="text-center">
-            <a href="/buy.php" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
         </div> -->
     </div>
 </div>
@@ -19,7 +19,7 @@
     <div class="container">
          <img src="/img/SVG/setumeibun.svg" alt="" class="" style="width: 550px;">
          <div class="text-center mt-32 mb-56">
-            <a href="/buy.php" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
         </div>
         <!-- <p class="text-center text-primary font-weight-bold lh-12 fz-22">最短2分で完成！<br>オリジナルドリップバッグが<br>1個200円から作れる！</p> -->
         <h2 class="text-center font-weight-bold fz-20 mt-32"><span class="brackets">Oshi Cafe factoryとは？</span></h2>
@@ -85,7 +85,7 @@
         </div>
         <p class="text-center mt-24 mb-0">画像をアップロードするだけ！</p>
         <div class="text-center">
-            <a href="/buy.php" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
         </div>
         <p class="text-center"><a href="/#l-flow" class="text-dark border-bottom border-width-2 d-inline-block mt-24">ご購入までの流れはこちら</a></p>
     </div>
@@ -147,7 +147,7 @@
     </div>
     <p class="text-center mt-24 mb-0">画像をアップロードするだけ！</p>
     <div class="text-center">
-        <a href="/buy.php" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+        <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
     </div>
 </div>
 <?php
