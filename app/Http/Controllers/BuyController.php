@@ -95,11 +95,47 @@ class BuyController extends Controller
     }
 
     public function address() {
-        return view('address');
+        if (session()->has('address')) {
+            Log::debug(session('address'));
+            $address = json_decode(session('address'));
+        } else {
+            $array = array(
+                "name1" => "",
+                "name2" => "",
+                "name3" => "",
+                "name4" => "",
+                "zipcode" => "",
+                "pref" => "",
+                "address1" => "",
+                "address2" => "",
+                "address3" => "",
+                "tel" => "",
+                "mailaddress1" => "",
+                "mailaddress2" => "",
+            );
+            $json = json_encode($array);
+            $address = json_decode($json);
+        }
+        return view('address', compact('address'));
     }
 
     public function confirm(Request $response) {
-        Log::debug($response);
-        return view('confirm',compact('response'));
+        $address = array(
+            "name1" => $response->input("name1"),
+            "name2" => $response->input("name2"),
+            "name3" => $response->input("name3"),
+            "name4" => $response->input("name4"),
+            "zipcode" => $response->input("zipcode"),
+            "pref" => $response->input("pref"),
+            "address1" => $response->input("address1"),
+            "address2" => $response->input("address2"),
+            "address3" => $response->input("address3"),
+            "tel" => $response->input("tel"),
+            "mailaddress1" => $response->input("mailaddress1"),
+            "mailaddress2" => $response->input("mailaddress2"),
+        );
+        session(['address' => json_encode($address)]);
+        Log::debug($address);
+        return view('confirm', compact('response'));
     }
 }

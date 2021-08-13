@@ -4,29 +4,41 @@
 
 <div class="position-relative" id="l-slider">
     <div class="position-relative d-flex flex-column justify-content-center" id="slider-home">
-        <img src="/img/SVG/logo-slider.svg" alt="Oshi Cafe Factory" style="width:696px;">
-        <div class="text-center">
-            <a href="/" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
-        </div>
+        <img src="/img/logo-slider.png" alt="Oshi Cafe Factory" class="slider-logo">
+        <!-- <div class="text-center">
+            <a href="/buy.php" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+        </div> -->
     </div>
 </div>
-{{-- Oshi Cafe factoryとは？ --}}
+<?php
+    // ==============================
+    //  Oshi Cafe factoryとは？
+    // ==============================
+?>
 <div class="container-wrap" id="l-originaldripbag">
     <div class="container">
-        <p class="text-center text-primary font-weight-bold lh-12 fz-22">最短2分で完成！<br>オリジナルドリップバッグが<br>1個200円から作れる！</p>
+         <img src="/img/SVG/setumeibun.svg" alt="" class="" style="width: 550px;">
+         <div class="text-center mt-32 mb-56">
+            <a href="/buy.php" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+        </div>
+        <!-- <p class="text-center text-primary font-weight-bold lh-12 fz-22">最短2分で完成！<br>オリジナルドリップバッグが<br>1個200円から作れる！</p> -->
         <h2 class="text-center font-weight-bold fz-20 mt-32"><span class="brackets">Oshi Cafe factoryとは？</span></h2>
         <p class="text-center mt-24">コーヒー豆専門店が自家焙煎した<br>最高品質のコーヒーを100％使用！<br>1個からオリジナルパッケージが作れる<br>「推し活応援」オリジナルドリップバッグサービス！</p>
         <p class="text-right"><a href="/about.php" class="border-bottom border-brown text-brown">もっと詳しく</a></p>
     </div>
 </div>
-{{-- 完全オリジナルからテンプレートまで！、世界に1つのコーヒーギフト！、1個からでもOK！気軽に作れる！ --}} 
+<?php
+    // ==============================
+    //  完全オリジナルからテンプレートまで！、世界に1つのコーヒーギフト！、1個からでもOK！気軽に作れる！
+    // ==============================
+?>
 <div class="container-wrap" id="l-home-points">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <div class="">
-                    <img src="/img/home-points1.png" alt="画像1枚ですぐに作れる！">
-                    <h3 class="text-center text-primary font-weight-bold fz-18 mt-8">画像1枚ですぐに作れる！</h3>
+                    <img src="/img/home-points1.png" alt="完全オリジナルからテンプレートまで！">
+                    <h3 class="text-center text-primary font-weight-bold fz-18 mt-24">画像1枚ですぐに作れる！</h3>
                     <div class="bg-pink-light rounded-10 bg-primary-light p-8">
                         <p class="text-center lh-14 fz-14">プレビューで何度も仕上がり確認が可能！<br class="d-none d-md-block">初心者でも安心して簡単に作れます！</p>
                     </div>
@@ -35,8 +47,8 @@
             </div>
             <div class="col-md-4 mt-40 mt-md-0">
                 <div class="">
-                    <img src="/img/home-points2.png" alt="色々なシーンでの贈り物に最適！">
-                    <h3 class="text-center text-primary font-weight-bold fz-18 mt-8">色々なシーンでの贈り物に最適！</h3>
+                    <img src="/img/home-points2.png" alt="世界に一つのコーヒーギフト！">
+                    <h3 class="text-center text-primary font-weight-bold fz-18 mt-24">色々なシーンでの贈り物に最適！</h3>
                     <div class="bg-pink-light rounded-10 bg-primary-light p-8">
                         <p class="text-center lh-14 fz-14">軽くて薄いからノベルティや差し入れに最適！<br class="d-none d-md-block">配送コストも抑えられる！</p>
                     </div>
@@ -44,8 +56,8 @@
             </div>
             <div class="col-md-4 mt-40 mt-md-0">
                 <div class="">
-                    <img src="/img/home-points3.png" alt="欲しい数だけ作れるから安心！">
-                    <h3 class="text-center text-primary font-weight-bold fz-18 mt-8">欲しい数だけ作れるから安心！</h3>
+                    <img src="/img/home-points3.png" alt="１個からでもOK！気軽に作れる！">
+                    <h3 class="text-center text-primary font-weight-bold fz-18 mt-24">欲しい数だけ作れるから安心！</h3>
                     <div class="bg-pink-light rounded-10 bg-primary-light p-8">
                         <p class="text-center lh-14 fz-14">1個から大量注文まで可能！<br class="d-none d-md-block">初めてのグッズ作りを応援します！</p>
                     </div>
@@ -55,30 +67,34 @@
         </div>
     </div>
 </div>
-{{-- 推しとカフェタイム --}}
+<?php
+    // ==============================
+    //  推しとカフェタイム
+    // ==============================
+?>
 <div class="container-wrap bg-pink-thin">
     <div class="container">
         <img src="/img/SVG/home-customersvoice-ttl.svg" alt="推しとカフェタイム" style="width:352px;">
         <h2 class="text-center mt-16">♯推しとカフェタイム</h2>
         <div class="row gtr-8 row-cols-3 mt-24">
-            <div class="col"><img src="/img/home-customersvoice-photo1.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col"><img src="/img/home-customersvoice-photo2.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col"><img src="/img/home-customersvoice-photo3.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col mt-8"><img src="/img/home-customersvoice-photo4.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col mt-8"><img src="/img/home-customersvoice-photo5.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col mt-8"><img src="/img/home-customersvoice-photo6.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col mt-8"><img src="/img/home-customersvoice-photo7.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col mt-8"><img src="/img/home-customersvoice-photo8.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col mt-8"><img src="/img/home-customersvoice-photo9.jpg" alt="♯推しとカフェタイム"></div>
+            <div class="col"><img src="/img/oshiinsta01.jpg" alt="♯推しとカフェタイム"></div>
+            <div class="col"><img src="/img/oshiinsta02.jpg" alt="♯推しとカフェタイム"></div>
+            <div class="col"><img src="/img/oshiinsta03.jpg" alt="♯推しとカフェタイム"></div>
+            <div class="col mt-8"><img src="/img/oshiinsta04.jpg" alt="♯推しとカフェタイム"></div>
+            <div class="col mt-8"><img src="/img/oshiinsta05.jpg" alt="♯推しとカフェタイム"></div>
         </div>
         <p class="text-center mt-24 mb-0">画像をアップロードするだけ！</p>
         <div class="text-center">
-            <a href="/" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+            <a href="/buy.php" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
         </div>
-        <p class="text-center"><a href="/" class="text-dark border-bottom border-width-2 d-inline-block mt-24">ご購入までの流れはこちら</a></p>
+        <p class="text-center"><a href="/#l-flow" class="text-dark border-bottom border-width-2 d-inline-block mt-24">ご購入までの流れはこちら</a></p>
     </div>
 </div>
-{{-- 3ステップで簡単作成！ --}}
+<?php
+    // ==============================
+    //  3ステップで簡単作成！
+    // ==============================
+?>
 <div class="py-24 py-md-48 py-lg-64" id="l-flow">
     <div class="px-16">
         <img src="/img/SVG/home-3step-ttl.svg" alt="3ステップで簡単作成！" style="width:406px;">
@@ -119,7 +135,7 @@
             <div class="col-6">
                 <div class="px-16">
                     <h3 class="text-center"><span class="border-stripe">Step 3</span></h3>
-                    <p class="text-center">10種類のコーヒーから<br class="d-none d-md-block">好みのフレーバーを選択して購入。<br>カートからお支払いできます！</p>
+                    <p class="text-center">5種類のコーヒーから<br class="d-none d-md-block">好みのフレーバーを選択して購入。<br>カートからお支払いできます！</p>
                 </div>
             </div>
             <div class="col-6">
@@ -131,10 +147,14 @@
     </div>
     <p class="text-center mt-24 mb-0">画像をアップロードするだけ！</p>
     <div class="text-center">
-        <a href="/" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+        <a href="/buy.php" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
     </div>
 </div>
-{{-- 料金について --}}
+<?php
+    // ==============================
+    //  料金について
+    // ==============================
+?>
 <div class="container-wrap bg-pink-thin" id="l-price">
     <div class="container">
         <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">料金について</span></h2>
@@ -177,24 +197,32 @@
                 </div>
             </div>
         </div>
-        <p class="kome">※500個以上の大量注文をお考えの方はお問い合わせください。</p>
+        <p class="kome mt-16">※500個以上の大量注文をお考えの方はお問い合わせください。</p>
         <div class="row justify-content-center mt-40">
             <div class="col-md-auto">
-                <a href="https://oshi-cafe.com" class="btn btn-block btn-outline-brown">お問い合わせ</a>
+                <a href="contact.php" class="btn btn-block btn-outline-brown" style="color:#806239;">お問い合わせ</a>
             </div>
         </div>
     </div>
 </div>
-{{-- 納期について --}}
+    <?php
+    // ==============================
+    //  納期について
+    // ==============================
+?>
 <div class="container-wrap" id="l-delivery">
     <div class="container">
         <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">納期について</span></h2>
         <p class="text-center font-weight-bold fz-26 mt-24"><span class="border border-brown border-width-4 rounded-10 d-inline-block p-16">ご購入から 約2営業日で発送</span></p>
-        <p class="text-center">本日のご注文で最短4日でのお届けとなります。<br class="d-none d-md-block">500個以上のご注文、またはお急ぎの場合は<br class="d-none d-md-block"><a href="https://oshi-cafe.com">こちら</a>よりお問い合わせください。</p>
+        <p class="text-center">本日のご注文で最短4日でのお届けとなります。<br class="d-none d-md-block">500個以上のご注文、またはお急ぎの場合は<br class="d-none d-md-block"><a href="https://oshi-cafe.com/contact.php">こちら</a>よりお問い合わせください。</p>
         <p class="text-md-center fz-12">出荷まで2日程度お時間をいただきます。期日がある場合はお早めにご注文下さいますよう、お願いいたします。</p>
     </div>
 </div>
-{{-- 支払い・発送方法 --}}
+<?php
+    // ==============================
+    //  支払い・発送方法
+    // ==============================
+?>
 <div class="container-wrap bg-pink-thin" id="l-payment">
     <div class="container fz-14">
         <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">支払い・発送方法</span></h2>
@@ -208,7 +236,11 @@
         <p>送料 300円。10個以上のお買い上げで送料無料。</p>
     </div>
 </div>
-{{-- その他 --}}
+<?php
+    // ==============================
+    //  その他
+    // ==============================
+?>
 <div class="container-wrap" id="l-other">
     <div class="container">
         <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">その他</span></h2>
@@ -255,6 +287,4 @@
         <h4 class="h4 fz-14"><i class="fas fa-square mr-4"></i>カード決済の場合、カード会社から発行されるご請求書などが領収証となるため、弊社からは発行いたしません。</h4>
     </div>
 </div>
-
-
 @endsection

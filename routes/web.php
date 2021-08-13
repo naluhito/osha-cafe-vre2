@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- //Route::get('/', function () {
+ Route::get('/', function () {
 //    return view('welcome');
-//   return view('top');
-//});
+   return view('index');
+});
 
 Route::post('/confirm', 'App\Http\Controllers\BuyController@confirm');
 Route::get('/basket', 'App\Http\Controllers\BuyController@basket');

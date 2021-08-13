@@ -50,7 +50,7 @@
 						</p>
 					</div>
 					<div class="col-auto">
-						<a href="#" class="text-white">
+						<a href="basket" class="text-white">
 							変更する <i class="fas fa-chevron-right"></i>
 						</a>
 					</div>
@@ -59,11 +59,47 @@
 		</div>
 		<div class="row justify-content-center mt-24">
 			<div class="col-8 col-sm-5 col-md-3">
-				<img src="./img/coffee-claft.png" alt="商品画像">
-				<p class="text-center mt-16">
-					<span style="border-bottom:double;" class="pb-4">
-						合計金額&emsp;<span class="fz-26 font-weight-bold">0,000</span><span class="fz-18">円</span>
-					</span>
+				<div id="item" style="display: none">
+					<div class="row gtr-48 justify-content-center border-top border-dark py-40">
+						<div class="col-md-auto">
+							<img id = "frame" src="" style="width:100%; width:180px;">
+						</div>
+						<div class="col-md-7 mt-24 mt-md-0">
+							<div id="drip" style="display: none">
+								<p class="bg-dark text-white fz-14 mt-24 px-32 py-8 d-inline-block text-center" class="" style="border-radius: 5px;">ドリップバッグ</p>
+								<table class="kounyuhin table table-bordered tbl-2column mt-0">
+									<tbody>
+									<tr id="item-tbl" style="display: none">
+										<th id="name" class="w-md-25 bg-768-gray"></th>
+										<th id="num" class="w-md-25 text-right"></th>
+										<td id="amount" class="text-right"></span></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div id="coffee" style="display: none">
+								<p class="bg-dark text-white fz-14 mt-24 px-32 py-8 d-inline-block text-center" class="" style="border-radius: 5px;">コーヒーバッグ</p>
+								<table class="kounyuhin table table-bordered tbl-2column mt-0">
+									<tbody>
+									<tr id="item-tbl" style="display: none">
+										<th id="name" class="w-md-25 bg-768-gray"></th>
+										<th id="num" class="w-md-25 text-right"></th>
+										<td id="amount" class="text-right"></span></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>							
+					</div>
+				</div>
+				<p class="fz-15 mt-16 pt-16 text-dark text-right" style="border-top: 2px solid #8e724e;">送料:<spam id="shipping"></spam></p>
+		        <p class="fz-24 text-right mb-0">
+        	    	<span class="fz-16 pr-8">合計金額：</span><spam id="total-amount"></spam><span class="fz-14">円</span>
+        		</p>
+				<p class="fz-12 text-right">（内消費税<spam id="tax"></spam>円）</p>
+				<p class="fz-24 text-right mb-0" >
+					<span class="fz-16 pr-8">お支払合計金額：</span><spam id="pay-amount"></spam><span class="fz-14">円</span>
 				</p>
 			</div>
 		</div>
@@ -76,7 +112,7 @@
 						</p>
 					</div>
 					<div class="col-auto">
-						<a href="#" class="text-white">
+						<a href="address" class="text-white">
 							変更する <i class="fas fa-chevron-right"></i>
 						</a>
 					</div>
@@ -89,7 +125,7 @@
 				<p>クロネコヤマト<br class="d-md-none">(配送料 495円)</p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎お届け先</p>
-				<p class="mb-0">〒{{ $response->zipcode }}<br class="d-md-none"> {{ $response->pref }}{{ $response->address1 }}{{ $response->address2 }}{{ $response->address3 }}<br class="d-md-none"> {{ $response->address4 }}</p>
+				<p class="mb-0">〒{{ $response->zipcode }}<br class="d-md-none"> {{ $response->pref }}{{ $response->address1 }}{{ $response->address2 }}{{ $response->address3 }}</p><br class="d-md-none"> {{ $response->name1 }}{{ $response->name2 }}<br class="d-md-none"> {{ $response->address4 }}</p>
 				<p><i class="fas fa-phone-alt"></i>&ensp;{{ $response->tel }}</p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎メールアドレス</p>
@@ -137,7 +173,8 @@
 			</div>
 		</div>
 	</div>
-</div>@endsection
+</div>
+@endsection
 @push('scripts')
 <script type="text/javascript">
 	$("#check1").on("click", function(){
@@ -150,4 +187,5 @@
 	  $("#result2").text(val);
 	});
 </script>
+<script src="{{ asset('js/basket.js') }}"></script>
 @endpush
