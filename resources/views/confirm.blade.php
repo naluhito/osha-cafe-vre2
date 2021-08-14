@@ -66,20 +66,20 @@
 			</div>
 		</div>
 		<div class="row justify-content-center mt-24">
-    		<div class="col-md-7">
+			<div class="col-md-8">
 				<div id="item" style="display: none">
-					<div class="row gtr-24 justify-content-center border-top border-dark py-40">
+					<div class="row gtr-24 justify-content-center border-top border-dark py-40 align-items-center">
 						<div class="col-md-3">
 							<img id="frame" src="" style="width:100%;">
 						</div>
-						<div class="col-md-7 mt-24 mt-md-0">
+						<div class="col-md-9 mt-24 mt-md-0">
 							<div id="drip" style="display: none">
 								<p class="bg-dark text-white fz-14 mt-24 px-32 py-8 d-inline-block text-center" class="" style="border-radius: 5px;">ドリップバッグ</p>
 								<table class="kounyuhin table table-bordered tbl-2column mt-0">
 									<tbody>
 									<tr id="item-tbl" style="display: none">
 										<th id="name" class="w-md-25 bg-768-gray"></th>
-										<th id="num" class="w-md-25 text-right"></th>
+										<th id="num" class="w-md-25 bg-768-gray fz-14"></th>
 										<td id="amount" class="w-md-25 text-right"></td>
 									</tr>
 									</tbody>
