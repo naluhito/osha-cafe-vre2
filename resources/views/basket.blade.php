@@ -34,7 +34,7 @@
                             <tr id="item-tbl" style="display: none">
                                 <th id="name" class="w-md-25 bg-768-gray"></th>
                                 <th id="num" class="w-md-25 text-right"></th>
-                                <td id="amount" class="text-right"></span></td>
+                                <td id="amount" class="text-right"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -47,7 +47,7 @@
                             <tr id="item-tbl" style="display: none">
                                 <th id="name" class="w-md-25 bg-768-gray"></th>
                                 <th id="num" class="w-md-25 text-right"></th>
-                                <td id="amount" class="text-right"></span></td>
+                                <td id="amount" class="text-right"></td>
                             </tr>
                             </tbody>
                         </table>

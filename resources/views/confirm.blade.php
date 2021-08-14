@@ -58,11 +58,11 @@
 			</div>
 		</div>
 		<div class="row justify-content-center mt-24">
-			<div class="col-8 col-sm-5 col-md-3">
+    		<div class="col-md-7">
 				<div id="item" style="display: none">
-					<div class="row gtr-48 justify-content-center border-top border-dark py-40">
-						<div class="col-md-auto">
-							<img id = "frame" src="" style="width:100%; width:180px;">
+					<div class="row gtr-24 justify-content-center border-top border-dark py-40">
+						<div class="col-md-3">
+							<img id="frame" src="" style="width:100%;">
 						</div>
 						<div class="col-md-7 mt-24 mt-md-0">
 							<div id="drip" style="display: none">
@@ -72,7 +72,7 @@
 									<tr id="item-tbl" style="display: none">
 										<th id="name" class="w-md-25 bg-768-gray"></th>
 										<th id="num" class="w-md-25 text-right"></th>
-										<td id="amount" class="text-right"></span></td>
+										<td id="amount" class="w-md-25 text-right"></td>
 									</tr>
 									</tbody>
 								</table>
@@ -85,7 +85,7 @@
 									<tr id="item-tbl" style="display: none">
 										<th id="name" class="w-md-25 bg-768-gray"></th>
 										<th id="num" class="w-md-25 text-right"></th>
-										<td id="amount" class="text-right"></span></td>
+										<td id="amount" class="w-md-25 text-right"></td>
 									</tr>
 									</tbody>
 								</table>
