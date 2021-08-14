@@ -120,6 +120,7 @@ class BuyController extends Controller
     }
 
     public function confirm(Request $response) {
+        Log::debug($response);
         $address = array(
             "name1" => $response->input("name1"),
             "name2" => $response->input("name2"),
@@ -135,7 +136,6 @@ class BuyController extends Controller
             "mailaddress2" => $response->input("mailaddress2"),
         );
         session(['address' => json_encode($address)]);
-        Log::debug($address);
         return view('confirm', compact('response'));
     }
 }

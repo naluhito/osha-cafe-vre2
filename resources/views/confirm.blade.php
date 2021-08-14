@@ -33,6 +33,14 @@
 	  display: block;
 	}
 
+	.convenienceinfo {
+	  display: none;
+	}
+
+	input:checked ~ .convenienceinfo {
+	  display: block;
+	}
+
 	.btn.btn-primary2 {
 	    border-radius: 15px;
 	    background: rgb(49,115,255);
@@ -145,6 +153,8 @@
 							<button type="button" class="btn btn-primary2 w-100 text-white p-16 ls-02" data-toggle="modal" data-target="#choice10Modal">
 							<i class="fas fa-hand-point-right fz-24"></i> クレジット情報入力
 							</button>
+							<img src="https://business.kuronekoyamato.co.jp/service/lineup/payment/logo/images/web_pay_card.gif" border="0" alt="クロネコwebコレクト クレジットカード払い" class="mw-100 ml-0">
+						    <p class="fz-12">お客様が入力されたカード情報は当店に送られることなく、さらにカード情報入力画面は暗号化（SSL）で保護されています。</p>
 						</div>
 						<!-- Modal01 -->
 						<div class="modal fade pt-8" id="choice10Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" data-bs-backdrop="static">
@@ -164,6 +174,16 @@
 						</div>
 					<div class="mt-8">
 						<input type="radio" name="payment" value="convenience" class="mr-8"><span class="fz-20">コンビニ決済払い</span>
+						<div class="convenienceinfo mt-16">
+							<div class="ml-16">
+								<p>指定のコンビニを選んでください。</p>
+								<input type="radio" name="hege" value="hege" class="mr-8"><span class="fz-20">セブンイレブン</span><br>
+								<input type="radio" name="hege" value="hege" class="mr-8"><span class="fz-20">ファミリーマート</span><br>
+								<input type="radio" name="hege" value="hege" class="mr-8"><span class="fz-20">ローソン、ミニストップ、セイコーマート</span>
+							</div>
+							<img src="https://business.kuronekoyamato.co.jp/service/lineup/payment/logo/images/web_com_pay.gif" border="0"  alt="クロネコwebコレクト コンビニ（オンライン）払い" class="mw-100 ml-0 mt-16">
+							<p class="mt-16">ご購入後送られてくるメールの内容をご確認の上、コンビニでお支払いください。</p>
+						</div>
 					</div>
 				</div>
 				<div class="send text-center my-40">
