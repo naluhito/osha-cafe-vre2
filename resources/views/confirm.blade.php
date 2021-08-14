@@ -150,27 +150,18 @@
 					<div>
 						<input type="radio" name="payment" value="credit" class="mr-8 credit"><span class="fz-20">クレジット</span>
 						<div class="creditinfo mb-24">
-							<button type="button" class="btn btn-primary2 w-100 text-white p-16 ls-02" data-toggle="modal" data-target="#choice10Modal">
-							<i class="fas fa-hand-point-right fz-24"></i> クレジット情報入力
-							</button>
+							<input type="button" class="btn btn-primary2 w-100 text-white p-16 ls-02" value="クレジット情報入力" id="create-token-launch">
+							<script type="text/javascript"
+								class="webcollect-token-api"
+								src="https://api.kuronekoyamato.co.jp/api/token/js/tokenlib.js"
+								data-trader-cd="900000001"
+								data-auth-div="2"
+								data-opt-serv-div="00"
+								data-check-sum="XXXXXXXXXXXXXXXXX"
+								data-callback="after">
+							</script>
 							<img src="https://business.kuronekoyamato.co.jp/service/lineup/payment/logo/images/web_pay_card.gif" border="0" alt="クロネコwebコレクト クレジットカード払い" class="mw-100 ml-0">
 						    <p class="fz-12">お客様が入力されたカード情報は当店に送られることなく、さらにカード情報入力画面は暗号化（SSL）で保護されています。</p>
-						</div>
-						<!-- Modal01 -->
-						<div class="modal fade pt-8" id="choice10Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" data-bs-backdrop="static">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header" style="background-color: #03a9f4;">
-										<h5 class="modal-title" id="exampleModalLongTitle">●●●●●●●</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body py-200">
-								    	
-								    </div>
-								</div>
-							</div>
 						</div>
 					<div class="mt-8">
 						<input type="radio" name="payment" value="convenience" class="mr-8"><span class="fz-20">コンビニ決済払い</span>
