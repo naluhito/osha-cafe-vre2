@@ -189,9 +189,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="send text-center my-40">
-			<input name="regmember" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="確認する">
-		</div>
+		<div class="col-12">
+			<div class="send text-center my-40">
+				<input name="regmember" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="購入する">
+			</div>
+		</vid>
 	</form>
 	</div>
 </div>
