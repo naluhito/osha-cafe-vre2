@@ -138,4 +138,8 @@ class BuyController extends Controller
         session(['address' => json_encode($address)]);
         return view('confirm', compact('response'));
     }
+
+    public function decision(Request $response) {
+
+    }
 }

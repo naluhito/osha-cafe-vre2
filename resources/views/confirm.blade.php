@@ -49,6 +49,8 @@
 </style>
 <div class="container-wrap">
 	<div class="container pb-40 px-0">
+	<form name="confirm_form" action="decision" method="post">
+		@csrf
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="row justify-content-between p-16" style="background-color:#a6d1ec;">
@@ -68,6 +70,7 @@
 		<div class="row justify-content-center mt-24">
 			<div class="col-md-8">
 				<div id="item" style="display: none">
+					<input type="hidden" name="basket[]" id="basket">
 					<div class="row gtr-24 justify-content-center border-top border-dark py-40 align-items-center">
 						<div class="col-md-3">
 							<img id="frame" src="" style="width:100%;">
@@ -154,11 +157,18 @@
 							<script type="text/javascript"
 								class="webcollect-token-api"
 								src="https://api.kuronekoyamato.co.jp/api/token/js/tokenlib.js"
-								data-trader-cd="900000001"
+								data-trader-cd="970651403"
 								data-auth-div="2"
 								data-opt-serv-div="00"
-								data-check-sum="XXXXXXXXXXXXXXXXX"
+								data-check-sum="8166303"
 								data-callback="after">
+							</script>
+							<script type="text/javascript">
+								function after() {
+									btn = document.getElementById("create-token-launch");
+									btn.val("カード情報入力済み");
+									btn.attr("disabled", true);
+								}
 							</script>
 							<img src="https://business.kuronekoyamato.co.jp/service/lineup/payment/logo/images/web_pay_card.gif" border="0" alt="クロネコwebコレクト クレジットカード払い" class="mw-100 ml-0">
 						    <p class="fz-12">お客様が入力されたカード情報は当店に送られることなく、さらにカード情報入力画面は暗号化（SSL）で保護されています。</p>
@@ -177,12 +187,12 @@
 						</div>
 					</div>
 				</div>
-				<div class="send text-center my-40">
-	                <input name="member_regmode" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="hidden" value="newmemberform" />
-	                <input name="regmember" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="確認する" />
-	            </div>
 			</div>
 		</div>
+		<div class="send text-center my-40">
+			<input name="regmember" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="確認する">
+		</div>
+	</form>
 	</div>
 </div>
 @endsection
@@ -198,5 +208,5 @@
 	  $("#result2").text(val);
 	});
 </script>
-<script src="{{ asset('js/basket.js') }}"></script>
+<script src="{{ asset('js/confirm.js') }}"></script>
 @endpush
