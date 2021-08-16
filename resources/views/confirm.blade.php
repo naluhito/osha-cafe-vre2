@@ -151,7 +151,7 @@
 				</p>
 				<div class="p-16" style="border: 2px solid #f2b2ce; border-radius: 0 0 10px 10px;">
 					<div>
-						<input type="radio" name="payment" value="credit" class="mr-8 credit"><span class="fz-20">クレジット</span>
+						<input type="radio" name="payment" id="pay-credit" value="credit" class="mr-8 credit"><span class="fz-20">クレジット</span>
 						<div class="creditinfo mb-24">
 							<input type="button" class="btn btn-primary2 w-100 text-white p-16 ls-02" value="クレジット情報入力" id="create-token-launch">
 							<script type="text/javascript"
@@ -160,21 +160,21 @@
 								data-trader-cd="970651403"
 								data-auth-div="2"
 								data-opt-serv-div="00"
-								data-check-sum="8166303"
+								data-check-sum={{ $check_sum }}
 								data-callback="after">
 							</script>
 							<script type="text/javascript">
 								function after() {
-									btn = document.getElementById("create-token-launch");
-									btn.val("カード情報入力済み");
-									btn.attr("disabled", true);
+									document.getElementById("create-token-launch").setAttribute("disabled", true);
+									document.getElementById("create-token-launch").value = "カード情報入力済み";
+									document.getElementById("pay-convenience").setAttribute("disabled", true);
 								}
 							</script>
 							<img src="https://business.kuronekoyamato.co.jp/service/lineup/payment/logo/images/web_pay_card.gif" border="0" alt="クロネコwebコレクト クレジットカード払い" class="mw-100 ml-0">
 						    <p class="fz-12">お客様が入力されたカード情報は当店に送られることなく、さらにカード情報入力画面は暗号化（SSL）で保護されています。</p>
 						</div>
 					<div class="mt-8">
-						<input type="radio" name="payment" value="convenience" class="mr-8"><span class="fz-20">コンビニ決済払い</span>
+						<input type="radio" name="payment" id="pay-convenience" value="convenience" class="mr-8"><span class="fz-20">コンビニ決済払い</span>
 						<div class="convenienceinfo mt-16">
 							<div class="ml-16">
 								<p>指定のコンビニを選んでください。</p>
@@ -191,7 +191,7 @@
 		</div>
 		<div class="col-12">
 			<div class="send text-center my-40">
-				<input name="regmember" class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="購入する">
+				<input class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="購入する">
 			</div>
 		</vid>
 	</form>

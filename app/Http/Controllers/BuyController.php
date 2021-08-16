@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use App\Models\Bean;
 use App\Models\Basket;
 use App\Models\Basketbean;
+use Illuminate\Support\Facades\Http;
 
 class BuyController extends Controller
 {
@@ -96,7 +97,6 @@ class BuyController extends Controller
 
     public function address() {
         if (session()->has('address')) {
-            Log::debug(session('address'));
             $address = json_decode(session('address'));
         } else {
             $array = array(
@@ -136,10 +136,40 @@ class BuyController extends Controller
             "mailaddress2" => $response->input("mailaddress2"),
         );
         session(['address' => json_encode($address)]);
-        return view('confirm', compact('response'));
+        $access_key = "81663032";
+        $check_sum = hash('sha256', $access_key);
+
+        return view('confirm', compact('response', 'check_sum'));
     }
 
-    public function decision(Request $response) {
+    public function decision(Request $request) {
+//        $ids = array();
+//        foreach ($request->input('basket') as $key=>$val) {
+//            if ($val != null) {
+//                $ids[] = $val;
+//            }
+//        }
+//        $basket = new Basket();
+//        $baskets = $basket->whereIn('id', $ids)->get();
+        $address = json_decode(session('address'));
 
+        if ($request->input('payment') == 'credit') {
+//            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
+            $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
+
+            $response = Http::post($url, [
+                'function_div' => 'A08',
+                'trader_code' => '970651403',
+                'device_div' => '1',
+                'order_no' => '1',
+                'settle_price' => '800',
+                'buyer_name_kanji' => $address->name1.$address->name2,
+                'buyer_tel' => $address->tel,
+                'buyer_email' => $address->mailaddress1,
+                'token' => $request->input('webcollectToken')
+            ]);
+        }
+        Log::debug($response);
+        return view('card');
     }
 }
