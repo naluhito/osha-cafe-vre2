@@ -157,7 +157,7 @@ class BuyController extends Controller
 //            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
             $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
 
-            $response = Http::post($url, [
+            $response = Http::get($url, [
                 'function_div' => 'A08',
                 'trader_code' => '970651403',
                 'device_div' => '1',
