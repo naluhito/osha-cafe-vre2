@@ -154,8 +154,8 @@ class BuyController extends Controller
         $address = json_decode(session('address'));
 
         if ($request->input('payment') == 'credit') {
-//            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
-            $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
+            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
+//            $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
 
             $response = Http::get($url, [
                 'function_div' => 'A08',
