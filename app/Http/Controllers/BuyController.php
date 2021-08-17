@@ -172,4 +172,9 @@ class BuyController extends Controller
         Log::debug($response);
         return view('card');
     }
+
+    public function seven() {
+        return view('seven');
+    }
+
 }

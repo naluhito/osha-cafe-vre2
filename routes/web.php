@@ -28,3 +28,5 @@ Route::get('/address', 'App\Http\Controllers\BuyController@address');
 Route::get('/choice', 'App\Http\Controllers\BuyController@choice');
 Route::get('/buy', 'App\Http\Controllers\BuyController@index');
 Route::get('/login', 'App\Http\Controllers\UserController@index');
+
+Route::get('/seven', 'App\Http\Controllers\BuyController@seven');
