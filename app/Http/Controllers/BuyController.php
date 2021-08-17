@@ -143,21 +143,21 @@ class BuyController extends Controller
     }
 
     public function decision(Request $request) {
-//        $ids = array();
-//        foreach ($request->input('basket') as $key=>$val) {
-//            if ($val != null) {
-//                $ids[] = $val;
-//            }
-//        }
+        $ids = array();
+        foreach ($request->input('basket') as $key=>$val) {
+            if ($val != null) {
+                $ids[] = $val;
+            }
+        }
 //        $basket = new Basket();
 //        $baskets = $basket->whereIn('id', $ids)->get();
+
         $address = json_decode(session('address'));
 
         if ($request->input('payment') == 'credit') {
 //            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
             $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
-
-            $response = Http::post($url, [
+            $param = [
                 'function_div' => 'A08',
                 'trader_code' => '970651403',
                 'device_div' => '1',
@@ -167,9 +167,11 @@ class BuyController extends Controller
                 'buyer_tel' => $address->tel,
                 'buyer_email' => $address->mailaddress1,
                 'token' => $request->input('webcollectToken')
-            ]);
+            ];
+            Log::debug($param);
+            $response = Http::post($url, $param);
+            Log::debug($response);
         }
-        Log::debug($response);
         return view('card');
     }
 
