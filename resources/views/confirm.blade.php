@@ -178,9 +178,9 @@
 						<div class="convenienceinfo mt-16">
 							<div class="ml-16">
 								<p>指定のコンビニを選んでください。</p>
-								<input type="radio" name="hege" value="hege" class="mr-8"><span class="fz-20">セブンイレブン</span><br>
-								<input type="radio" name="hege" value="hege" class="mr-8"><span class="fz-20">ファミリーマート</span><br>
-								<input type="radio" name="hege" value="hege" class="mr-8"><span class="fz-20">ローソン、ミニストップ、セイコーマート</span>
+								<input type="radio" name="convenience" value="seven" class="mr-8"><span class="fz-20">セブンイレブン</span><br>
+								<input type="radio" name="convenience" value="fm" class="mr-8"><span class="fz-20">ファミリーマート</span><br>
+								<input type="radio" name="convenience" value="lm" class="mr-8"><span class="fz-20">ローソン、ミニストップ、セイコーマート</span>
 							</div>
 							<img src="https://business.kuronekoyamato.co.jp/service/lineup/payment/logo/images/web_com_pay.gif" border="0"  alt="クロネコwebコレクト コンビニ（オンライン）払い" class="mw-100 ml-0 mt-16">
 							<p class="mt-16">ご購入後送られてくるメールの内容をご確認の上、コンビニでお支払いください。</p>

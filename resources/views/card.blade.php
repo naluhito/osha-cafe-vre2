@@ -8,11 +8,10 @@
 		<div class="row justify-content-center">
 			<div class="col-md-7 col-lg-6 col-xl-5">
 			<h3 class="fz-24">お買い上げありがとうございました。<h3>
-			//  クレジット決済表示
 			<ul class="list-unstyled pb-40">
-			<li>決済完了日時：</li>
-			<li>金額：</li>
-			<li>受注ID：</li>
+			<li>決済完了日時：{{ $process_date }}</li>
+			<li>金額：{{ number_format($amount) }}円</li>
+			<li>受注番号：{{ $order_number }}</li>
 			</ul>
             <div class="col-12">
                 <div class="send text-center my-40">

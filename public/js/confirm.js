@@ -2,6 +2,9 @@ jQuery(function($) {
     var canvas = document.createElement('canvas');
     var loadFLg = false;
 
+    $('#confirm_form').submit(function() {
+        localStorage.removeItem('oshiBasket');
+    });
     function createItem(item) {
         loadFLg = true;
         var uri = item.photo_uri;

@@ -8,7 +8,9 @@ use Illuminate\Support\Collection;
 use App\Models\Bean;
 use App\Models\Basket;
 use App\Models\Basketbean;
+use App\Models\Order;
 use Illuminate\Support\Facades\Http;
+use DateTime;
 
 class BuyController extends Controller
 {
@@ -149,10 +151,56 @@ class BuyController extends Controller
                 $ids[] = $val;
             }
         }
-//        $basket = new Basket();
-//        $baskets = $basket->whereIn('id', $ids)->get();
-
+        $basket = new Basket();
+        $baskets = $basket->whereIn('id', $ids)->get();
+        $num = 0;
+        foreach ($baskets as $basket) {
+            foreach ($basket->beans as $bean) {
+                $num += $bean->number;
+            }
+        }
         $address = json_decode(session('address'));
+        $order = new Order();
+        if ($request->input('payment') == 'credit') {
+            $order->payment_kind = 0;
+        } else {
+            $order->payment_kind = 1;
+        }
+        $order->paid = false;
+        $order->shipped = false;
+        $order->name1 = $address->name1;
+        $order->name2 = $address->name2;
+        $order->name3 = $address->name3;
+        $order->name4 = $address->name4;
+        $order->zip = $address->zipcode;
+        $order->pref = $address->pref;
+        $order->address1 = $address->address1;
+        $order->address2 = $address->address2;
+        $order->address3 = $address->address3;
+        $order->tel = $address->tel;
+        $order->mail = $address->mailaddress1;
+        $amount = $num * 200;
+        $tax = $amount - floor($amount / 1.08);
+        $order->amount = $amount;
+        $order->tax = $tax;
+        $shipping = 0;
+        $order->shipping = $shipping;
+        // 仮セット
+        $order->org_image = '';
+        $order->print_image = '';
+        $order->x = 0;
+        $order->y = 0;
+        $order->w = 0;
+        $order->h = 0;
+
+        $order->save();
+        $order_id = $order->id;
+        $order_number = sprintf("OC%06d", $order_id);
+        $order->slip_number = $order_number;
+        $order->save();
+
+        $baskets = $basket->whereIn('id', $ids)->delete();
+        session()->forget('address');
 
         if ($request->input('payment') == 'credit') {
 //            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
@@ -161,8 +209,8 @@ class BuyController extends Controller
                 'function_div' => 'A08',
                 'trader_code' => '970651403',
                 'device_div' => '1',
-                'order_no' => '1',
-                'settle_price' => '800',
+                'order_no' => $order_number,
+                'settle_price' => $amount + $shipping,
                 'buyer_name_kanji' => $address->name1.$address->name2,
                 'buyer_tel' => $address->tel,
                 'buyer_email' => $address->mailaddress1,
@@ -171,8 +219,18 @@ class BuyController extends Controller
             Log::debug($param);
             $response = Http::post($url, $param);
             Log::debug($response);
+            $date = new DateTime();
+            $process_date = $date->format('Y年m月d日 H時i分');
+            return view('card', compact('order_number', 'amount', 'process_date'));
+        } else {
+            if ($request->input('convenience') == 'seven') {
+                return view('seven');            
+            } else if ($request->input('convenience') == 'fm') {
+                return view('fm');
+            } else {
+                return view('lowson');
+            }
         }
-        return view('card');
     }
 
     public function seven() {
