@@ -19,7 +19,7 @@
                     </div>
                     <input type= "submit" id="submit" class="btn btn-block btn-lg btn-primary text-white font-weight-bold mt-24" value="ログイン" />
                 </form>
-                <p class="text-center mt-4"><a href="/login.php" class="text-pink font-weight-bold">パスワードをお忘れですか？</a></p>
+                <p class="text-center mt-4"><a href="#" class="text-pink font-weight-bold">パスワードをお忘れですか？</a></p>
                 <hr>
                 <p class="text-center mb-0">アカウントをお持ちでない場合はこちらから</p>
                 <p class="text-center"><a href="/regist" class="text-pink font-weight-bold">アカウント作成</a></p>
