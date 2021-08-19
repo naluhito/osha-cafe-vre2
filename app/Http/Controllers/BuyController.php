@@ -122,7 +122,6 @@ class BuyController extends Controller
     }
 
     public function confirm(Request $response) {
-        Log::debug($response);
         $address = array(
             "name1" => $response->input("name1"),
             "name2" => $response->input("name2"),
