@@ -31,3 +31,6 @@ Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@log
 Route::get('/regist', 'App\Http\Controllers\UserController@regist');
 Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');
 
+Route::get('/law', function () {
+  return view('law');
+});
