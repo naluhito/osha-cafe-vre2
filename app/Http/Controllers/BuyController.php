@@ -216,7 +216,8 @@ class BuyController extends Controller
                 'token' => $request->input('webcollectToken')
             ];
             Log::debug($param);
-            $response = Http::post($url, $param);
+            $response = Http::asForm()->post($url, $param);
+//            $response = Http::post($url, $param);
             Log::debug($response);
             $date = new DateTime();
             $process_date = $date->format('Y年m月d日 H時i分');
