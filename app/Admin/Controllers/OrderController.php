@@ -34,15 +34,14 @@ class OrderController extends AdminController
                 $filter->startsWith('name','氏名'); 
             });
         });
-        $grid->column('id', '注文番号')->display(function ($id){
-            return sprintf('%05d', $id);
-        });
-        $grid->column('customer.name', '氏名');
+        $grid->column('slip_number', '注文番号');
+        $grid->column('name1', '氏');
+        $grid->column('name2', '名');
         $grid->column('payment_kind', '支払方法')->display(function ($payment_kind) {
-            if ($payment_kind == 1) {
-                return "<span class='label label-warning'>Credit</span>";
+            if ($payment_kind == 0) {
+                return "<span class='label label-primary'>Credit</span>";
             }
-            if ($payment_kind == 2) {
+            if ($payment_kind == 1) {
                 return "<span class='label label-warning'>Conveni</span>";
             }
             return "";
@@ -53,12 +52,12 @@ class OrderController extends AdminController
         });
 
 
-        $grid->column('print_image', __('Image'))->downloadable();
+//        $grid->column('print_image', __('Image'))->downloadable();
 //        $grid->column('x', __('X'));
 //        $grid->column('y', __('Y'));
 //        $grid->column('w', __('W'));
 //        $grid->column('h', __('H'));
-        $grid->column('frame', __('Frame'));
+//        $grid->column('frame', __('Frame'));
         $grid->column('created_at', __('購入日'))->display(function ($created_at){
             if(! strptime($created_at, '%Y-%m-%d')) {
                 return null;
