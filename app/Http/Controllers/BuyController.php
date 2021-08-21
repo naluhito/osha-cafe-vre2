@@ -213,6 +213,7 @@ class BuyController extends Controller
                 'buyer_name_kanji' => $address->name1.$address->name2,
                 'buyer_tel' => $address->tel,
                 'buyer_email' => $address->mailaddress1,
+                'pay_way' => '1',
                 'token' => $request->input('webcollectToken')
             ];
             Log::debug($param);
