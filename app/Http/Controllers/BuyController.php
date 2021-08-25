@@ -208,13 +208,13 @@ class BuyController extends Controller
             return view('card', compact('order_number', 'amount', 'process_date'));
         } else {
             if ($request->input('convenience') == 'seven') {
-                $res = $this->_procedure_seven($order_number, $price, $address);
+                $res = $this->_procedure_seven($order_number, $amount+$shipping, $address);
                 return view('seven');            
             } else if ($request->input('convenience') == 'fm') {
-                $res = $this->_procedure_fm($order_number, $price, $address);
+                $res = $this->_procedure_fm($order_number, $amount+$shipping, $address);
                 return view('fm');
             } else {
-                $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $price, $address);
+                $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $amount+$shipping, $address);
                 return view('lowson');
             }
         }
