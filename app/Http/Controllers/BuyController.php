@@ -202,19 +202,19 @@ class BuyController extends Controller
         session()->forget('address');
 
         if ($request->input('payment') == 'credit') {
-            $res = _procedure_card($order_number, $amount+$shipping, $address);
+            $res = $this->_procedure_card($order_number, $amount+$shipping, $address);
             $date = new DateTime();
             $process_date = $date->format('Y年m月d日 H時i分');
             return view('card', compact('order_number', 'amount', 'process_date'));
         } else {
             if ($request->input('convenience') == 'seven') {
-                $res = _procedure_seven($order_number, $price, $address);
+                $res = $this->_procedure_seven($order_number, $price, $address);
                 return view('seven');            
             } else if ($request->input('convenience') == 'fm') {
-                $res = _procedure_fm($order_number, $price, $address);
+                $res = $this->_procedure_fm($order_number, $price, $address);
                 return view('fm');
             } else {
-                $res = _procedure_lowson($request->input('convenience'), $order_number, $price, $address);
+                $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $price, $address);
                 return view('lowson');
             }
         }
