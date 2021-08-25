@@ -256,6 +256,7 @@ class BuyController extends Controller
         ];
         Log::debug($param);
         $response = Http::asForm()->post($url, $param);
+        Log::debug($response);
         $res = json_decode( json_encode( $response ), TRUE );
         Log::debug($res);
         return $res;
