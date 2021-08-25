@@ -237,7 +237,7 @@ class BuyController extends Controller
         ];
         Log::debug($param);
         $response = Http::asForm()->post($url, $param);
-        $res = json_decode( json_encode( $xmlObject ), TRUE );
+        $res = json_decode( json_encode( $response ), TRUE );
         Log::debug($res);
         return $res;
     }
@@ -256,7 +256,7 @@ class BuyController extends Controller
         ];
         Log::debug($param);
         $response = Http::asForm()->post($url, $param);
-        $res = json_decode( json_encode( $xmlObject ), TRUE );
+        $res = json_decode( json_encode( $response ), TRUE );
         Log::debug($res);
         return $res;
     }
@@ -276,7 +276,7 @@ class BuyController extends Controller
         ];
         Log::debug($param);
         $response = Http::asForm()->post($url, $param);
-        $res = json_decode( json_encode( $xmlObject ), TRUE );
+        $res = json_decode( json_encode( $response ), TRUE );
         Log::debug($res);
         return $res;
     }
@@ -305,7 +305,7 @@ class BuyController extends Controller
         ];
         Log::debug($param);
         $response = Http::asForm()->post($url, $param);
-        $res = json_decode( json_encode( $xmlObject ), TRUE );
+        $res = json_decode( json_encode( $response ), TRUE );
         Log::debug($res);
         return $res;
     }
