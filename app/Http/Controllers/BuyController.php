@@ -202,40 +202,112 @@ class BuyController extends Controller
         session()->forget('address');
 
         if ($request->input('payment') == 'credit') {
-//            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
-            $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
-            $param = [
-                'function_div' => 'A08',
-                'trader_code' => '970651403',
-                'device_div' => '1',
-                'order_no' => $order_number,
-                'settle_price' => $amount + $shipping,
-                'buyer_name_kanji' => $address->name1.$address->name2,
-                'buyer_tel' => $address->tel,
-                'buyer_email' => $address->mailaddress1,
-                'pay_way' => '1',
-                'token' => $request->input('webcollectToken')
-            ];
-            Log::debug($param);
-            $response = Http::asForm()->post($url, $param);
-//            $response = Http::post($url, $param);
-            Log::debug($response);
+            $res = _procedure_card($order_number, $amount+$shipping, $address);
             $date = new DateTime();
             $process_date = $date->format('Y年m月d日 H時i分');
             return view('card', compact('order_number', 'amount', 'process_date'));
         } else {
             if ($request->input('convenience') == 'seven') {
+                $res = _procedure_seven($order_number, $price, $address);
                 return view('seven');            
             } else if ($request->input('convenience') == 'fm') {
+                $res = _procedure_fm($order_number, $price, $address);
                 return view('fm');
             } else {
+                $res = _procedure_lowson($request->input('convenience'), $order_number, $price, $address);
                 return view('lowson');
             }
         }
     }
 
-    public function seven() {
-        return view('seven');
+    private function _procedure_card($order_number, $price, $address) {
+        //            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
+        $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
+        $param = [
+            'function_div' => 'A08',
+            'trader_code' => '970651403',
+            'device_div' => '1',
+            'order_no' => $order_number,
+            'settle_price' => $price,
+            'buyer_name_kanji' => $address->name1.$address->name2,
+            'buyer_tel' => $address->tel,
+            'buyer_email' => $address->mailaddress1,
+            'pay_way' => '1',
+            'token' => $request->input('webcollectToken')
+        ];
+        Log::debug($param);
+        $response = Http::asForm()->post($url, $param);
+        $res = json_decode( json_encode( $xmlObject ), TRUE );
+        Log::debug($res);
+        return $res;
+    }
+
+    private function _procedure_seven($order_number, $price, $address) {
+//        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs1';
+        $url = 'https://ptwebcollect.jp/test_gateway/cvs1.api';
+        $param = [
+            'function_div' => 'B01',
+            'trader_code' => '970651403',
+            'device_div' => '1',
+            'order_no' => $order_number,
+            'settle_price' => $price,
+            'buyer_name_kanji' => $address->name1.$address->name2,
+            'buyer_email' => $address->mailaddress1
+        ];
+        Log::debug($param);
+        $response = Http::asForm()->post($url, $param);
+        $res = json_decode( json_encode( $xmlObject ), TRUE );
+        Log::debug($res);
+        return $res;
+    }
+    
+    private function _procedure_fm($order_number, $price, $address) {
+//        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs2';
+        $url = 'https://ptwebcollect.jp/test_gateway/cvs2.api';
+        $param = [
+            'function_div' => 'B02',
+            'trader_code' => '970651403',
+            'device_div' => '1',
+            'order_no' => $order_number,
+            'settle_price' => $price,
+            'buyer_name_kanji' => $address->name1.$address->name2,
+            'buyer_name_kana' => $address->name3.$address->name4,
+            'buyer_email' => $address->mailaddress1
+        ];
+        Log::debug($param);
+        $response = Http::asForm()->post($url, $param);
+        $res = json_decode( json_encode( $xmlObject ), TRUE );
+        Log::debug($res);
+        return $res;
+    }
+    
+    private function _procedure_lowson($kind, $order_number, $price, $address) {
+        //        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs2';
+        if ($kind == 'lowson') {
+            $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
+            $function_div = 'B03';            
+        } else if ($kind == 'ms') {
+            $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
+            $function_div = 'B05';
+        } else {
+            $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
+            $function_div = 'B06';
+        }
+        $param = [
+            'function_div' => $function_div,
+            'trader_code' => '970651403',
+            'device_div' => '1',
+            'order_no' => $order_number,
+            'settle_price' => $price,
+            'buyer_name_kanji' => $address->name1.$address->name2,
+            'buyer_tel' => $address->tel,
+            'buyer_email' => $address->mailaddress1
+        ];
+        Log::debug($param);
+        $response = Http::asForm()->post($url, $param);
+        $res = json_decode( json_encode( $xmlObject ), TRUE );
+        Log::debug($res);
+        return $res;
     }
 
 }
