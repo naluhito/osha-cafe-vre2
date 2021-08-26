@@ -298,6 +298,7 @@ class BuyController extends Controller
             'settle_price' => $price,
             'buyer_name_kanji' => $address->name1.$address->name2,
             'buyer_name_kana' => $address->name3.$address->name4,
+            'buyer_tel' => $address->tel,
             'buyer_email' => $address->mailaddress1
         ];
         Log::debug($param);
