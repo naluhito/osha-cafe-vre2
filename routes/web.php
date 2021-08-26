@@ -34,3 +34,6 @@ Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');
 Route::get('/law', function () {
   return view('law');
 });
+
+
+Route::get('/test', 'App\Http\Controllers\TestController@test');

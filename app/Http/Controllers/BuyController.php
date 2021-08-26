@@ -10,6 +10,7 @@ use App\Models\Basket;
 use App\Models\Basketbean;
 use App\Models\Order;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use DateTime;
 
 class BuyController extends Controller
@@ -157,6 +158,7 @@ class BuyController extends Controller
             foreach ($basket->beans as $bean) {
                 $num += $bean->number;
             }
+           $this->_decode_image($basket->photo_uri);
         }
         $address = json_decode(session('address'));
         $order = new Order();
@@ -209,13 +211,35 @@ class BuyController extends Controller
         } else {
             if ($request->input('convenience') == 'seven') {
                 $res = $this->_procedure_seven($order_number, $amount+$shipping, $address);
-                return view('seven');            
+                if ($res->returnCode != '0') {
+                    $access_key = "81663032";
+                    $check_sum = hash('sha256', $access_key);
+                    return view('confirm', compact('response', 'check_sum'));
+                }
+                $billing_url = $res->billingUrl;
+                $expried_date = $this->_date_format($res->expriedDate);
+                return view('seven', compact('$billing_url', '$expried_date'));            
             } else if ($request->input('convenience') == 'fm') {
                 $res = $this->_procedure_fm($order_number, $amount+$shipping, $address);
-                return view('fm');
+                if ($res->returnCode != '0') {
+                    $access_key = "81663032";
+                    $check_sum = hash('sha256', $access_key);
+                    return view('confirm', compact('response', 'check_sum'));
+                }
+                $company_code = $res->companyCode;
+                $order_no = $res->orderNoF;
+                $expried_date = $this->_date_format($res->expriedDate);
+                return view('fm', compact('$company_code', '$order_no', '$expried_date'));
             } else {
                 $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $amount+$shipping, $address);
-                return view('lowson');
+                if ($res->returnCode != '0') {
+                    $access_key = "81663032";
+                    $check_sum = hash('sha256', $access_key);
+                    return view('confirm', compact('response', 'check_sum'));
+                }
+                $econ_no = $res->econNo;
+                $expried_date = $this->_date_format($res->expriedDate);
+                return view('lowson', compact('econ_no', 'expried_date'));
             }
         }
     }
@@ -235,9 +259,7 @@ class BuyController extends Controller
             'pay_way' => '1',
             'token' => $request->input('webcollectToken')
         ];
-        Log::debug($param);
         $response = Http::asForm()->post($url, $param);
-        Log::debug($response);
         $xml  = simplexml_load_string($response);
         $res = json_decode( json_encode($xml), TRUE );
         Log::debug($res);
@@ -316,4 +338,30 @@ class BuyController extends Controller
         return $res;
     }
 
-}
+    private function _date_format($date) {
+        $y = substr($date, 0, 4);
+        $m = substr($date, 4, 2);
+        $d = substr($date, 6, 2);
+        return $y.'年'.$m.'月'.$d.'日';
+    }
+
+    private function _decode_image($base64data) {
+        $base = explode(',', $base64data);
+        $data = base64_decode($base[1]);
+        $type = finfo_buffer(finfo_open(), $data, FILEINFO_EXTENSION);
+        Log::debug($type);
+/*
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+        $mime_type = $finfo->buffer($data);
+        Log::debug($mime_type);
+        $extensions = [
+            'image/gif' => 'gif',
+            'image/jpeg' => 'jpg',
+            'image/png' => 'png'
+        ];
+        $filename = 'image.' . $extensions[$mime_type];
+*/
+//        Storage::putFile('upimages/aaaa', $data);
+        Storage::put('upimages/aaaa.jpeg', $data);
+    }
+}    

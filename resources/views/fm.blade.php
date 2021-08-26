@@ -9,9 +9,9 @@
 				<p>※必ず記載の払込期限までにお支払いください。</p>
 				<div class="py-32">
 					<ul class="list-unstyled">
-						<li>企業コード：</li>
-						<li>.注文番号：</li>
-						<li>支払期限：</li>
+						<li>企業コード：{{ $company_code }}</li>
+						<li>注文番号：{{ $order_no }}</li>
+						<li>支払期限：{{ $expried_date }}</li>
 					</ul>
 				</div>
 				<h3 class=" p-16 my-32" style="background-color:#a6d1ec;">お支払いの流れ<h3>
