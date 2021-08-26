@@ -218,7 +218,7 @@ class BuyController extends Controller
                 }
                 $billing_url = $res['billingUrl'];
                 $expired_date = $this->_date_format($res['expiredDate']);
-                return view('seven', compact('$billing_url', '$expired_date'));            
+                return view('seven', compact('billing_url', 'expired_date'));            
             } else if ($request->input('convenience') == 'fm') {
                 $res = $this->_procedure_fm($order_number, $amount+$shipping, $address);
                 if ($res['returnCode'] != '0') {
