@@ -326,6 +326,7 @@ class BuyController extends Controller
             'trader_code' => '970651403',
             'device_div' => '1',
             'order_no' => $order_number,
+            'goods_name' => 'オリジナルドリップバッグ',
             'settle_price' => $price,
             'buyer_name_kanji' => $address->name1.$address->name2,
             'buyer_tel' => $address->tel,
