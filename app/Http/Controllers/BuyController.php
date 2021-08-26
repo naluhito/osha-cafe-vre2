@@ -211,34 +211,34 @@ class BuyController extends Controller
         } else {
             if ($request->input('convenience') == 'seven') {
                 $res = $this->_procedure_seven($order_number, $amount+$shipping, $address);
-                if ($res->returnCode != '0') {
+                if ($res['returnCode'] != '0') {
                     $access_key = "81663032";
                     $check_sum = hash('sha256', $access_key);
                     return view('confirm', compact('response', 'check_sum'));
                 }
-                $billing_url = $res->billingUrl;
-                $expried_date = $this->_date_format($res->expriedDate);
+                $billing_url = $res['billingUrl'];
+                $expried_date = $this->_date_format($res['expriedDate']);
                 return view('seven', compact('$billing_url', '$expried_date'));            
             } else if ($request->input('convenience') == 'fm') {
                 $res = $this->_procedure_fm($order_number, $amount+$shipping, $address);
-                if ($res->returnCode != '0') {
+                if ($res['returnCode'] != '0') {
                     $access_key = "81663032";
                     $check_sum = hash('sha256', $access_key);
                     return view('confirm', compact('response', 'check_sum'));
                 }
-                $company_code = $res->companyCode;
-                $order_no = $res->orderNoF;
-                $expried_date = $this->_date_format($res->expriedDate);
+                $company_code = $res['companyCode'];
+                $order_no = $res['orderNoF'];
+                $expried_date = $this->_date_format($res['expriedDate']);
                 return view('fm', compact('$company_code', '$order_no', '$expried_date'));
             } else {
                 $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $amount+$shipping, $address);
-                if ($res->returnCode != '0') {
+                if ($res['returnCode'] != '0') {
                     $access_key = "81663032";
                     $check_sum = hash('sha256', $access_key);
                     return view('confirm', compact('response', 'check_sum'));
                 }
-                $econ_no = $res->econNo;
-                $expried_date = $this->_date_format($res->expriedDate);
+                $econ_no = $res['econNo'];
+                $expried_date = $this->_date_format($res['expriedDate']);
                 return view('lowson', compact('econ_no', 'expried_date'));
             }
         }
