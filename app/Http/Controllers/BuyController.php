@@ -229,7 +229,7 @@ class BuyController extends Controller
                 $company_code = $res['companyCode'];
                 $order_no = $res['orderNoF'];
                 $expired_date = $this->_date_format($res['expiredDate']);
-                return view('fm', compact('$company_code', '$order_no', '$expired_date'));
+                return view('fm', compact('company_code', 'order_no', 'expired_date'));
             } else {
                 $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $amount+$shipping, $address);
                 if ($res['returnCode'] != '0') {
