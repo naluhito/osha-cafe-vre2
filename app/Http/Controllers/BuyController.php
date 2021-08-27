@@ -204,7 +204,7 @@ class BuyController extends Controller
         session()->forget('address');
 
         if ($request->input('payment') == 'credit') {
-            $res = $this->_procedure_card($order_number, $amount+$shipping, $address);
+            $res = $this->_procedure_card($order_number, $amount+$shipping, $address, $request->input('webcollectToken'));
             $date = new DateTime();
             $process_date = $date->format('Y年m月d日 H時i分');
             return view('card', compact('order_number', 'amount', 'process_date'));
@@ -244,7 +244,7 @@ class BuyController extends Controller
         }
     }
 
-    private function _procedure_card($order_number, $price, $address) {
+    private function _procedure_card($order_number, $price, $address, $token) {
         //            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
         $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
         $param = [
@@ -257,7 +257,7 @@ class BuyController extends Controller
             'buyer_tel' => $address->tel,
             'buyer_email' => $address->mailaddress1,
             'pay_way' => '1',
-            'token' => $request->input('webcollectToken')
+            'token' => $token
         ];
         $response = Http::asForm()->post($url, $param);
         $xml  = simplexml_load_string($response);
