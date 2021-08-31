@@ -138,11 +138,14 @@ class BuyController extends Controller
             "mailaddress2" => $request->input("mailaddress2"),
         );
         session(['address' => json_encode($address)]);
+        $json = json_encode($address);
+        $address_view = json_decode($json);
+
         $access_key = "81663032";
         $check_sum = hash('sha256', $access_key);
         $message = '';
 
-        return view('confirm', compact('address', 'check_sum', 'message'));
+        return view('confirm', compact('address_view', 'check_sum', 'message'));
     }
 
     public function decision(Request $request) {
