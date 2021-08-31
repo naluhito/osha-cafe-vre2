@@ -137,9 +137,8 @@
 				<p>クロネコヤマト<br class="d-md-none">(配送料 495円)</p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎お届け先</p>
-				<p class="mb-0">{{ $address['zipcode'] }}<br class="d-md-none"> {{ $address['pref'] }}{{ $address['address1'] }}{{ $address['address2'] }}<br class="d-md-none"> {{ $address['address3'] }}<br><p class="d-md-none"> {{ $address['name1'] }}{{ $address['name2'] }}</p>
-
-<!--				<p class="mb-0">〒{{ $address['zipcode'] }}<br class="d-md-none"> {{ $address['pref'] }}{{ $address['address1'] }}{{ $address['address2'] }}{{ $address['address3'] }}<br><p class="d-md-none"> {{ $address['name1'] }}{{ $address['name2'] }}</p> -->
+				<p class="mb-0">{{ $address['zipcode'] }}<br class="d-md-none"> {{ $address['pref'] }}{{ $address['address1'] }}{{ $address['address2'] }}<br class="d-md-none"> {{ $address['address3'] }}
+				<p>{{ $address['name1'] }}&ensp;{{ $address['name2'] }}</p>
 				<p><i class="fas fa-phone-alt"></i>&ensp;{{ $address['tel'] }}</p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎メールアドレス</p>
