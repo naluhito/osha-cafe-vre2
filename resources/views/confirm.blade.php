@@ -137,12 +137,12 @@
 				<p>クロネコヤマト<br class="d-md-none">(配送料 495円)</p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎お届け先</p>
-				<p class="mb-0">{{ $address_view->zipcode }}<br class="d-md-none"> {{ $address_view->pref }}{{ $address_view->address1 }}{{ $address_view->address2 }}<br class="d-md-none"> {{ $address_view->address3 }}
-				<p>{{ $address_view->name1 }}&ensp;{{ $address_view->name2 }}</p>
-				<p><i class="fas fa-phone-alt"></i>&ensp;{{ $address_view->tel }}</p>
+				<p class="mb-0">{{ $address->zipcode }}<br class="d-md-none"> {{ $address->pref }}{{ $address->address1 }}{{ $address->address2 }}<br class="d-md-none"> {{ $address->address3 }}
+				<p>{{ $address->name1 }}&ensp;{{ $address->name2 }}</p>
+				<p><i class="fas fa-phone-alt"></i>&ensp;{{ $address->tel }}</p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎メールアドレス</p>
-				<p>{{ $address_view->mailaddress1 }}</p>
+				<p>{{ $address->mailaddress1 }}</p>
 				<hr>
 			</div>
 		</div>
