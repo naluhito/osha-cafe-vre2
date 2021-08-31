@@ -138,7 +138,7 @@
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎お届け先</p>
 				<p class="mb-0">〒{{ $address['zipcode'] }}<br class="d-md-none"> {{ $address['pref'] }}{{ $address['address1'] }}{{ $address['address2'] }}{{ $address['address3'] }}<br class="d-md-none"> {{ $address['name1'] }}{{ $address['name2'] }}</p>
-				<p><i class="fas fa-phone-alt"></i>&ensp;{{ $address'[tel'] }}</p>
+				<p><i class="fas fa-phone-alt"></i>&ensp;{{ $address['tel'] }}</p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎メールアドレス</p>
 				<p>{{ $address['mailaddress1'] }}</p>
