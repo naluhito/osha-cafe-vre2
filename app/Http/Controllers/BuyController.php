@@ -166,6 +166,8 @@ class BuyController extends Controller
             }
             $date = new DateTime();
             $view_param =[
+                'order_number' => $order_number,
+                'amount' => $amount,
                 'process_date' => $date->format('Y年m月d日 H時i分'),
             ];
         } else {
@@ -220,14 +222,14 @@ class BuyController extends Controller
         $baskets = $basket->whereIn('id', $ids)->delete();
         session()->forget('address');
         if ($request->input('payment') == 'credit') {
-            return view('card', compact('order_number', 'amount', 'process_date'));
+            return view('card', compact('view_param'));
         } else {
             if ($request->input('convenience') == 'seven') {
-                return view('seven', compact('billing_url', 'expired_date'));            
+                return view('seven', compact('view_param'));            
             } else if ($request->input('convenience') == 'fm') {
-                return view('fm', compact('company_code', 'order_no', 'expired_date'));
+                return view('fm', compact('view_param'));
             } else {
-                return view('lowson', compact('econ_no', 'expired_date'));
+                return view('lowson', compact('view_param'));
             }
         }
     }

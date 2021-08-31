@@ -9,9 +9,9 @@
 			<div class="col-auto">
 			<h3 class="fz-24 text-center">お買い上げありがとうございました。</h3>
 			<ul class="list-unstyled py-40">
-			<li>決済完了日時：{{ $process_date }}</li>
-			<li>金額：{{ number_format($amount) }}円</li>
-			<li>受注番号：{{ $order_number }}</li>
+			<li>決済完了日時：{{ $view_param['process_date'] }}</li>
+			<li>金額：{{ number_format($view_param['amount']) }}円</li>
+			<li>受注番号：{{ $view_param['order_number'] }}</li>
 			</ul>
             <div class="col-12">
                 <div class="send text-center my-40">
