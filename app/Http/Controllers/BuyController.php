@@ -122,29 +122,114 @@ class BuyController extends Controller
         return view('address', compact('address'));
     }
 
-    public function confirm(Request $response) {
+    public function confirm(Request $request) {
         $address = array(
-            "name1" => $response->input("name1"),
-            "name2" => $response->input("name2"),
-            "name3" => $response->input("name3"),
-            "name4" => $response->input("name4"),
-            "zipcode" => $response->input("zipcode"),
-            "pref" => $response->input("pref"),
-            "address1" => $response->input("address1"),
-            "address2" => $response->input("address2"),
-            "address3" => $response->input("address3"),
-            "tel" => $response->input("tel"),
-            "mailaddress1" => $response->input("mailaddress1"),
-            "mailaddress2" => $response->input("mailaddress2"),
+            "name1" => $request->input("name1"),
+            "name2" => $request->input("name2"),
+            "name3" => $request->input("name3"),
+            "name4" => $request->input("name4"),
+            "zipcode" => $request->input("zipcode"),
+            "pref" => $request->input("pref"),
+            "address1" => $request->input("address1"),
+            "address2" => $request->input("address2"),
+            "address3" => $request->input("address3"),
+            "tel" => $request->input("tel"),
+            "mailaddress1" => $request->input("mailaddress1"),
+            "mailaddress2" => $request->input("mailaddress2"),
         );
         session(['address' => json_encode($address)]);
         $access_key = "81663032";
         $check_sum = hash('sha256', $access_key);
+        $message = '';
 
-        return view('confirm', compact('response', 'check_sum'));
+        return view('confirm', compact('address', 'check_sum', 'message'));
     }
 
     public function decision(Request $request) {
+        $order_number = $this->_store_order($request);
+        $view_param = [];
+        $address = json_decode(session('address'));
+        if ($request->input('payment') == 'credit') {
+            $res = $this->_procedure_card($order_number, $amount+$shipping, $address, $request->input('webcollectToken'));
+            if ($res['returnCode'] != '0') {
+                $access_key = "81663032";
+                $check_sum = hash('sha256', $access_key);
+                if ($res['errorCode'] == 'A082000010') {
+                    $message = '['.$res['creditErrorCode'].'決済処理でエラーが発生しました。<br>ご利用のカード会社様へ直接お問い合わせください';
+                } else {
+                    $message = '['.$res['errorCode'].'決済処理でエラーが発生しました。';
+                }
+                return view('confirm', compact('address', 'check_sum', 'message'));
+            }
+            $date = new DateTime();
+            $view_param =[
+                'process_date' => $date->format('Y年m月d日 H時i分'),
+            ];
+        } else {
+            if ($request->input('convenience') == 'seven') {
+                $res = $this->_procedure_seven($order_number, $amount+$shipping, $address);
+                if ($res['returnCode'] != '0') {
+                    $access_key = "81663032";
+                    $check_sum = hash('sha256', $access_key);
+                    $message = '['.$res['errorCode'].'決済処理でエラーが発生しました。';
+                    return view('confirm', compact('address', 'check_sum', 'message'));
+                }
+                $view_param =[
+                    'billing_url' => $res['billingUrl'],
+                    '$expired_date' => $this->_date_format($res['expiredDate'])
+                ];
+            } else if ($request->input('convenience') == 'fm') {
+                $res = $this->_procedure_fm($order_number, $amount+$shipping, $address);
+                if ($res['returnCode'] != '0') {
+                    $access_key = "81663032";
+                    $check_sum = hash('sha256', $access_key);
+                    $message = '['.$res['errorCode'].'決済処理でエラーが発生しました。';
+                    return view('confirm', compact('address', 'check_sum', 'message'));
+                }
+                $company_code = $res['companyCode'];
+                $order_no = $res['orderNoF'];
+                $expired_date = $this->_date_format($res['expiredDate']);
+                $view_param =[
+                    'company_code' => $res['companyCode'],
+                    'order_no' => $res['orderNoF'],
+                    'expired_date' => $this->_date_format($res['expiredDate'])
+                ];
+            } else {
+                $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $amount+$shipping, $address);
+                if ($res['returnCode'] != '0') {
+                    $access_key = "81663032";
+                    $check_sum = hash('sha256', $access_key);
+                    $message = '['.$res['errorCode'].'決済処理でエラーが発生しました。';
+                    return view('confirm', compact('address', 'check_sum', 'message'));
+                }
+                $view_param =[
+                    'econ_no' => $res['econNo'],
+                    'expired_date' => $this->_date_format($res['expiredDate'])
+                ];
+            }
+        }
+        foreach ($request->input('basket') as $key=>$val) {
+            if ($val != null) {
+                $ids[] = $val;
+            }
+        }
+        $basket = new Basket();
+        $baskets = $basket->whereIn('id', $ids)->delete();
+        session()->forget('address');
+        if ($request->input('payment') == 'credit') {
+            return view('card', compact('order_number', 'amount', 'process_date'));
+        } else {
+            if ($request->input('convenience') == 'seven') {
+                return view('seven', compact('billing_url', 'expired_date'));            
+            } else if ($request->input('convenience') == 'fm') {
+                return view('fm', compact('company_code', 'order_no', 'expired_date'));
+            } else {
+                return view('lowson', compact('econ_no', 'expired_date'));
+            }
+        }
+    }
+
+    private function _store_order($request) {
         $ids = array();
         foreach ($request->input('basket') as $key=>$val) {
             if ($val != null) {
@@ -199,49 +284,8 @@ class BuyController extends Controller
         $order_number = sprintf("OC%06d", $order_id);
         $order->slip_number = $order_number;
         $order->save();
+        return $order_number;
 
-        $baskets = $basket->whereIn('id', $ids)->delete();
-        session()->forget('address');
-
-        if ($request->input('payment') == 'credit') {
-            $res = $this->_procedure_card($order_number, $amount+$shipping, $address, $request->input('webcollectToken'));
-            $date = new DateTime();
-            $process_date = $date->format('Y年m月d日 H時i分');
-            return view('card', compact('order_number', 'amount', 'process_date'));
-        } else {
-            if ($request->input('convenience') == 'seven') {
-                $res = $this->_procedure_seven($order_number, $amount+$shipping, $address);
-                if ($res['returnCode'] != '0') {
-                    $access_key = "81663032";
-                    $check_sum = hash('sha256', $access_key);
-                    return view('confirm', compact('response', 'check_sum'));
-                }
-                $billing_url = $res['billingUrl'];
-                $expired_date = $this->_date_format($res['expiredDate']);
-                return view('seven', compact('billing_url', 'expired_date'));            
-            } else if ($request->input('convenience') == 'fm') {
-                $res = $this->_procedure_fm($order_number, $amount+$shipping, $address);
-                if ($res['returnCode'] != '0') {
-                    $access_key = "81663032";
-                    $check_sum = hash('sha256', $access_key);
-                    return view('confirm', compact('response', 'check_sum'));
-                }
-                $company_code = $res['companyCode'];
-                $order_no = $res['orderNoF'];
-                $expired_date = $this->_date_format($res['expiredDate']);
-                return view('fm', compact('company_code', 'order_no', 'expired_date'));
-            } else {
-                $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $amount+$shipping, $address);
-                if ($res['returnCode'] != '0') {
-                    $access_key = "81663032";
-                    $check_sum = hash('sha256', $access_key);
-                    return view('confirm', compact('response', 'check_sum'));
-                }
-                $econ_no = $res['econNo'];
-                $expired_date = $this->_date_format($res['expiredDate']);
-                return view('lowson', compact('econ_no', 'expired_date'));
-            }
-        }
     }
 
     private function _procedure_card($order_number, $price, $address, $token) {
