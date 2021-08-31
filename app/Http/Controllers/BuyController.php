@@ -146,8 +146,11 @@ class BuyController extends Controller
     }
 
     public function decision(Request $request) {
-        $order_number = $this->_store_order($request);
+        $order = $this->_store_order($request);
         $view_param = [];
+        $order_number = $order->slip_number;
+        $amount = $order->amount;
+        $shipping = $order->shipping;
         $address = json_decode(session('address'));
         if ($request->input('payment') == 'credit') {
             $res = $this->_procedure_card($order_number, $amount+$shipping, $address, $request->input('webcollectToken'));
@@ -284,7 +287,7 @@ class BuyController extends Controller
         $order_number = sprintf("OC%06d", $order_id);
         $order->slip_number = $order_number;
         $order->save();
-        return $order_number;
+        return $order;
 
     }
 

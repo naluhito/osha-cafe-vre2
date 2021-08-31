@@ -3,7 +3,8 @@ jQuery(function($) {
     var loadFLg = false;
 
     $('#confirm_form').submit(function() {
-        localStorage.removeItem('oshiBasket');
+        $("#buy").setAttribute("disabled", true);
+        //        localStorage.removeItem('oshiBasket');
     });
     function createItem(item) {
         loadFLg = true;

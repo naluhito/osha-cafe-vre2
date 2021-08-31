@@ -27,5 +27,10 @@
 
 @endsection
 @push('scripts')
+<script type="text/javascript">
+jQuery(function($) {
+	localStorage.removeItem('oshiBasket');
+});
+</script>
 
 @endpush

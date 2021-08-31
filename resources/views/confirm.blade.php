@@ -195,7 +195,7 @@
 		</div>
 		<div class="col-12">
 			<div class="send text-center my-40">
-				<input class="px-40 py-16 bg-mizuiro text-white" style="border: 0px;" type="submit" value="購入する">
+				<input class="px-40 py-16 bg-mizuiro text-white" id="buy" style="border: 0px;" type="submit" value="購入する">
 			</div>
 		</vid>
 	</form>
