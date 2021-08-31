@@ -144,7 +144,6 @@ class BuyController extends Controller
         $access_key = "81663032";
         $check_sum = hash('sha256', $access_key);
         $message = '';
-
         return view('confirm', compact('address', 'check_sum', 'message'));
     }
 
