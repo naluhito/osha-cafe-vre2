@@ -51,8 +51,8 @@
 	<div class="container pb-40 px-0">
 	<form name="confirm_form" action="decision" method="post">
 		@csrf
-		<div class="row justify-content-center">
 		<p class="text-danger text-center py-40">{{ $message }}</p>
+		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="row justify-content-between p-16" style="background-color:#a6d1ec;">
 					<div class="col-auto">
