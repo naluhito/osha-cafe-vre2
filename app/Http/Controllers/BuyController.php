@@ -161,9 +161,9 @@ class BuyController extends Controller
                 $access_key = "81663032";
                 $check_sum = hash('sha256', $access_key);
                 if ($res['errorCode'] == 'A082000010') {
-                    $message = '['.$res['creditErrorCode'].'決済処理でエラーが発生しました。<br>ご利用のカード会社様へ直接お問い合わせください';
+                    $message = '['.$res['creditErrorCode'].'] 決済処理でエラーが発生しました。<br>ご利用のカード会社様へ直接お問い合わせください';
                 } else {
-                    $message = '['.$res['errorCode'].'決済処理でエラーが発生しました。';
+                    $message = '['.$res['errorCode'].'] 決済処理でエラーが発生しました。';
                 }
                 return view('confirm', compact('address', 'check_sum', 'message'));
             }
