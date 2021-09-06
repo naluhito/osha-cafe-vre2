@@ -274,6 +274,7 @@ class BuyController extends Controller
                 $order_bean = new OrderBean();
                 $order_bean->order_id = $order->id;
                 $order_bean->order_item_id = $order_item->id;
+                $order_bean->bean_id = $bean->bean_id;
                 $order_bean->quantity = $bean->number;
                 $order_bean->save();
             }
