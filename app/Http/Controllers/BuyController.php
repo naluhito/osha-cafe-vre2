@@ -325,7 +325,7 @@ class BuyController extends Controller
         $order->save();
         $order_id = $order->id;
         $order_number = sprintf("OC-%06d", $order_id);
-        $order->order_number = $order_number;
+        $order->order_no = $order_number;
         $order->save();
         return $order;
 
