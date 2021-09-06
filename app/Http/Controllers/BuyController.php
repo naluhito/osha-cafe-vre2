@@ -9,6 +9,8 @@ use App\Models\Bean;
 use App\Models\Basket;
 use App\Models\Basketbean;
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\OrderBean;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use DateTime;
@@ -150,13 +152,15 @@ class BuyController extends Controller
     public function decision(Request $request) {
         $order = $this->_store_order($request);
         $view_param = [];
-        $order_number = $order->slip_number;
+        $order_number = $order->order_number;
         $amount = $order->amount;
         $shipping = $order->shipping;
         $address = json_decode(session('address'));
         if ($request->input('payment') == 'credit') {
             $res = $this->_procedure_card($order_number, $amount+$shipping, $address, $request->input('webcollectToken'));
             if ($res['returnCode'] != '0') {
+                $err_order = new Order();
+                $err_order->where('id', $order->id)->delete();
                 $access_key = "81663032";
                 $check_sum = hash('sha256', $access_key);
                 if ($res['errorCode'] == 'A082000010') {
@@ -166,16 +170,19 @@ class BuyController extends Controller
                 }
                 return view('confirm', compact('address', 'check_sum', 'message'));
             }
-            $date = new DateTime();
+            $this->_store_paid($order_no, $res['returnDate']);
+            $date = $this->_date_format($res['returnDate']);
             $view_param =[
                 'order_number' => $order_number,
                 'amount' => $amount,
-                'process_date' => $date->format('Y年m月d日 H時i分'),
+                'process_date' => $date,
             ];
         } else {
             if ($request->input('convenience') == 'seven') {
                 $res = $this->_procedure_seven($order_number, $amount+$shipping, $address);
                 if ($res['returnCode'] != '0') {
+                    $err_order = new Order();
+                    $err_order->where('id', $order->id)->delete();
                     $access_key = "81663032";
                     $check_sum = hash('sha256', $access_key);
                     $message = '['.$res['errorCode'].'決済処理でエラーが発生しました。';
@@ -188,6 +195,8 @@ class BuyController extends Controller
             } else if ($request->input('convenience') == 'fm') {
                 $res = $this->_procedure_fm($order_number, $amount+$shipping, $address);
                 if ($res['returnCode'] != '0') {
+                    $err_order = new Order();
+                    $err_order->where('id', $order->id)->delete();
                     $access_key = "81663032";
                     $check_sum = hash('sha256', $access_key);
                     $message = '['.$res['errorCode'].'決済処理でエラーが発生しました。';
@@ -204,6 +213,8 @@ class BuyController extends Controller
             } else {
                 $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $amount+$shipping, $address);
                 if ($res['returnCode'] != '0') {
+                    $err_order = new Order();
+                    $err_order->where('id', $order->id)->delete();
                     $access_key = "81663032";
                     $check_sum = hash('sha256', $access_key);
                     $message = '['.$res['errorCode'].'決済処理でエラーが発生しました。';
@@ -220,8 +231,6 @@ class BuyController extends Controller
                 $ids[] = $val;
             }
         }
-        $basket = new Basket();
-        $baskets = $basket->whereIn('id', $ids)->delete();
         session()->forget('address');
         if ($request->input('payment') == 'credit') {
             return view('card', compact('view_param'));
@@ -234,6 +243,41 @@ class BuyController extends Controller
                 return view('lowson', compact('view_param'));
             }
         }
+    }
+
+    private function _store_paid($order_no, $date) {
+        $order = new Order();
+        $order->where('order_no', $order_no)->update([
+            `paid` => true,
+            `paid_date` => $date
+        ]);
+    }
+
+    private function _store_items($request, $order) {
+        $ids = array();
+        foreach ($request->input('basket') as $key=>$val) {
+            if ($val != null) {
+                $ids[] = $val;
+            }
+        }
+        $basket = new Basket();
+        $baskets = $basket->whereIn('id', $ids)->get();
+        foreach ($baskets as $basket) {
+            $order_item = new OrderItem();
+            $order_item->order_id = $order->id;
+            $filename = $order->order_no.'png';
+            $this->_create_print_image($filename, $basket);
+            $order_item->image = $filename;
+            $order_item->save();
+            foreach ($basket->beans as $bean) {
+                $order_bean = new OrderBean();
+                $order_bean->order_id = $order->id;
+                $order_bean->order_item_id = $order_item->id;
+                $order_bean->quantity = $bean->number;
+                $order_bean->save();
+            }
+        }
+        $basket->whereIn('id', $ids)->delete();
     }
 
     private function _store_order($request) {
@@ -278,18 +322,11 @@ class BuyController extends Controller
         $order->tax = $tax;
         $shipping = 0;
         $order->shipping = $shipping;
-        // 仮セット
-        $order->org_image = '';
-        $order->print_image = '';
-        $order->x = 0;
-        $order->y = 0;
-        $order->w = 0;
-        $order->h = 0;
 
         $order->save();
         $order_id = $order->id;
-        $order_number = sprintf("OC%06d", $order_id);
-        $order->slip_number = $order_number;
+        $order_number = sprintf("OC-%06d", $order_id);
+        $order->order_number = $order_number;
         $order->save();
         return $order;
 
@@ -398,7 +435,11 @@ class BuyController extends Controller
         return $y.'年'.$m.'月'.$d.'日';
     }
 
-    private function _decode_image($base64data) {
+    private function _create_print_image($filename, $basket) {
+        $this->_decode_image($filename, $basket->photo_uri);
+    }
+
+    private function _decode_image($filename, $base64data) {
         $base = explode(',', $base64data);
         $data = base64_decode($base[1]);
         $type = finfo_buffer(finfo_open(), $data, FILEINFO_EXTENSION);
@@ -415,6 +456,6 @@ class BuyController extends Controller
         $filename = 'image.' . $extensions[$mime_type];
 */
 //        Storage::putFile('upimages/aaaa', $data);
-        Storage::put('upimages/aaaa.jpeg', $data);
+        Storage::put('upimages/'.$filename, $data);
     }
 }    
