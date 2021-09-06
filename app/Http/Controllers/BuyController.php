@@ -247,8 +247,7 @@ class BuyController extends Controller
 
     private function _store_paid($order_no, $date) {
         $order = new Order();
-//        $data = $order->where('order_no', $order_no)->get();
-        $data = $order->find('order_no', $order_no);
+        $data = $order->where('order_no', $order_no)->first();
         $data->paid = true;
         $data->paid_date = $date;
         $data->save();
