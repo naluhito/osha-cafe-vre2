@@ -294,7 +294,6 @@ class BuyController extends Controller
             foreach ($basket->beans as $bean) {
                 $num += $bean->number;
             }
-           $this->_decode_image($basket->photo_uri);
         }
         $address = json_decode(session('address'));
         $order = new Order();
