@@ -231,6 +231,7 @@ class BuyController extends Controller
                 $ids[] = $val;
             }
         }
+        $this->_store_items($request, $order);
         session()->forget('address');
         if ($request->input('payment') == 'credit') {
             return view('card', compact('view_param'));
