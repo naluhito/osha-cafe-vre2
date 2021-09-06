@@ -152,12 +152,12 @@ class BuyController extends Controller
     public function decision(Request $request) {
         $order = $this->_store_order($request);
         $view_param = [];
-        $order_number = $order->order_number;
+        $order_no = $order->order_no;
         $amount = $order->amount;
         $shipping = $order->shipping;
         $address = json_decode(session('address'));
         if ($request->input('payment') == 'credit') {
-            $res = $this->_procedure_card($order_number, $amount+$shipping, $address, $request->input('webcollectToken'));
+            $res = $this->_procedure_card($order_no, $amount+$shipping, $address, $request->input('webcollectToken'));
             if ($res['returnCode'] != '0') {
                 $err_order = new Order();
                 $err_order->where('id', $order->id)->delete();
@@ -173,13 +173,13 @@ class BuyController extends Controller
             $this->_store_paid($order_no, $res['returnDate']);
             $date = $this->_date_format($res['returnDate']);
             $view_param =[
-                'order_number' => $order_number,
+                'order_number' => $order_no,
                 'amount' => $amount,
                 'process_date' => $date,
             ];
         } else {
             if ($request->input('convenience') == 'seven') {
-                $res = $this->_procedure_seven($order_number, $amount+$shipping, $address);
+                $res = $this->_procedure_seven($order_no, $amount+$shipping, $address);
                 if ($res['returnCode'] != '0') {
                     $err_order = new Order();
                     $err_order->where('id', $order->id)->delete();
@@ -193,7 +193,7 @@ class BuyController extends Controller
                     'expired_date' => $this->_date_format($res['expiredDate'])
                 ];
             } else if ($request->input('convenience') == 'fm') {
-                $res = $this->_procedure_fm($order_number, $amount+$shipping, $address);
+                $res = $this->_procedure_fm($order_no, $amount+$shipping, $address);
                 if ($res['returnCode'] != '0') {
                     $err_order = new Order();
                     $err_order->where('id', $order->id)->delete();
@@ -211,7 +211,7 @@ class BuyController extends Controller
                     'expired_date' => $this->_date_format($res['expiredDate'])
                 ];
             } else {
-                $res = $this->_procedure_lowson($request->input('convenience'), $order_number, $amount+$shipping, $address);
+                $res = $this->_procedure_lowson($request->input('convenience'), $order_no, $amount+$shipping, $address);
                 if ($res['returnCode'] != '0') {
                     $err_order = new Order();
                     $err_order->where('id', $order->id)->delete();
