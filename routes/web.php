@@ -27,6 +27,8 @@ Route::get('/address', 'App\Http\Controllers\BuyController@address');
 Route::get('/choice', 'App\Http\Controllers\BuyController@choice');
 Route::get('/buy', 'App\Http\Controllers\BuyController@index');
 
+Route::post('/settle_recive', 'App\Http\Controllers\ReciveController@settle_recive');
+
 Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
 Route::get('/regist', 'App\Http\Controllers\UserController@regist');
 Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');

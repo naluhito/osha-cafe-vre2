@@ -249,7 +249,7 @@ class BuyController extends Controller
     private function _store_paid($order_no, $date) {
         $order = new Order();
         $data = $order->where('order_no', $order_no)->first();
-        $data->paid = true;
+        $data->paid = 1;
         $data->paid_date = $date;
         $data->save();
     }
@@ -301,10 +301,22 @@ class BuyController extends Controller
         $order = new Order();
         if ($request->input('payment') == 'credit') {
             $order->payment_kind = 0;
+            $order->convenience = '';
         } else {
             $order->payment_kind = 1;
+            if ($request->input('convenience') == 'seven') {
+                $order->convenience = 'セブン-イレブン';
+            } else if ($request->input('convenience') == 'fm') {
+                $order->convenience = 'ファミリーマート';
+            } else if ($request->input('convenience') == 'lowson') {
+                $order->convenience = 'ローソン';
+            } else if ($request->input('convenience') == 'ms') {
+                $order->convenience = 'ミニストップ';
+            } else if ($request->input('convenience') == 'sm') {
+                $order->convenience = 'セイコーマート';
+            }
         }
-        $order->paid = false;
+        $order->paid = 0;
         $order->shipped = false;
         $order->name1 = $address->name1;
         $order->name2 = $address->name2;
