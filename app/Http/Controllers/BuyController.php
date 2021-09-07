@@ -222,6 +222,7 @@ class BuyController extends Controller
                 }
                 $view_param =[
                     'econ_no' => $res['econNo'],
+                    'tel' => $address->tel,
                     'expired_date' => $this->_date_format($res['expiredDate'])
                 ];
             }

@@ -15,7 +15,7 @@
 				<div class="p-16 border border-primary">
 					<ul class="list-unstyled">
 						<li>お支払受付番号：{{ $view_param['econ_no'] }}</li>
-						<li>購入者様電話番号：{{  }}</li>
+						<li>購入者様電話番号：{{ $view_param['tel'] }}</li>
 						<li>支払期限：{{ $view_param['expired_date'] }}</li>
 					</ul>
 				</div>
