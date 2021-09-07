@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Log;
 class ReciveController extends Controller
 {
     public function settle_recive(Request $request) {
+        Log::debug('POST recive');
+        Log::debug($request);
+
         $request->input("order_no");
         $order = new Order();
         $data = $order->where('order_no', $request->input("order_no"))->first();
