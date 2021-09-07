@@ -22,7 +22,7 @@
 				<h3 class="fz-16 p-16 my-32 text-white" style="background-color:#a6d1ec;"><i class="fas fa-cash-register pr-4" aria-hidden="true"></i>お支払いの流れ</h3>
 				<p>下記からご確認ください。</p>
 				<ul class="list-unstyled">
-					<li><a href="https://www.econtext.jp/support/cvs/lawson.html" target="_blank">ローソン・ミニストップでお支払いの場合はこちら</a></li>
+					<li><a href="https://www.econtext.jp/support/cvs/lawson.html#shiharai" target="_blank">ローソン・ミニストップでお支払いの場合はこちら</a></li>
 					<li><a href="https://www.econtext.jp/support/cvs/seicomart.html#paymentReceipt" target="_blank">セイコーマートでお支払いの場合はこちら</a></li>
 				</ul>				
 			</div>
