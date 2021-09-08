@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Log;
 
-
-class ReciveController extends Controller
+ 
+class ReceiveController extends Controller
 {
     public function settle_recive(Request $request) {
         Log::debug('POST recive');
