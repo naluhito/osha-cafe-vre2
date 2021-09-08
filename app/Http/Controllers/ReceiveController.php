@@ -13,7 +13,6 @@ class ReceiveController extends Controller
         Log::debug('POST recive');
         Log::debug($request);
 
-        $request->input("order_no");
         $order = new Order();
         $data = $order->where('order_no', $request->input("order_no"))->first();
         if ($request->input("settle_result") == '1') {
@@ -21,7 +20,7 @@ class ReceiveController extends Controller
         } else {
             $data->paid = $request->input("settle_detail");
         }
-        $data->paid_date = $date;
+        $data->paid_date = $request->input("settle_date");
         $data->save();
     }
 }
