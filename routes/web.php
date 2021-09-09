@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
  Route::get('/', function () {
-   return view('index');
+//   return view('index');
+   return view('welcome');
 });
 
 Route::post('/decision', 'App\Http\Controllers\BuyController@decision');
