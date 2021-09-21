@@ -6,6 +6,17 @@
                     <span class="d-block"><img src="https://oshi-cafe.com/img/SVG/logo-name.svg" alt="オリジナルドリップバッグ工房 Oshi Cafe Factory 推しカフェファクトリー" class=""></span>
                     <span class="fz-10 d-block">推しカフェファクトリー</span>
                 </a>
+                <div class="ml-sm-auto pl-16 pl-sm-0 fz-12 fz-md-14">
+                    @auth
+                    <a href="#" class="text-cha">
+                        <span class="pr-md-16 fz-14 fz-md-18">{{ Auth::user()->name }}</span>
+                    </a>
+                    <br class="d-md-none">
+                    @endauth
+                    <a href="basket" class="text-cha">
+                        <i class="fas fa-shopping-cart d-block text-center d-md-inline fz-18 fz-md-20 mr-md-24 mt-8 mt-md-0"></i>
+                    </a>
+                    </div>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#gnav" aria-controls="gnav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
