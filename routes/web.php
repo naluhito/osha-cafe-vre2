@@ -13,30 +13,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('/', function () {
-//   return view('index');
-   return view('welcome');
-});
+Route::get('/', function () {
+     return view('index');
+//     return view('welcome');
+  });
+  
+  Route::post('/decision', 'App\Http\Controllers\BuyController@decision');
+  Route::post('/confirm', 'App\Http\Controllers\BuyController@confirm');
+  Route::get('/basket', 'App\Http\Controllers\BuyController@basket');
+  Route::post('/storebasket', 'App\Http\Controllers\BuyController@storebasket');
+  Route::post('/getBaskets', 'App\Http\Controllers\BuyController@getBaskets');
+  Route::post('/removeBasket', 'App\Http\Controllers\BuyController@removeBasket');
+  Route::get('/address', 'App\Http\Controllers\BuyController@address');
+  Route::get('/choice', 'App\Http\Controllers\BuyController@choice');
+  Route::get('/buy', 'App\Http\Controllers\BuyController@index');
+  
+  Route::post('/settle_recive', 'App\Http\Controllers\ReceiveController@settle_recive');
+  
+//  Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
+//  Route::get('/regist', 'App\Http\Controllers\UserController@regist');
+//  Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');
+  
+  Route::get('/law', function () {
+    return view('law');
+  });
+  
+  
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::post('/decision', 'App\Http\Controllers\BuyController@decision');
-Route::post('/confirm', 'App\Http\Controllers\BuyController@confirm');
-Route::get('/basket', 'App\Http\Controllers\BuyController@basket');
-Route::post('/storebasket', 'App\Http\Controllers\BuyController@storebasket');
-Route::post('/getBaskets', 'App\Http\Controllers\BuyController@getBaskets');
-Route::post('/removeBasket', 'App\Http\Controllers\BuyController@removeBasket');
-Route::get('/address', 'App\Http\Controllers\BuyController@address');
-Route::get('/choice', 'App\Http\Controllers\BuyController@choice');
-Route::get('/buy', 'App\Http\Controllers\BuyController@index');
-
-Route::post('/settle_recive', 'App\Http\Controllers\ReceiveController@settle_recive');
-
-Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
-Route::get('/regist', 'App\Http\Controllers\UserController@regist');
-Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');
-
-Route::get('/law', function () {
-  return view('law');
-});
-
-
-Route::get('/test', 'App\Http\Controllers\TestController@test');
+require __DIR__.'/auth.php';

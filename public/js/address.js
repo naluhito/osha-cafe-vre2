@@ -30,7 +30,7 @@ jQuery(function($) {
         } else {
             form.find('#name3-error').empty();
         }
-        var name4 = form.find('#name3').val();
+        var name4 = form.find('#name4').val();
         if (name4 === '') {
             form.find('#name4-error').text('※未入力');
             check = false;

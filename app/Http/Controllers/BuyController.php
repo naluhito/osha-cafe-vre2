@@ -13,11 +13,17 @@ use App\Models\OrderItem;
 use App\Models\OrderBean;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use DateTime;
 
 class BuyController extends Controller
 {
     public function index() {
+        if (Auth::check()) {
+            $bean = new Bean();
+            $beans = $bean->where('disp', true)->get();
+            return view('choice',compact('beans'));
+        }
         return view('buy');
     }
 
