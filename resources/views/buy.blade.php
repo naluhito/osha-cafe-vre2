@@ -14,7 +14,7 @@
 					ゲスト購入
 				</a>
 
-				<a href="regist" class="button08 text-center d-block p-24 mx-auto mt-24">
+				<a href="{{ route('register') }}" class="button08 text-center d-block p-24 mx-auto mt-24">
 					新規会員登録
 				</a>
 				
