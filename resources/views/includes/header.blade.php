@@ -1,6 +1,6 @@
 <div class="" id="l-header">
         <div class="container">
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar">
                 <a class="navbar-brand" href="https://oshi-cafe.com">
                     <span class="fz-12 d-block">オリジナルドリップバッグ工房</span>
                     <span class="d-block"><img src="https://oshi-cafe.com/img/SVG/logo-name.svg" alt="オリジナルドリップバッグ工房 Oshi Cafe Factory 推しカフェファクトリー" class=""></span>
@@ -20,6 +20,9 @@
                         <li class="nav-item"><a class="nav-link pagelink" href="https://oshi-cafe.com#l-delivery">納期について</a></li>
                         <li class="nav-item"><a class="nav-link pagelink" href="https://oshi-cafe.com#l-payment">支払い・発送方法</a></li>
                         <li class="nav-item"><a class="nav-link pagelink" href="https://oshi-cafe.com#l-other">その他</a></li>
+                        @auth
+                        <li class="nav-item"><a class="nav-link pagelink" href="#">マイページ</a></li>
+                        @endauth
                     </ul>
                 </div>
             </nav>

@@ -110,20 +110,39 @@ class BuyController extends Controller
         if (session()->has('address')) {
             $address = json_decode(session('address'));
         } else {
-            $array = array(
-                "name1" => "",
-                "name2" => "",
-                "name3" => "",
-                "name4" => "",
-                "zipcode" => "",
-                "pref" => "",
-                "address1" => "",
-                "address2" => "",
-                "address3" => "",
-                "tel" => "",
-                "mailaddress1" => "",
-                "mailaddress2" => "",
-            );
+            if (Auth::check()) {
+                $user = Auth::user();
+                $array = array(
+                    "name1" => $user->name1,
+                    "name2" => $user->name2,
+                    "name3" => $user->name3,
+                    "name4" => $user->name4,
+                    "zipcode" => $user->zip,
+                    "pref" => $user->pref,
+                    "address1" => $user->address1,
+                    "address2" => $user->address2,
+                    "address3" => $user->address3,
+                    "tel" => $user->tel,
+                    "mailaddress1" => $user->email,
+                    "mailaddress2" => $user->email,
+                );
+                Log::debug($user);          
+            } else {
+                $array = array(
+                    "name1" => "",
+                    "name2" => "",
+                    "name3" => "",
+                    "name4" => "",
+                    "zipcode" => "",
+                    "pref" => "",
+                    "address1" => "",
+                    "address2" => "",
+                    "address3" => "",
+                    "tel" => "",
+                    "mailaddress1" => "",
+                    "mailaddress2" => "",
+                );
+            }
             $json = json_encode($array);
             $address = json_decode($json);
         }
