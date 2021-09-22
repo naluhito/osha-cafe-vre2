@@ -38,6 +38,7 @@
 <script src="//kit.fontawesome.com/af955fd0ec.js"></script>
 <script src="{{ asset('js/myScript.js') }}"></script>
 <script src="{{ asset('js/jquery.bgswitcher.js') }}"></script>
+<script src="{{ asset('js/badge.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

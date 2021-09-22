@@ -13,10 +13,11 @@
                     </a>
                     <br class="d-md-none">
                     @endauth
-                    <a href="basket" class="text-cha">
-                        <i class="fas fa-shopping-cart d-block text-center d-md-inline fz-18 fz-md-20 mr-md-24 mt-8 mt-md-0"></i>
+                    <a href="basket" class="text-cha" style="position: relative;">
+                        <i class="fas fa-shopping-cart d-block text-center d-md-inline fz-18 fz-20 mr-md-24 mt-8 mt-md-0" aria-hidden="true"></i>
+                        <span id="badge" class="badge badge-hoge badge-mark" style="position: absolute; top: -8px; left: 9px;"></span>
                     </a>
-                    </div>
+                </div>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#gnav" aria-controls="gnav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
