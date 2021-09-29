@@ -30,7 +30,9 @@ Route::get('/', function () {
   
   Route::post('/settle_recive', 'App\Http\Controllers\ReceiveController@settle_recive');
   
-  Route::get('/mypage', 'App\Http\Controllers\MypageController@index');
+  Route::group(['middleware' => 'auth'], function () {
+    Route::get('/mypage', 'App\Http\Controllers\MypageController@index');
+  });
   //  Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
 //  Route::get('/regist', 'App\Http\Controllers\UserController@regist');
 //  Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');
