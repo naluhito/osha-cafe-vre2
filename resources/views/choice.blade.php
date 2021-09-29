@@ -208,7 +208,7 @@
 						</div>
 						<div class="col-6">
 							<div class="input-group">
-								<input type="number" data-id="{{ $bean->id }}" class="bean-num form-control" placeholder="0" aria-label="" aria-describedby="">
+								<input type="number" min="0" data-id="{{ $bean->id }}" class="bean-num form-control" placeholder="0" aria-label="" aria-describedby="">
 								<div class="input-group-append"><span class="input-group-text" id="">個</span></div>
 							</div>
 						</div>
@@ -239,7 +239,7 @@
 						</div>
 						<div class="col-6">
 							<div class="input-group">
-								<input type="number" data-id="{{ $bean->id }}" class="bean-num form-control" placeholder="0" aria-label="" aria-describedby="">
+								<input type="number" min="0" data-id="{{ $bean->id }}" class="bean-num form-control" placeholder="0" aria-label="" aria-describedby="">
 								<div class="input-group-append"><span class="input-group-text" id="">個</span></div>
 							</div>
 						</div>
@@ -254,7 +254,7 @@
 					<span id="bean-total" class="calculate-num">0</span>
 					<span class="calculate-text">個</span>
 				</p>
-				<button id="beansOk" type="button" class="btn btn-lg bg-mizuiro my-24 rounded-sm px-48" data-dismiss="modal">OK</button>
+				<button id="beansOk" type="button" class="btn btn-lg bg-mizuiro my-24 rounded-sm px-48" data-dismiss="modal" disabled="disabled">OK</button>
 			</div>
 		</div>
 	</div>

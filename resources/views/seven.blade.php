@@ -22,6 +22,7 @@
 <script type="text/javascript">
 jQuery(function($) {
 	localStorage.removeItem('oshiBasket');
+	$('#badge').text('');
 });
 </script>
 

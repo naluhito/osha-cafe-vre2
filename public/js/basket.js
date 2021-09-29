@@ -26,12 +26,37 @@ jQuery(function($) {
                     return value != target;
                 });
                 $('#item'+target).remove();
-                console.log(newlist);
+                $('#badge').text(ids.length);
+                resetTotal()
             }
         })
         .fail(function(data){
         });        
     });
+    
+    function resetTotal() {
+        var ids = JSON.parse(localStorage.getItem('oshiBasket'));
+        var param = {};
+        param['ids'] = ids;
+        let url = 'getBaskets';
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            datatype: 'json',
+			contentType: "application/json",
+			data: JSON.stringify(param),
+            url: url
+        })
+        .done(function(data){
+            if (data.status === 'OK') {
+                setTotal(data.baskets);
+			}
+        })
+        .fail(function(data){
+        });
+    }
     
     function createItem(item) {
         loadFLg = true;

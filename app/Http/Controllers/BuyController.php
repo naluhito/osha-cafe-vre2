@@ -40,6 +40,7 @@ class BuyController extends Controller
         $basket->photo_type = $request->input('photo')['type'];
         $basket->photo_uri = $request->input('photo')['uri'];
         $basket->frame = $request->input('frame');
+        $basket->paper = $request->input('paper');
         $basket->image_width = (float)$request->input('imageInfo')['width'];
         $basket->image_height = (float)$request->input('imageInfo')['height'];
         $basket->image_diffx = (float)$request->input('imageInfo')['diffx'];
@@ -296,6 +297,7 @@ class BuyController extends Controller
             $filename = sprintf("%s_%03d.jpeg", $order->order_no, $count);
             $this->_create_print_image($filename, $basket);
             $order_item->image = $filename;
+            $order_item->paper = $basket->paper;
             $order_item->save();
             foreach ($basket->beans as $bean) {
                 $order_bean = new OrderBean();

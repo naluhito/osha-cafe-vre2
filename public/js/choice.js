@@ -11,6 +11,7 @@ jQuery(function($) {
 	var scale = 1;
 	var frameWidth = 0;
 	var frameHeight = 0;
+	var paper = "ホワイト";
 
 	var frameImage = null;
 	var choiceFrame = '';
@@ -39,6 +40,7 @@ jQuery(function($) {
 		file['uri'] = photoURI;
 		data['photo'] = file;
 		data['frame'] = choiceFrame;
+		data['paper'] = paper;
 		var imageInfo = {};
 		imageInfo['width'] = canvas.width;
 		imageInfo['height'] = canvas.height;
@@ -144,12 +146,14 @@ jQuery(function($) {
     });
     
     $('#previewWhite').click(function(){
- 		$('#kraftImage').hide();
+		paper = "ホワイト";
+		$('#kraftImage').hide();
  		$('#whiteImage').show();
     });
 
     $('#previewKraft').click(function(){
- 		$('#kraftImage').show();
+		paper = "クラフト";
+		$('#kraftImage').show();
  		$('#whiteImage').hide();
     });
 
@@ -159,6 +163,11 @@ jQuery(function($) {
 			beanNum += Number($(this).val());
 		});
 		$('#bean-total').text(beanNum);
+		if (beanNum > 0) {
+			$("#beansOk").prop("disabled", false);
+		} else {
+			$("#beansOk").prop("disabled", true);
+		}
 	});
 
     // 写真選択
