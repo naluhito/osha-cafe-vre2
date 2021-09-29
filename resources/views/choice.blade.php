@@ -65,7 +65,7 @@
 			<div class="modal-body">
 				<div class="row gtr-16">
 					<div class="col-6 mt-16">
-						<input class="c01 w-100" type="image" src="img/frame/frame_00.png" value="">
+						<input class="c01 w-100" type="image" src="img/frame/frame_00.png" value="frame_00.png">
 					</div>
 					<div class="col-6 mt-16">
 						<input class="c01 w-100" type="image" src="img/frame/frame_01.png" value="frame_01.png">

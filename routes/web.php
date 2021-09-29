@@ -30,7 +30,8 @@ Route::get('/', function () {
   
   Route::post('/settle_recive', 'App\Http\Controllers\ReceiveController@settle_recive');
   
-//  Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
+  Route::get('/test', 'App\Http\Controllers\TestController@test');
+  //  Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
 //  Route::get('/regist', 'App\Http\Controllers\UserController@regist');
 //  Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');
   

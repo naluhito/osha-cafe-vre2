@@ -289,10 +289,11 @@ class BuyController extends Controller
         }
         $basket = new Basket();
         $baskets = $basket->whereIn('id', $ids)->get();
+        $count = 1;
         foreach ($baskets as $basket) {
             $order_item = new OrderItem();
             $order_item->order_id = $order->id;
-            $filename = $order->order_no.'png';
+            $filename = sprintf("%s_%03d.jpeg", $order->order_no, $count);
             $this->_create_print_image($filename, $basket);
             $order_item->image = $filename;
             $order_item->save();
@@ -475,26 +476,32 @@ class BuyController extends Controller
     }
 
     private function _create_print_image($filename, $basket) {
-        $this->_decode_image($filename, $basket->photo_uri);
-    }
+        $photo = \Image::make($basket->photo_uri);
+        $path = storage_path('app/frame/'.$basket->frame);
+        $frame = \Image::make($path);
 
-    private function _decode_image($filename, $base64data) {
-        $base = explode(',', $base64data);
-        $data = base64_decode($base[1]);
-        $type = finfo_buffer(finfo_open(), $data, FILEINFO_EXTENSION);
-        Log::debug($type);
-/*
-        $finfo = new \finfo(FILEINFO_MIME_TYPE);
-        $mime_type = $finfo->buffer($data);
-        Log::debug($mime_type);
-        $extensions = [
-            'image/gif' => 'gif',
-            'image/jpeg' => 'jpg',
-            'image/png' => 'png'
-        ];
-        $filename = 'image.' . $extensions[$mime_type];
-*/
-//        Storage::putFile('upimages/aaaa', $data);
-        Storage::put('upimages/'.$filename, $data);
+        $scale =  $frame->width() / $basket->image_frameWidth;
+
+        $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
+
+        $w = $photo->width() * $basket->image_scale;
+        $w *= $scale;
+        $photo->widen(floor($w));
+
+        $px = $basket->image_diffx * $basket->image_scale;
+        $py = $basket->image_diffy * $basket->image_scale;
+        $px *= $scale;
+        $py *= $scale;
+        $c->insert($photo, 'top-left', floor($px), floor($py));
+
+        $fx = ($c->width() / 2) - ($frame->width() / 2);
+        $fy = ($c->height() / 2) - ($frame->height() / 2);
+        $c->insert($frame, 'top-left', floor($fx), floor($fy));
+
+        $c->crop($frame->width(), $frame->height(), floor($fx), floor($fy));
+
+//        $save_path = storage_path('app/upimages/'.$filename);
+        $save_path = '/var/www/html/print_images'.$filename;
+        $c->save($save_path);
     }
 }    
