@@ -33,7 +33,7 @@
                         <li class="nav-item"><a class="nav-link pagelink" href="https://oshi-cafe.com#l-payment">支払い・発送方法</a></li>
                         <li class="nav-item"><a class="nav-link pagelink" href="https://oshi-cafe.com#l-other">その他</a></li>
                         @auth
-                        <li class="nav-item"><a class="nav-link pagelink" href="#">マイページ</a></li>
+                        <li class="nav-item"><a class="nav-link pagelink" href="mypage">マイページ</a></li>
                         @endauth
                     </ul>
                 </div>

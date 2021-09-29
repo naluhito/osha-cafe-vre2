@@ -326,6 +326,11 @@ class BuyController extends Controller
         }
         $address = json_decode(session('address'));
         $order = new Order();
+        if (Auth::check()) {
+            $user = Auth::user();
+            $order->user_id = $user->id;
+        }
+
         if ($request->input('payment') == 'credit') {
             $order->payment_kind = 0;
             $order->convenience = '';
