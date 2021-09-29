@@ -501,7 +501,7 @@ class BuyController extends Controller
         $c->crop($frame->width(), $frame->height(), floor($fx), floor($fy));
 
 //        $save_path = storage_path('app/upimages/'.$filename);
-        $save_path = '/var/www/html/print_images'.$filename;
+        $save_path = '/var/www/html/print_images/'.$filename;
         $c->save($save_path);
     }
 }    
