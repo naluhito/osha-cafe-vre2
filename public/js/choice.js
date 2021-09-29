@@ -164,10 +164,8 @@ jQuery(function($) {
 		});
 		$('#bean-total').text(beanNum);
 		if (beanNum > 0) {
-			console.log("disabledf false");
 			$("#beansOk").prop("disabled", false);
 		} else {
-			console.log("disabledf true");
 			$("#beansOk").prop("disabled", true);
 		}
 	});
