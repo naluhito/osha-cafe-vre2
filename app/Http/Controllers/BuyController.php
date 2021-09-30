@@ -184,7 +184,6 @@ class BuyController extends Controller
         $amount = $order->amount;
         $shipping = $order->shipping;
         $address = json_decode(session('address'));
-//        Log::debug($address);
 
         if ($request->input('payment') == 'credit') {
             $res = $this->_procedure_card($order_no, $amount+$shipping, $address, $request->input('webcollectToken'));
@@ -273,7 +272,7 @@ class BuyController extends Controller
                 $param = [
                     'view_param' => $view_param
                 ];
-                Mail::send('mails.seven', $param, function($message) {
+                Mail::send('mails.seven', $param, function($message) use ($address) {
                     $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
                     ->to($address->mailaddress1)
                     ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
@@ -283,7 +282,7 @@ class BuyController extends Controller
                 $param = [
                     'view_param' => $view_param
                 ];
-                Mail::send('mails.seven', $param, function($message) {
+                Mail::send('mails.seven', $param, function($message)  use ($address){
                     $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
                     ->to($address->mailaddress1)
                     ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
@@ -293,7 +292,7 @@ class BuyController extends Controller
                 $param = [
                     'view_param' => $view_param
                 ];
-                Mail::send('mails.seven', $param, function($message) {
+                Mail::send('mails.seven', $param, function($message)  use ($address){
                     $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
                     ->to($address->mailaddress1)
                     ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
