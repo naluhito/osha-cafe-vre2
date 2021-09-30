@@ -295,6 +295,8 @@ class BuyController extends Controller
             $order_item = new OrderItem();
             $order_item->order_id = $order->id;
             $filename = sprintf("%s_%03d.jpeg", $order->order_no, $count);
+            Log::debug($filename);
+
             $this->_create_print_image($filename, $basket);
             $order_item->image = $filename;
             $order_item->paper = $basket->paper;
