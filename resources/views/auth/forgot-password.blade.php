@@ -2,23 +2,26 @@
 
 @section('content')
 
-<div class="container-wrap bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-auto">
-                <h2 class="text-center">パスワードリセット</h2>
-                <form method="POST" action="{{ route('password.email') }}" class="mt-24">
-                    @csrf
-                    <p class="text-center mb-0">メールアドレスを入力してください</p>
-                    <div class="form-group">
-                        <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" placeholder="メールアドレス" required autofocus />
-                    </div>
-                    <button type="submit" class="btn btn-block btn-lg btn-primary text-white">送信する</button>
-                </form>
-                <p class="text-center"><a href="/login.php">ログインはこちら</a></p>
-            </div>
-        </div>
-    </div>
+<div class="container-wrap">
+		<div class="container">
+			<h2 class="text-center fz-20 font-weight-bold">パスワードのリセット</h2>
+		</div>
+	</div>
+	<div class="container-wrap pt-64 pb-80">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-10">
+					<p>パスワードをお忘れの方は、ご登録のメールアドレスを下記へ入力いただき送信してください。<br>送られてくるメールのリンク先からパスワードを再設定してください。</p>
+						<form action="delete_account" method="post">
+                        @csrf
+                    	<label for="password">メールアドレス</label><br>
+                        <x-input id="email" class="w-75 w-md-50" type="email" name="email" :value="old('email')" required autofocus />
+                        <input id="submit" class="px-48 py-8 bg-mizuiro text-white d-inline-block d-sm-inline mt-16 mt-sm-0" type="submit" value="送信" style="border: 0;">
+                        </form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 @endsection
