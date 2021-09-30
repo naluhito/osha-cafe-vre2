@@ -255,15 +255,15 @@ class BuyController extends Controller
                 ];
             }
         }
+        Log::debug($address);
+
         foreach ($request->input('basket') as $key=>$val) {
             if ($val != null) {
                 $ids[] = $val;
             }
         }
         $this->_store_items($request, $order);
-//        session()->forget('address');
-
-        Log::debug($address);
+        session()->forget('address');
        
         if ($request->input('payment') == 'credit') {
             return view('card', compact('view_param'));
