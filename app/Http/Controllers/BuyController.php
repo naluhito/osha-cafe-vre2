@@ -30,6 +30,8 @@ class BuyController extends Controller
     }
 
     public function choice() {
+        session()->forget('address');
+
         $bean = new Bean();
         $beans = $bean->where('disp', true)->get();
         return view('choice',compact('beans'));
