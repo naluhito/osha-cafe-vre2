@@ -307,6 +307,7 @@ class BuyController extends Controller
                 $order_bean->quantity = $bean->number;
                 $order_bean->save();
             }
+            $count++;
         }
         $basket->whereIn('id', $ids)->delete();
     }
