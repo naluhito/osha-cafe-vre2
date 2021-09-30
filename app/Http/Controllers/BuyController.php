@@ -262,6 +262,9 @@ class BuyController extends Controller
         }
         $this->_store_items($request, $order);
         session()->forget('address');
+
+        Log::debug($address);
+       
         if ($request->input('payment') == 'credit') {
             return view('card', compact('view_param'));
         } else {
