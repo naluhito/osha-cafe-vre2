@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
+use Mail;
+
 
 class BuyController extends Controller
 {
@@ -264,10 +266,34 @@ class BuyController extends Controller
             return view('card', compact('view_param'));
         } else {
             if ($request->input('convenience') == 'seven') {
+                $param = [
+                    'view_param' => $view_param
+                ];
+                Mail::send('mails.seven', $param, function($message) {
+                    $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+                    ->to($address->mailaddress1)
+                    ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
+                    });    
                 return view('seven', compact('view_param'));            
             } else if ($request->input('convenience') == 'fm') {
+                $param = [
+                    'view_param' => $view_param
+                ];
+                Mail::send('mails.seven', $param, function($message) {
+                    $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+                    ->to($address->mailaddress1)
+                    ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
+                    });    
                 return view('fm', compact('view_param'));
             } else {
+                $param = [
+                    'view_param' => $view_param
+                ];
+                Mail::send('mails.seven', $param, function($message) {
+                    $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+                    ->to($address->mailaddress1)
+                    ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
+                    });    
                 return view('lowson', compact('view_param'));
             }
         }

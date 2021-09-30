@@ -84,8 +84,7 @@
                     @csrf
                         <label for="password">パスワード</label><br>
                         <input id="password" class="w-50" type="password" name="password"><br class="d-sm-none">
-                        <input id="submit" class="px-48 py-8 bg-mizuiro text-white d-inline-block d-sm-inline mt-16 mt-sm-0" type="submit" value="確認" />
-                        <a href="#" class="px-48 py-8 bg-mizuiro text-white d-inline-block d-sm-inline mt-16 mt-sm-0">送信</a>
+                        <input id="submit" class="px-48 py-8 bg-mizuiro text-white d-inline-block d-sm-inline mt-16 mt-sm-0" type="submit" value="送信" style="border: 0;">
                         <span id="password-error" class="d-block text-danger ml-24 lh-32">{{ $message }}</span>
 
                     </form>
