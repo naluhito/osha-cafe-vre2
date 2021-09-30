@@ -30,8 +30,6 @@ class BuyController extends Controller
     }
 
     public function choice() {
-        session()->forget('address');
-
         $bean = new Bean();
         $beans = $bean->where('disp', true)->get();
         return view('choice',compact('beans'));
@@ -186,7 +184,7 @@ class BuyController extends Controller
         $amount = $order->amount;
         $shipping = $order->shipping;
         $address = json_decode(session('address'));
-        Log::debug($address);
+//        Log::debug($address);
 
         if ($request->input('payment') == 'credit') {
             $res = $this->_procedure_card($order_no, $amount+$shipping, $address, $request->input('webcollectToken'));
