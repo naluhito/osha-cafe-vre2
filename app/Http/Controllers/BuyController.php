@@ -184,6 +184,8 @@ class BuyController extends Controller
         $amount = $order->amount;
         $shipping = $order->shipping;
         $address = json_decode(session('address'));
+        Log::debug($address);
+
         if ($request->input('payment') == 'credit') {
             $res = $this->_procedure_card($order_no, $amount+$shipping, $address, $request->input('webcollectToken'));
             if ($res['returnCode'] != '0') {
@@ -255,7 +257,6 @@ class BuyController extends Controller
                 ];
             }
         }
-        Log::debug($address);
 
         foreach ($request->input('basket') as $key=>$val) {
             if ($val != null) {
