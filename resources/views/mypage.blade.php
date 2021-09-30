@@ -54,7 +54,7 @@
                             <div class="p-16">
                                 <div class="row align-items-center">
                                     <div class="col-4 col-sm">
-                                        <img id="frame" src="print_frame/{{ $item->image }}" style="width:100%;">
+                                        <img id="frame" src="print_images/{{ $item->image }}" style="width:100%;">
                                     </div>
                                     <div class="col-8 col-sm">
                                         <p class="fz-14 mb-0"><!--再注文ボタンとか--></p>
