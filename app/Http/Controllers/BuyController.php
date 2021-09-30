@@ -261,7 +261,7 @@ class BuyController extends Controller
             }
         }
         $this->_store_items($request, $order);
-        session()->forget('address');
+//        session()->forget('address');
 
         Log::debug($address);
        
