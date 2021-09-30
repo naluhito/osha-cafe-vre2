@@ -42,7 +42,7 @@ class MypageController extends Controller
             ];
             Mail::send('mails.delaccount', $data, function($message) {
                 $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
-                ->to('nalu@2ndgigs.com')
+                ->to('info@oshi-cafe.com ')
                 ->subject('退会依頼');
                 });
             $message = '退会依頼を受け付けました。';
