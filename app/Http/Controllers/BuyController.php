@@ -282,7 +282,7 @@ class BuyController extends Controller
                 $param = [
                     'view_param' => $view_param
                 ];
-                Mail::send('mails.seven', $param, function($message)  use ($address){
+                Mail::send('mails.fm', $param, function($message)  use ($address){
                     $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
                     ->to($address->mailaddress1)
                     ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
@@ -292,7 +292,7 @@ class BuyController extends Controller
                 $param = [
                     'view_param' => $view_param
                 ];
-                Mail::send('mails.seven', $param, function($message)  use ($address){
+                Mail::send('mails.lowson', $param, function($message)  use ($address){
                     $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
                     ->to($address->mailaddress1)
                     ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
