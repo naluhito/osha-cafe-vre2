@@ -31,7 +31,8 @@ Route::get('/', function () {
   Route::post('/settle_recive', 'App\Http\Controllers\ReceiveController@settle_recive');
   
   Route::group(['middleware' => 'auth'], function () {
-    Route::get('/mypage', 'App\Http\Controllers\MypageController@index');
+  Route::get('/mypage', 'App\Http\Controllers\MypageController@index');
+  Route::post('/delete_account', 'App\Http\Controllers\MypageController@delete_account');
   });
   //  Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
 //  Route::get('/regist', 'App\Http\Controllers\UserController@regist');

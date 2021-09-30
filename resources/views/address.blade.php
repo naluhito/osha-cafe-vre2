@@ -29,13 +29,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                @auth
-                <div class="text-right">
-                    <button type="button" class="btn btn-primary text-white px-40 py-8 d-inline-block ml-right text-white" data-toggle="modal" data-target="#otheraddress">
-                        ▶︎ 自宅以外へ届ける
-                    </button>
-                </div>
-                @endauth
                 <form class="my_form" name="address_form" id="address_form" action="confirm" method="post">
                     @csrf
                     <table class="table contacttable table-bordered tbl-2column fz-14 mt-32 mt-md-48">

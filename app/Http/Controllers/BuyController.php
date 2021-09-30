@@ -467,7 +467,6 @@ class BuyController extends Controller
             'buyer_tel' => $address->tel,
             'buyer_email' => $address->mailaddress1
         ];
-        Log::debug($param);
         $response = Http::asForm()->post($url, $param);
         $xml  = simplexml_load_string($response);
         $res = json_decode( json_encode($xml), TRUE );
