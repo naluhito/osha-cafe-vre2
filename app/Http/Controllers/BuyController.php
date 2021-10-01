@@ -518,7 +518,6 @@ class BuyController extends Controller
         $frame_width = 2000;
         $frame_height = 2134;
         $photo = \Image::make($basket->photo_uri);
-        $photo->orientate();
         $scale =  $frame_width / $basket->image_frameWidth;
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
         $w = $photo->width() * $basket->image_scale;
@@ -545,6 +544,7 @@ class BuyController extends Controller
 
     private function _create_print_image($filename, $basket) {
         $photo = \Image::make($basket->photo_uri);
+        $photo->orientate();
         $path = storage_path('app/frame/'.$basket->frame);
         $frame = \Image::make($path);
 
