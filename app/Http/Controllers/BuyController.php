@@ -521,7 +521,7 @@ class BuyController extends Controller
         $exif = $photo->exif();
         Log::debug($exif);
 
-        $save_path = '/var/www/html/print_images';
+        $save_path = '/var/www/html/print_images/test_image.jpeg';
         $photo->orientate()->save($save_path);
         $exif = $photo->exif();
         Log::debug($exif);
