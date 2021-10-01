@@ -10,11 +10,13 @@ use App\Models\Basket;
 class TestController extends Controller
 {
     public function test() {
-        $id = 15;
+        $id = 32;
         $filename = 'test.jpeg';
 
         $basket = new Basket();
         $b = $basket->find($id);
+//        Log::debug($b);
+
         $print_image = $this->_create_print_image($filename, $b);
         return $print_image->response();
     }

@@ -37,6 +37,8 @@ Route::get('/', function () {
   //  Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
 //  Route::get('/regist', 'App\Http\Controllers\UserController@regist');
 //  Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');
+
+Route::get('/test', 'App\Http\Controllers\TestController@test');
   
   Route::get('/law', function () {
     return view('law');

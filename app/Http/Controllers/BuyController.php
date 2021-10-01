@@ -51,7 +51,8 @@ class BuyController extends Controller
         $basket->image_frameWidth = (float)$request->input('imageInfo')['frameWidth'];
         $basket->image_frameHeight = (float)$request->input('imageInfo')['frameHeight'];
         $basket->save();
-
+        $basket->photo_uri = $this->_trim_photo($basket);
+        $basket->save();
         $basket_id = $basket->id;
 
         foreach ($request->input('beans') as $id=>$num) {
@@ -513,15 +514,13 @@ class BuyController extends Controller
         return $y.'年'.$m.'月'.$d.'日';
     }
 
-    private function _create_print_image($filename, $basket) {
+    private function _trim_photo($basket) {
+        $frame_width = 2000;
+        $frame_height = 2134;
         $photo = \Image::make($basket->photo_uri);
-        $path = storage_path('app/frame/'.$basket->frame);
-        $frame = \Image::make($path);
 
-        $scale =  $frame->width() / $basket->image_frameWidth;
-
+        $scale =  $frame_width / $basket->image_frameWidth;
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
-
         $w = $photo->width() * $basket->image_scale;
         $w *= $scale;
         $photo->widen(floor($w));
@@ -531,19 +530,57 @@ class BuyController extends Controller
         $px *= $scale;
         $py *= $scale;
         $c->insert($photo, 'top-left', floor($px), floor($py));
+        $photo->destroy();
 
-        $fx = ($c->width() / 2) - ($frame->width() / 2);
-        $fy = ($c->height() / 2) - ($frame->height() / 2);
-        $c->insert($frame, 'top-left', floor($fx), floor($fy));
+        $fx = ($c->width() / 2) - ($frame_width / 2);
+        $fy = ($c->height() / 2) - ($frame_height / 2);
 
-        $c->crop($frame->width(), $frame->height(), floor($fx), floor($fy));
+        $c->crop($frame_width, $frame_height, floor($fx), floor($fy));
+        $p = $c->encode('jpg', 100);
+        $c->destroy();
+        $encoded = base64_encode($p);
 
-//        $save_path = storage_path('app/upimages/'.$filename);
+        return 'data:image/jpg;base64,'.$encoded;
+    }
+
+    private function _create_print_image($filename, $basket) {
+        $photo = \Image::make($basket->photo_uri);
+        $path = storage_path('app/frame/'.$basket->frame);
+        $frame = \Image::make($path);
+
+        $photo->insert($frame, 'top-left', 0, 0);
         $save_path = '/var/www/html/print_images/'.$filename;
-        $c->save($save_path);
+        $photo->save($save_path);
 
         $photo->destroy();
         $frame->destroy();
-        $c->destroy();
+
+//         $scale =  $frame->width() / $basket->image_frameWidth;
+
+//         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
+
+//         $w = $photo->width() * $basket->image_scale;
+//         $w *= $scale;
+//         $photo->widen(floor($w));
+
+//         $px = $basket->image_diffx * $basket->image_scale;
+//         $py = $basket->image_diffy * $basket->image_scale;
+//         $px *= $scale;
+//         $py *= $scale;
+//         $c->insert($photo, 'top-left', floor($px), floor($py));
+
+//         $fx = ($c->width() / 2) - ($frame->width() / 2);
+//         $fy = ($c->height() / 2) - ($frame->height() / 2);
+//         $c->insert($frame, 'top-left', floor($fx), floor($fy));
+
+//         $c->crop($frame->width(), $frame->height(), floor($fx), floor($fy));
+
+// //        $save_path = storage_path('app/upimages/'.$filename);
+//         $save_path = '/var/www/html/print_images/'.$filename;
+//         $c->save($save_path);
+
+//         $photo->destroy();
+//         $frame->destroy();
+//         $c->destroy();
     }
 }    

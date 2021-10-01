@@ -91,7 +91,6 @@ jQuery(function($) {
 	    	ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.fillStyle = "white";
 			ctx.fillRect(0,0, canvas.width, canvas.height);
-			ctx.translate(0,63.5);
 
             if (!item.frame) {
                 var data = draw(item, image, null);
@@ -126,26 +125,16 @@ jQuery(function($) {
 
     function draw(item, image, frameImage) {
     	ctx = canvas.getContext('2d');
-    	ctx.clearRect(0, 0, canvas.width, canvas.height);
-    	ctx.scale(item.image_scale, item.image_scale);
-    	ctx.drawImage(image, item.image_diffx, item.image_diffy);
+        canvas.setAttribute('width' , item.image_frameWidth);
+        canvas.setAttribute('height', item.image_frameHeight);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    	ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
 
-    	ctx.scale(1 / item.image_scale, 1 / item.image_scale);
     	if (frameImage !== null) {
-			x = (canvas.width / 2) - (item.image_frameWidth / 2);
-			y = (canvas.height / 2) - (item.image_frameHeight / 2);
-	    	ctx.drawImage(frameImage, x, y, item.image_frameWidth, item.image_frameHeight);
+	    	ctx.drawImage(frameImage, 0, 0, item.image_frameWidth, item.image_frameHeight);
     	}
-    	dcanvas = document.createElement('canvas');
-    	dctx = dcanvas.getContext('2d');
-        dcanvas.setAttribute('width' , item.image_frameWidth);
-        dcanvas.setAttribute('height', item.image_frameHeight);
-        sx = (canvas.width / 2) - (item.image_frameWidth / 2);
-        sy = (canvas.height / 2) - (item.image_frameHeight / 2) + 63.5;
-        dctx.drawImage(canvas, sx, sy, item.image_frameWidth, item.image_frameHeight, 0, 0, item.image_frameWidth, item.image_frameHeight);
-
-
-        data = dcanvas.toDataURL('image/png');
+        data = canvas.toDataURL('image/png');
+        
         return data;
 	}
 
