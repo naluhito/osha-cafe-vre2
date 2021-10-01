@@ -522,6 +522,8 @@ class BuyController extends Controller
         Log::debug($exif);
 
         $photo->orientate();
+        $exif = $photo->exif();
+        Log::debug($exif);
         $scale =  $frame_width / $basket->image_frameWidth;
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
         $w = $photo->width() * $basket->image_scale;
