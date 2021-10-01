@@ -518,7 +518,7 @@ class BuyController extends Controller
         $frame_width = 2000;
         $frame_height = 2134;
         $photo = \Image::make($basket->photo_uri);
-
+        $photo->orientate();
         $scale =  $frame_width / $basket->image_frameWidth;
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
         $w = $photo->width() * $basket->image_scale;
@@ -555,32 +555,5 @@ class BuyController extends Controller
         $photo->destroy();
         $frame->destroy();
 
-//         $scale =  $frame->width() / $basket->image_frameWidth;
-
-//         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
-
-//         $w = $photo->width() * $basket->image_scale;
-//         $w *= $scale;
-//         $photo->widen(floor($w));
-
-//         $px = $basket->image_diffx * $basket->image_scale;
-//         $py = $basket->image_diffy * $basket->image_scale;
-//         $px *= $scale;
-//         $py *= $scale;
-//         $c->insert($photo, 'top-left', floor($px), floor($py));
-
-//         $fx = ($c->width() / 2) - ($frame->width() / 2);
-//         $fy = ($c->height() / 2) - ($frame->height() / 2);
-//         $c->insert($frame, 'top-left', floor($fx), floor($fy));
-
-//         $c->crop($frame->width(), $frame->height(), floor($fx), floor($fy));
-
-// //        $save_path = storage_path('app/upimages/'.$filename);
-//         $save_path = '/var/www/html/print_images/'.$filename;
-//         $c->save($save_path);
-
-//         $photo->destroy();
-//         $frame->destroy();
-//         $c->destroy();
     }
 }    
