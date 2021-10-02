@@ -522,14 +522,12 @@ class BuyController extends Controller
         Log::debug($exif);
 
         $save_path = '/var/www/html/print_images/test_image.jpeg';
-        $photo->orientate()->save($save_path);
-        $exif = $photo->exif();
-        Log::debug($exif);
         $scale =  $frame_width / $basket->image_frameWidth;
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
         $w = $photo->width() * $basket->image_scale;
         $w *= $scale;
         $photo->widen(floor($w));
+        $photo->orientate();
 
         $px = $basket->image_diffx * $basket->image_scale;
         $py = $basket->image_diffy * $basket->image_scale;
