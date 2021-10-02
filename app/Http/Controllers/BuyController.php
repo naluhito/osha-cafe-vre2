@@ -518,16 +518,14 @@ class BuyController extends Controller
         $frame_width = 2000;
         $frame_height = 2134;
         $photo = \Image::make($basket->photo_uri);
-        $exif = $photo->exif();
-        Log::debug($exif);
+        $photo->orientate();
 
         $save_path = '/var/www/html/print_images/test_image.jpeg';
         $scale =  $frame_width / $basket->image_frameWidth;
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
         $w = $photo->width() * $basket->image_scale;
         $w *= $scale;
-        $photo->widen(floor($w));
-        $photo->orientate();
+        $photo->widen(floor($w))->save($save_path);
 
         $px = $basket->image_diffx * $basket->image_scale;
         $py = $basket->image_diffy * $basket->image_scale;
