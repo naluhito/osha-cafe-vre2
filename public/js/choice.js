@@ -12,6 +12,7 @@ jQuery(function($) {
 	var frameWidth = 0;
 	var frameHeight = 0;
 	var paperKind = "ホワイト";
+	var orientation = 0;
 
 	var frameImage = null;
 	var choiceFrame = '';
@@ -49,6 +50,7 @@ jQuery(function($) {
 		imageInfo['scale'] = scale;
 		imageInfo['frameWidth'] = frameWidth;
 		imageInfo['frameHeight'] = frameHeight;
+		imageInfo['orientation'] = orientation;
 		data['imageInfo'] = imageInfo;
 		data['beans'] = beans;
 		console.dir(data);
@@ -180,6 +182,7 @@ jQuery(function($) {
 		}
 		handleFiles($('#input_file')[0].files);
     });
+
     // ドラッグ領域内
 	$('#drop_area').on('dragenter dragover', function (event) {
 		event.stopPropagation();
@@ -212,6 +215,42 @@ jQuery(function($) {
 		redraw();
 	});
 	
+	function getOrientation(buffer) {
+		const dv = new DataView(buffer)
+		let app1MarkerStart = 2
+		// もし JFIF で APP0 Marker がある場合は APP1 Marker の取得位置をずらす
+		if (dv.getUint16(app1MarkerStart) !== 65505) {
+		  const length = dv.getUint16(4)
+		  app1MarkerStart += length + 2
+		}
+		if (dv.getUint16(app1MarkerStart) !== 65505) {
+		  return 0
+		}
+		// エンディアンを取得
+		const littleEndian = dv.getUint8(app1MarkerStart + 10) === 73
+		// フィールドの数を確認
+		const count = dv.getUint16(app1MarkerStart + 18, littleEndian)
+		for (let i = 0; i < count; i++) {
+		  const start = app1MarkerStart + 20 + i * 12
+		  const tag = dv.getUint16(start, littleEndian)
+		  // Orientation の Tag は 274
+		  if (tag === 274) {
+			// Orientation は Type が SHORT なので 2byte だけ読む
+			return dv.getUint16(start + 8, littleEndian)
+		  }
+		}
+		return 0
+	  }
+	
+
+
+
+
+
+
+
+
+
 	function handleFiles(files) {
 		var file = files[0];
 		photo = files[0];
@@ -225,6 +264,8 @@ jQuery(function($) {
 
 		var reader = new FileReader();
 		reader.onload = function (e) {
+			orientation = getOrientation(e.target.result);
+			console.log(orientation);
 			photoURI = e.target.result;
 			loadImage(e.target.result);
 		}

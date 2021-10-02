@@ -54,6 +54,7 @@ class BuyController extends Controller
         $basket->photo_uri = $this->_trim_photo($basket);
         $basket->save();
         $basket_id = $basket->id;
+        Log::debug('orientation = '.$request->input('imageInfo')['orientation']);
 
         foreach ($request->input('beans') as $id=>$num) {
             $basketbean = new Basketbean();
