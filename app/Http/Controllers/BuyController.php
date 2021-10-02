@@ -548,7 +548,7 @@ class BuyController extends Controller
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
         $w = $photo->width() * $basket->image_scale;
         $w *= $scale;
-//        $photo->widen(floor($w))->save($save_path);
+        $photo->widen(floor($w));
 
         $px = $basket->image_diffx * $basket->image_scale;
         $py = $basket->image_diffy * $basket->image_scale;
