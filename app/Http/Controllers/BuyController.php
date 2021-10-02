@@ -51,7 +51,7 @@ class BuyController extends Controller
         $basket->image_frameWidth = (float)$request->input('imageInfo')['frameWidth'];
         $basket->image_frameHeight = (float)$request->input('imageInfo')['frameHeight'];
         $basket->save();
-        $basket->photo_uri = $this->_trim_photo($basket);
+        $basket->photo_uri = $this->_trim_photo($basket, $request->input('imageInfo')['orientation']);
         $basket->save();
         $basket_id = $basket->id;
         Log::debug('orientation = '.$request->input('imageInfo')['orientation']);
@@ -515,18 +515,40 @@ class BuyController extends Controller
         return $y.'年'.$m.'月'.$d.'日';
     }
 
-    private function _trim_photo($basket) {
+    private function _trim_photo($basket, $orientation) {
         $frame_width = 2000;
         $frame_height = 2134;
         $photo = \Image::make($basket->photo_uri);
-        $photo->orientate();
+        switch ($orientation) {
+            case 2:
+                $photo->flip();
+                break;
+            case 3:
+                $photo->rotate(180);
+                break;
+            case 4:
+                $photo->rotate(180)->flip();
+                break;
+            case 5:
+                $photo->rotate(270)->flip();
+                break;
+            case 6:
+                $photo->rotate(270);
+                break;
+            case 7:
+                $photo->rotate(90)->flip();
+                break;
+            case 8:
+                $photo->rotate(90);
+                break;
+        }
 
-        $save_path = '/var/www/html/print_images/test_image.jpeg';
+//        $save_path = '/var/www/html/print_images/test_image.jpeg';
         $scale =  $frame_width / $basket->image_frameWidth;
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
         $w = $photo->width() * $basket->image_scale;
         $w *= $scale;
-        $photo->widen(floor($w))->save($save_path);
+//        $photo->widen(floor($w))->save($save_path);
 
         $px = $basket->image_diffx * $basket->image_scale;
         $py = $basket->image_diffy * $basket->image_scale;

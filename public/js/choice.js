@@ -261,11 +261,15 @@ jQuery(function($) {
 			$('#input_file').val('');
 			return;
 		}
+		var arrayReader = new FileReader();
+		arrayReader.onload = function (e) {
+			orientation = getOrientation(e.target.result);
+			console.log(orientation);
+		}
+		arrayReader.readAsArrayBuffer(file);
 
 		var reader = new FileReader();
 		reader.onload = function (e) {
-			orientation = getOrientation(e.target.result);
-			console.log(orientation);
 			photoURI = e.target.result;
 			loadImage(e.target.result);
 		}
