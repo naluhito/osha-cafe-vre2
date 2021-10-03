@@ -9,8 +9,8 @@ class OrderBean extends Model
 {
     use HasFactory;
 
-    public function beans()
+    public function bean()
     {
-        return $this->hasMany(OrderBean::class);
+        return $this->belongsTo(Bean::class);
     }
 }

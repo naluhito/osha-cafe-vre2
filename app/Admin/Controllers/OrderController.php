@@ -3,10 +3,13 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderBean;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 //use Encore\Admin\Grid;
+use Illuminate\Support\Facades\Log;
 use App\Admin\Extensions\Order\OrderGrid as Grid;
+Use Encore\Admin\Widgets\Table;
 
 use Encore\Admin\Show;
 
@@ -27,16 +30,61 @@ class OrderController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Order());
-//        $grid->model()->where('payment_kind', '=', '2');
+        $grid->disableExport();
+        $grid->disableRowSelector();
+        $grid->disableColumnSelector();
+        $grid->model()->orderBy('id', 'desc');
         $grid->filter(function ($filter) {
             $filter->column(1/2, function ($filter) {
                 $filter->disableIdFilter();
-                $filter->startsWith('name','氏名'); 
+                $filter->between('created_at', '購入日')->datetime();
+                $filter->equal('paid', '支払')->checkbox(['0' => '未', '1' => '済']);
+                $filter->equal('shipped', '発送')->checkbox(['0' => '未', '1' => '済']);
             });
         });
-        $grid->column('slip_number', '注文番号');
-        $grid->column('name1', '氏');
-        $grid->column('name2', '名');
+        $grid->column('order_no', '注文番号')->sortable()->modal('注文内容', function ($model) {
+
+            $header = ['印刷画像', '豆'];
+            $images = $model->items()->get()->map(function ($item) {
+                return $item;
+            });
+
+            $rows = [];
+            foreach ($images as $image) {
+                $beans = OrderBean::with('bean')->where('id', $image['id'])->get();
+                Log::debug($beans);
+                $buffer = '
+                <table class="kounyuhin table table-bordered tbl-2column mt-0">
+                <tbody>';
+                foreach ($beans as $bean) {
+                    $buffer = $buffer.
+                        '<tr id="item-tbl"><th id="name" class="w-md-25 bg-768-gray">'.$bean->bean->name.'</th>
+                        <th id="num" class="w-md-25 text-right">'.$bean->quantity.'</th></tr>';
+                }
+                $buffer = $buffer.
+                '
+                </tbody>
+                </table>
+                ';
+                $img_buffer = '
+                <p>
+	                <a href="/print_images/'.$image['image'].'" download">画像を保存</a>
+                </p>
+                <p>
+                <img src="/print_images/'.$image['image'].'" width="100" height="100">
+                </p>
+                ';
+                $row = [
+                    $img_buffer, $buffer
+                ];
+                $rows[] = $row;
+            }
+            return new Table($header, $rows);
+//            return new Table($header, $print->toArray());
+        });
+        $grid->column('Name')->display(function () {
+            return $this->name1.' '.$this->name2;
+        });
         $grid->column('payment_kind', '支払方法')->display(function ($payment_kind) {
             if ($payment_kind == 0) {
                 return "<span class='label label-primary'>Credit</span>";
@@ -47,26 +95,18 @@ class OrderController extends AdminController
             return "";
         });;
         $grid->column('paid', '支払済')->bool();
+        $grid->column('shipped', '発送済')->bool();
         $grid->column('', '金額')->display(function (){
-                return \number_format($this->amount + $this->tax + $this->shipping);
+                return \number_format($this->amount + $this->tax + $this->shipping).'円';
         });
 
-
-//        $grid->column('print_image', __('Image'))->downloadable();
-//        $grid->column('x', __('X'));
-//        $grid->column('y', __('Y'));
-//        $grid->column('w', __('W'));
-//        $grid->column('h', __('H'));
-//        $grid->column('frame', __('Frame'));
         $grid->column('created_at', __('購入日'))->display(function ($created_at){
             if(! strptime($created_at, '%Y-%m-%d')) {
                 return null;
             }
             $result = new \DateTime($created_at);
             return $result->format('Y年m月d日');
-        });
-//        $grid->column('created_at')->date('Y-m-d');
- //       $grid->column('updated_at', __('Updated at'));
+        })->sortable();
 
         return $grid;
     }

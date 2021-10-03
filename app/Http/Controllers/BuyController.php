@@ -54,7 +54,6 @@ class BuyController extends Controller
         $basket->photo_uri = $this->_trim_photo($basket, $request->input('imageInfo')['orientation']);
         $basket->save();
         $basket_id = $basket->id;
-        Log::debug('orientation = '.$request->input('imageInfo')['orientation']);
 
         foreach ($request->input('beans') as $id=>$num) {
             $basketbean = new Basketbean();
@@ -543,7 +542,6 @@ class BuyController extends Controller
                 break;
         }
 
-//        $save_path = '/var/www/html/print_images/test_image.jpeg';
         $scale =  $frame_width / $basket->image_frameWidth;
         $c = \Image::canvas(floor($photo->width() * $scale), floor($photo->height() * $scale), '#ffffff');
         $w = $photo->width() * $basket->image_scale;
