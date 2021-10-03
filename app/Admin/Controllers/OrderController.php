@@ -52,14 +52,18 @@ class OrderController extends AdminController
             $rows = [];
             foreach ($images as $image) {
                 $beans = OrderBean::with('bean')->where('id', $image['id'])->get();
-                Log::debug($beans);
                 $buffer = '
                 <table class="kounyuhin table table-bordered tbl-2column mt-0">
                 <tbody>';
                 foreach ($beans as $bean) {
-                    $buffer = $buffer.
-                        '<tr id="item-tbl"><th id="name" class="w-md-25 bg-768-gray">'.$bean->bean->name.'</th>
-                        <th id="num" class="w-md-25 text-right">'.$bean->quantity.'</th></tr>';
+                    if ($bean->kind == 0) {
+                        $type = 'ドリップバッグタイプ';
+                    } else {
+                        $type = 'コーヒーバッグタイプ';
+                    }
+                    $buffer = $buffer.'
+                        <tr><th class="w-md-25 bg-768-gray">'.$type.' '.$bean->bean->name.'</th>
+                        <th class="w-md-25 text-right">'.$bean->quantity.'</th></tr>';
                 }
                 $buffer = $buffer.
                 '
@@ -73,7 +77,7 @@ class OrderController extends AdminController
                 <p>
                 <img src="/print_images/'.$image['image'].'" width="100" height="100">
                 </p>
-                ';
+                <p>'.$image['paper'].'</p>';
                 $row = [
                     $img_buffer, $buffer
                 ];
