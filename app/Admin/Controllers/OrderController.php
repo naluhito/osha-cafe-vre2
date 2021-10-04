@@ -7,9 +7,9 @@ use App\Models\OrderBean;
 use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
-//use Encore\Admin\Grid;
+use Encore\Admin\Grid;
 use Illuminate\Support\Facades\Log;
-use App\Admin\Extensions\Order\OrderGrid as Grid;
+//use App\Admin\Extensions\Order\OrderGrid as Grid;
 Use Encore\Admin\Widgets\Table;
 
 use Encore\Admin\Show;
@@ -71,6 +71,7 @@ class OrderController extends AdminController
                 </tbody>
                 </table>
                 ';
+
                 $img_buffer = '
                 <p>
 	                <a href="/print_images/'.$image['image'].'" download">画像を保存</a>
@@ -85,7 +86,6 @@ class OrderController extends AdminController
                 $rows[] = $row;
             }
             return new Table($header, $rows);
-//            return new Table($header, $print->toArray());
         });
         $grid->column('user_id', '会員名')->display(function($user_id) {
             if ($user_id == null) {
@@ -107,7 +107,9 @@ class OrderController extends AdminController
             return "";
         });;
         $grid->column('paid', '支払済')->bool();
-        $grid->column('shipped', '発送済')->bool();
+//        $grid->column('shipped', '発送済')->bool();
+        $grid->column('shipped', '発送済')->editable('select', [false => '未', true => '済']);
+        
         $grid->column('', '金額')->display(function (){
                 return \number_format($this->amount + $this->tax + $this->shipping).'円';
         });

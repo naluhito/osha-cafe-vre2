@@ -13,6 +13,7 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->resource('cafe/customers', CustomerController::class);
-    $router->resource('cafe/orders', OrderController::class);
+    $router->resource('cafe/orders', Order2Controller::class);
+    $router->resource('cafe/users', UserController::class);
 
 });
