@@ -33,7 +33,7 @@ class Order2Controller extends AdminController
         $grid->disableRowSelector();
         $grid->disableColumnSelector();
         $grid->disableCreateButton();
-        
+
         $grid->model()->orderBy('id', 'desc');
         $grid->filter(function ($filter) {
             $filter->column(1/2, function ($filter) {
@@ -100,7 +100,7 @@ class Order2Controller extends AdminController
             $rows = [];
             $rows[] = [
                 '〒' => $this->zip,
-                '住所' => $this->pref.$this->address1.$this->address2.$this->address1,
+                '住所' => $this->pref.$this->address1.$this->address2.$this->address3,
                 '氏名' => $this->name1.$this->name2,
                 '電話番号' => $this->tel
             ];
