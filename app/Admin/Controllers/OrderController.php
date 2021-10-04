@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderBean;
+use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 //use Encore\Admin\Grid;
@@ -86,8 +87,15 @@ class OrderController extends AdminController
             return new Table($header, $rows);
 //            return new Table($header, $print->toArray());
         });
-        $grid->column('Name')->display(function () {
-            return $this->name1.' '.$this->name2;
+        $grid->column('user_id', '会員名')->display(function($user_id) {
+            if ($user_id == null) {
+                return 'guest';
+            }
+            $user = User::find($user_id);
+            return $user->name;
+        });
+        $grid->column('name1', '発送先')->display(function () {
+            return $this->name1.$this->name2;
         });
         $grid->column('payment_kind', '支払方法')->display(function ($payment_kind) {
             if ($payment_kind == 0) {
@@ -112,6 +120,10 @@ class OrderController extends AdminController
             return $result->format('Y年m月d日');
         })->sortable();
 
+        $grid->actions(function ($actions) {
+              $actions->append('<a href=""><i class="fa fa-eye"></i></a>');
+        });
+  
         return $grid;
     }
 
