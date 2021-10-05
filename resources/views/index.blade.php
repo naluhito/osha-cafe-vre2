@@ -245,15 +245,15 @@
     <div class="container">
         <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">その他</span></h2>
         <h3 class="h3 fz-16 mt-24">返品・交換</h3>
-        <h4 class="h4 fz-14"><i class="fas fa-square mr-4"></i>商品を返品したい</h4>
+        <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>商品を返品したい</h4>
         <ul class="fz-14" style="padding-left: 20px;">
-            <li>受注生産商品の為、お客様のご都合によるご注文のキャンセル・返品交換は固くお断りさせていただきます。<br class="d-none d-md-block">お客様による機種間違い・商品違い・機種変更および色・画像の位置・イメージ違いなどによるキャンセル・返品交換はお受けできません。</li>
+            <li>受注生産商品の為、お客様のご都合によるご注文のキャンセル・返品交換は固くお断りさせていただきます。<br class="d-none d-md-block">お客様による商品違い・色・画像の位置・イメージ違いなどによるキャンセル・返品交換はお受けできません。</li>
         </ul>
-        <h4 class="h4 fz-14"><i class="fas fa-square mr-4"></i>不良品がありました</h4>
+        <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>不良品がありました</h4>
         <ul class="fz-14" style="padding-left: 20px;">
-            <li>未使用で、商品ご到着後7日以内にご連絡お願いいたします。ご連絡の際は、専用フォームにて商品の状態がわかるようなお写真を添付してご送付をお願い致します。<br class="d-none d-md-block">（お客様情報、商品の状態、該当商品の画像をお願いいたします）</li>
+            <li>未使用で、商品ご到着後7日以内にご連絡お願いいたします。ご連絡の際は、専用フォーム（お問い合わせ）にて商品の状態がわかるようなお写真を添付してご送付をお願い致します。<br class="d-none d-md-block">（お客様情報、商品の状態、該当商品の画像をお願いいたします）</li>
             <li>弊社にて画像確認後、商品の不備、弊社の過失と判断できる場合のみ交換をお受けいたします。</li>
-            <li>お問い合わせの返信は3日以内にメールにてご連絡いたします。※土日祝を除く</li>
+            <li>お問い合わせの返信は3日以内にメールにてご連絡いたします。※土日祝、定休日を除く</li>
             <li>お送り頂いた画像では判断できない場合は再度、画像の送付、現物の送付をお願いする場合がございます。</li>
             <li>弊社にお送りいただいた商品が交換対象外の場合、送料はお客様のご負担となります事、ご了承お願い致します。※現物を送付いただく場合はお手数ではございますが事前に弊社にご連絡お願い致します。</li>
             <li>原則、同一商品の交換のみとなっており、ご返金の対応は行っておりませんのでご了承ください。</li>
@@ -272,22 +272,20 @@
             <li>著作物利用や著作権・肖像権に関わるご相談については弊社ではお答えすることができません。</li>
         </ul>
         <h3 class="h3 fz-16 mt-24">納品書・請求書・領収書</h3>
-        <h4 class="h4 fz-14"><i class="fas fa-square mr-4"></i>送付先に商品の金額がわからないようにしてほしい（納品書を同封しないでほしい）</h4>
+        <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>送付先に商品の金額がわからないようにしてほしい（納品書を同封しないでほしい）</h4>
         <ul class="fz-14" style="padding-left: 20px;">
             <li>納品書に商品金額を記載しておりますので、納品書がご不要な方はご注文時の備考欄に【納品書不要】とお書きください。</li>
         </ul>
-        <h4 class="h4 fz-14"><i class="fas fa-square mr-4"></i>納品書はいただけますか？</h4>
+        <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>納品書はいただけますか？</h4>
         <ul class="fz-14" style="padding-left: 20px;">
             <li>納品書は商品と同梱してお送り致します。</li>
         </ul>
-        <h4 class="h4 fz-14"><i class="fas fa-square mr-4"></i>領収書は発行出来ますか？</h4>
+        <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>領収書は発行出来ますか？</h4>
         <ul class="fz-14" style="padding-left: 20px;">
             <li>カード決済・コンビニ決済の場合、カード会社・コンビニから発行されるものが領収証となるため、弊社からは発行いたしません。</li>
         </ul>
-        <h4 class="h4 fz-14"><i class="fas fa-square mr-4"></i>カード決済の場合、カード会社から発行されるご請求書などが領収証となるため、弊社からは発行いたしません。</h4>
     </div>
-</div>
-@endsection
+</div>@endsection
 
 @push('scripts')
 
