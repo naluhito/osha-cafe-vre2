@@ -420,12 +420,8 @@ jQuery(function($) {
 			pcanvas.setAttribute('width' , paper.width);
 			pcanvas.setAttribute('height', paper.height);
 	    	ctx.drawImage(paper, 0, 0);
-
-
 			sx = (canvas.width / 2) - (frameWidth / 2);
 			sy = (canvas.height / 2) - (frameHeight / 2) + 63.5;
-			dx = (paper.width / 2) - (frameWidth / 2);
-			dy = (paper.height / 2) - (frameHeight / 2);
 			sctx = canvas.getContext('2d');
 			tranImageData = sctx.getImageData(sx, sy, frameWidth, frameHeight);
 			tranData = tranImageData.data;
@@ -443,11 +439,11 @@ jQuery(function($) {
 			wcanvas.setAttribute('height', frameHeight);
 	    	wctx = wcanvas.getContext('2d');
 			wctx.putImageData(tranImageData, 0, 0);
-			px = 55;
-			py = 127;
-			pw = 387;
-			ph = 415;
-			ctx.drawImage(canvas, sx, sy, frameWidth, frameHeight, px, py, pw, ph);
+			dx = 55;
+			dy = 127;
+			dw = 387;
+			dh = 415;
+			ctx.drawImage(wcanvas, 0, 0, frameWidth, frameHeight, dx, dy, dw, dh);
 	    	data = pcanvas.toDataURL('image/png');
 	    	$('#kraftImage').attr('src', data);
 	    	createWhite();
