@@ -163,7 +163,7 @@
 							<input type="button" class="btn btn-primary2 w-100 text-white p-16 ls-02" value="クレジット情報入力" id="create-token-launch">
 							<script type="text/javascript"
 								class="webcollect-token-api"
-								src="https://ptwebcollect.jp/test_gateway/token/js/tokenlib.js"
+								src="https://api.kuronekoyamato.co.jp/api/token/js/tokenlib.js"
 								data-trader-cd="970651403"
 								data-auth-div="2"
 								data-opt-serv-div="00"

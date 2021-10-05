@@ -417,8 +417,8 @@ class BuyController extends Controller
     }
 
     private function _procedure_card($order_number, $price, $address, $token) {
-        //            $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
-        $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
+        $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
+//        $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
         $param = [
             'function_div' => 'A08',
             'trader_code' => '970651403',
@@ -439,8 +439,8 @@ class BuyController extends Controller
     }
 
     private function _procedure_seven($order_number, $price, $address) {
-//        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs1';
-        $url = 'https://ptwebcollect.jp/test_gateway/cvs1.api';
+        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs1';
+//        $url = 'https://ptwebcollect.jp/test_gateway/cvs1.api';
         $param = [
             'function_div' => 'B01',
             'trader_code' => '970651403',
@@ -460,8 +460,8 @@ class BuyController extends Controller
     }
     
     private function _procedure_fm($order_number, $price, $address) {
-//        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs2';
-        $url = 'https://ptwebcollect.jp/test_gateway/cvs2.api';
+        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs2';
+//        $url = 'https://ptwebcollect.jp/test_gateway/cvs2.api';
         $param = [
             'function_div' => 'B02',
             'trader_code' => '970651403',
@@ -482,15 +482,15 @@ class BuyController extends Controller
     }
     
     private function _procedure_lowson($kind, $order_number, $price, $address) {
-        //        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs2';
+        $url = 'https://api.kuronekoyamato.co.jp/api/cvs3';
         if ($kind == 'lowson') {
-            $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
+//            $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
             $function_div = 'B03';            
         } else if ($kind == 'ms') {
-            $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
+ //           $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
             $function_div = 'B05';
         } else {
-            $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
+ //           $url = 'https://ptwebcollect.jp/test_gateway/cvs3.api';
             $function_div = 'B06';
         }
         $param = [
