@@ -45,9 +45,9 @@
                     <img src="img/SVG/ok.svg" alt="ok" style="width:55px;" class="okmark">
                 </div>
 				<div id='btn4' style="display: none">
-	                <a href="basket" class="button05 text-center d-block p-16 mt-40 mt-md-64 w-50 mx-auto"><i class="fas fa-shopping-cart fz-20 pr-8"></i>買い物かごへ</a>
+	                <a href="basket" class="button05 text-center d-block p-16 mt-40 mt-md-64 w-75 mx-auto"><i class="fas fa-shopping-cart fz-20 pr-8"></i>買い物かごへ</a>
 				</div>
-                <a href="choice" class="button04 text-center d-block p-16 mt-24 w-50 mx-auto">リセット</a>
+                <a href="choice" class="button04 text-center d-block p-16 mt-24 w-75 mx-auto">リセット</a>
 			</div>
 		</div>
 	</div>
@@ -56,8 +56,8 @@
 <div class="modal fade pt-8" id="frameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" data-bs-backdrop="static">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">フレーム・無地を選んでください</h5>
+			<div class="modal-header ">
+				<h5 class="modal-title fz-16" id="exampleModalLongTitle">フレーム・無地を選んでください</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -88,7 +88,7 @@
 	</div>
 </div>
 {{-- 確認modal --}}
-<div class="modal fade mt-56 mx-24 pt-8" id="confirmModal">
+<div class="modal fade mt-56 pt-8" id="confirmModal">
 	<div class="modal-dialog">
 	<div class="modal-content p-32 br-4-black">
 		<div class="modal-header bg-white">

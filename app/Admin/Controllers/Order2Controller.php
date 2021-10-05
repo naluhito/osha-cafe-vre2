@@ -97,12 +97,12 @@ class Order2Controller extends AdminController
         $grid->column('name1', '発送先')->display(function () {
             return $this->name1.$this->name2;
         })->modal('発送先', function ($model) {
-//            $rows = [];
             $rows = [
                 '〒' => $this->zip,
                 '住所' => $this->pref.$this->address1.$this->address2.$this->address3,
                 '氏名' => $this->name1.$this->name2,
-                '電話番号' => $this->tel
+                '電話番号' => $this->tel,
+                'メールアドレス' => $this->mail
             ];
             return new Table([], $rows);
             $rows[] = [

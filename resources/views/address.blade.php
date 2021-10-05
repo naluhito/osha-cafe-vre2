@@ -25,6 +25,11 @@
         transform:      scale(1.4);
     }
 </style>
+<div class="container-wrap">
+	<div class="container">
+		<h2 class="text-center fz-20 font-weight-bold">お届け先入力</h2>
+	</div>
+</div>
 <div class="container-wrap bg-light">
     <div class="container">
         <div class="row justify-content-center">

@@ -400,7 +400,11 @@ class BuyController extends Controller
         $tax = $amount - floor($amount / 1.08);
         $order->amount = $amount;
         $order->tax = $tax;
+
         $shipping = 0;
+        if ($num < 10) {
+            $shipping = 300;
+        }
         $order->shipping = $shipping;
 
         $order->save();

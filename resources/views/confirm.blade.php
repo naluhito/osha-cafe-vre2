@@ -48,6 +48,11 @@
 	}
 </style>
 <div class="container-wrap">
+	<div class="container">
+		<h2 class="text-center fz-20 font-weight-bold">ご確認・お支払い</h2>
+	</div>
+</div>
+<div class="container-wrap">
 	<div class="container pb-40 px-0">
 	<form name="confirm_form" action="decision" method="post">
 		@csrf

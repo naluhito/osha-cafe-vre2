@@ -20,6 +20,11 @@
 
 </style>
 <div class="container-wrap">
+	<div class="container">
+		<h2 class="text-center fz-20 font-weight-bold">買い物かご</h2>
+	</div>
+</div>
+<div class="container-wrap">
     <div class="container pb-40">
         <div id="item" style="display: none">
             <div class="row gtr-48 justify-content-center border-top border-dark py-40">
@@ -68,8 +73,8 @@
         </p>
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-6 col-xl-5">
-                <a href="choice" class="button05 text-center d-block p-16 mt-56 w-50 mx-auto">買い物を続ける</a>
-                <a href="address" class="button06 text-center d-block p-16 mt-16 w-50 mx-auto"><i class="fas fa-truck fz-20 pr-8"></i>お届け先</a>
+                <a href="choice" class="button05 text-center d-block p-16 mt-56 w-75 mx-auto">買い物を続ける</a>
+                <a href="address" class="button06 text-center d-block p-16 mt-16 w-75 mx-auto"><i class="fas fa-truck fz-20 pr-8"></i>お届け先</a>
             </div>
         </div>
     </div>

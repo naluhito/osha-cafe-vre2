@@ -21,7 +21,7 @@
                     @endguest
                     <a href="basket" class="text-cha" style="position: relative;">
                         <i class="fas fa-shopping-cart d-block text-center d-md-inline fz-18 fz-20 mr-md-24 mt-8 mt-md-0" aria-hidden="true"></i>
-                        <span id="badge" class="badge badge-hoge badge-mark" style="position: absolute; top: -8px; left: 9px;"></span>
+                        <span id="badge" class="badge badge-hoge badge-mark" style="position: absolute; top: 0px; left: 18px;"></span>
                     </a>
                 </div>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#gnav" aria-controls="gnav" aria-expanded="false" aria-label="Toggle navigation">

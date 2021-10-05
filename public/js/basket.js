@@ -205,8 +205,8 @@ jQuery(function($) {
         });
         totalAmount = amount * totalNum;
         tax = totalAmount - Math.floor(totalAmount / 1.08);
-        if (totalNum > 10) {
-            shipping = 300; // 仮
+        if (totalNum < 10) {
+            shipping = 300;
             $('#shipping').text(formatter.format(shipping)+'円');
         } else {
             $('#shipping').text('無料');
