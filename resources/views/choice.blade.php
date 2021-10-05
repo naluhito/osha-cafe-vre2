@@ -1,6 +1,52 @@
 @extends('layout.base')
 
 @section('content')
+<style type="text/css">
+#overlay{ 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height:100%;
+    display: none;
+    background: rgba(0,0,0,0.6);
+}
+.cv-copy {
+    position:absolute;
+    width:100%;
+    margin-top:35vh; 
+    text-align:center; 
+}
+.cv-copy h2 {
+    color:#fff;
+}
+.cv-copy p {
+    color:#fff;
+}
+.cv-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinner {
+    width: 80px;
+    height: 80px;
+    border: 4px #ddd solid;
+    border-top: 4px #999 solid;
+    border-radius: 50%;
+    animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(359deg); }
+}
+.is-hide{
+    display:none;
+}
+</style>
+
 <div class="container-wrap">
 	<div class="container pb-40">
 		<div class="row justify-content-center">
@@ -80,7 +126,7 @@
 						<input class="c01 w-100" type="image" src="img/frame/frame_04.png" value="frame_04.png">
 					</div>
 					<div class="col-6 mt-16">
-						<input class="c01 w-100" type="image" src="frame/frame_05.png" value="frame_05.png">
+						<input class="c01 w-100" type="image" src="img/frame/frame_05.png" value="frame_05.png">
 					</div>
 				</div>
 			</div>
@@ -257,6 +303,15 @@
 				<button id="beansOk" type="button" class="btn btn-lg bg-mizuiro my-24 rounded-sm px-48" data-dismiss="modal" disabled="disabled">OK</button>
 			</div>
 		</div>
+	</div>
+</div>
+<div id="overlay">
+	<div class="cv-copy">
+        <h2>画像処理中です…</h2>
+        <p>※ブラウザを閉じないで下さい。</p>
+    </div>
+	<div class="cv-spinner">
+		<span class="spinner"></span>
 	</div>
 </div>
 

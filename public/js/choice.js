@@ -34,6 +34,7 @@ jQuery(function($) {
 	});
 	// 買い物かご
 	$('#btn4').click(function(){
+		$("#overlay").fadeIn(500);
 		var data = {};
 		var file = {};
 		file['name'] = photo.name;
@@ -80,6 +81,7 @@ jQuery(function($) {
 				}
 				basket.push(data.id);
 				localStorage.setItem('oshiBasket', JSON.stringify(basket));
+				$("#overlay").fadeOut(500);
 				location.href='basket';
 			}
         })
