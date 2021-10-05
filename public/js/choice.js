@@ -442,7 +442,7 @@ jQuery(function($) {
 	    	wctx = wcanvas.getContext('2d');
 			wctx.putImageData(tranImageData, 0, 0);
 //			ctx.drawImage(wcanvas, dx, dy, frameWidth, frameHeight);
-			ctx.drawImage(wcanvas, dx + 40, dy + 40, frameWidth - 80, frameHeight - 80);
+			ctx.drawImage(wcanvas, dx, dy, frameWidth, frameHeight);
 	    	data = pcanvas.toDataURL('image/png');
 	    	$('#kraftImage').attr('src', data);
 	    	createWhite();
@@ -462,7 +462,7 @@ jQuery(function($) {
 			sy = (canvas.height / 2) - (frameHeight / 2) + 63.5;
 			dx = (paper.width / 2) - (frameWidth / 2);
 			dy = (paper.height / 2) - (frameHeight / 2);
-	    	ctx.drawImage(canvas, sx, sy, frameWidth, frameHeight, dx + 40, dy + 40, frameWidth - 80, frameHeight - 80);
+	    	ctx.drawImage(canvas, sx, sy, frameWidth, frameHeight, dx, dy, frameWidth, frameHeight);
 	    	data = pcanvas.toDataURL('image/png');
 	    	$('#whiteImage').attr('src', data);
     	}

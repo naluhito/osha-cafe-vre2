@@ -15,14 +15,18 @@
 .cv-copy {
     position:absolute;
     width:100%;
+    padding-top:120px;
     margin-top:35vh; 
     text-align:center; 
 }
 .cv-copy h2 {
     color:#fff;
+    font-size:18px;
+    text-align:center; 
 }
 .cv-copy p {
     color:#fff;
+    text-align:center; 
 }
 .cv-spinner {
     height: 100%;
@@ -307,7 +311,7 @@
 </div>
 <div id="overlay">
 	<div class="cv-copy">
-        <h2>画像処理中です…</h2>
+        <h2>買い物かごに登録中です…</h2>
         <p>※ブラウザを閉じないで下さい。</p>
     </div>
 	<div class="cv-spinner">
