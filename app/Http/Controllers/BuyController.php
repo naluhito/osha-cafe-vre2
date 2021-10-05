@@ -439,7 +439,7 @@ class BuyController extends Controller
     }
 
     private function _procedure_seven($order_number, $price, $address) {
-        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs1';
+        $url = 'https://api.kuronekoyamato.co.jp/api/cvs1';
 //        $url = 'https://ptwebcollect.jp/test_gateway/cvs1.api';
         $param = [
             'function_div' => 'B01',
@@ -460,7 +460,7 @@ class BuyController extends Controller
     }
     
     private function _procedure_fm($order_number, $price, $address) {
-        $url = 'https:// api.kuronekoyamato.co.jp/api/cvs2';
+        $url = 'https://api.kuronekoyamato.co.jp/api/cvs2';
 //        $url = 'https://ptwebcollect.jp/test_gateway/cvs2.api';
         $param = [
             'function_div' => 'B02',
