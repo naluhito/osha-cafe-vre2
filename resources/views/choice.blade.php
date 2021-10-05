@@ -166,7 +166,7 @@
                 <button type="button" id="editClose" class="close text-right">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title" id="exampleModalLongTitle">位置や拡大縮小で調整してください</h5>
+                <h5 class="modal-title fz-16" id="exampleModalLongTitle">位置や拡大縮小で調整してください</h5>
             </div>
             <div class="modal-body p-16">
                 <p class="fz-18 mb-0">▼ 印刷範囲</p>
@@ -233,7 +233,7 @@
 		<div class="modal-content">
 			<div class="modal-header choice02 border-0">
 				<button type="button" class="close text-right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h5 class="modal-title font-weight-bold text-white" id="choiceBeensModalTitle">個数を入力してください。</h5>
+				<h5 class="modal-title font-weight-bold text-white fz-16" id="choiceBeensModalTitle">個数を入力してください。</h5>
 			</div>
 			<div class="modal-body px-16 pb-32">
 				<p class="font-weight-bold fz-30 text-pink mb-8">［ ドリップバッグタイプ ］</p>
