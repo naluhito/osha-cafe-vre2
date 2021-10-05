@@ -135,7 +135,7 @@
             <div class="col-6">
                 <div class="px-16">
                     <h3 class="text-center"><span class="border-stripe">Step 3</span></h3>
-                    <p class="text-center">5種類のコーヒーから<br class="d-none d-md-block">好みのフレーバーを選択して購入。<br>カートからお支払いできます！</p>
+                    <p class="text-center">5種類のコーヒーから<br class="d-none d-md-block">好みのフレーバーと抽出タイプを選択して購入。<br class="d-none d-md-block">（抽出はドリップタイプとコヒーバックタイプ）<br>お支払いはカード・コンビニ決済で！</p>
                 </div>
             </div>
             <div class="col-6">
