@@ -70,7 +70,12 @@ jQuery(function($) {
             form.find('#tel-error').text('※未入力');
             check = false;
         } else {
-            form.find('#tel-error').empty();
+            if(!tel.match(/^[0-9\-]+$/)){
+                form.find('#tel-error').text('半角数字とハイフン(-)のみで入力してください');
+                check = false;
+            } else {
+                form.find('#tel-error').empty();
+            }
         }
         var mailaddress1 = form.find('#mailaddress1').val();
         if (mailaddress1 === '') {

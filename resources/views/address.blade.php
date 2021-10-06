@@ -45,11 +45,11 @@
                                 <td class="name_td">
                                     <div class="row no-gutters">
                                         <div class="col-6 pr-4">
-                                            <span class="mr-8">姓</span><input name="name1" id="name1" type="text" value="{{ $address->name1 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
+                                            <span class="mr-8">姓</span><input name="name1" id="name1" type="text" maxlength='64' value="{{ $address->name1 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
                                             <span id="name1-error" class="d-block text-danger ml-24 lh-32"></span>
                                         </div>
                                         <div class="col-6 pl-4">
-                                            <span class="mr-8">名</span><input name="name2" id="name2" type="text" value="{{ $address->name2 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
+                                            <span class="mr-8">名</span><input name="name2" id="name2" type="text" maxlength='64' value="{{ $address->name2 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
                                             <span id="name2-error" class="d-block text-danger ml-24 lh-32"></span>
                                         </div>
                                     </div>
@@ -60,11 +60,11 @@
                                     <td>
                                         <div class="row no-gutters">
                                             <div class="col-6 pr-4">
-                                                <span class="mr-8">姓</span><input name="name3" id="name3" type="text" value="{{ $address->name3}}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
+                                                <span class="mr-8">姓</span><input name="name3" id="name3" type="text" maxlength='64' value="{{ $address->name3}}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
                                                 <span id="name3-error" class="d-block text-danger ml-24 lh-32"></span>
                                             </div>
                                             <div class="col-6 pl-4">
-                                                <span class="mr-8">名</span><input name="name4" id="name4" type="text" value="{{ $address->name4 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
+                                                <span class="mr-8">名</span><input name="name4" id="name4" type="text" maxlength='64' value="{{ $address->name4 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active; width:84%;" />
                                                 <span id="name4-error" class="d-block text-danger ml-24 lh-32"></span>
                                             </div>
                                         </div>
@@ -73,7 +73,7 @@
                             <tr id="zipcode_row">
                                 <th scope="row"><em>＊</em>郵便番号</th>
                                 <td>
-                                    <input name="zipcode" id="zipcode" type="text" value="{{ $address->zipcode }}" onKeyDown="if (event.keyCode == 13) {return false;}" class="w-50" style="ime-mode: inactive" /><input type="button" id="search_zipcode" class="search-zipcode button bg-mizuiro2 text-white w-50" value="住所検索" onClick="AjaxZip3.zip2addr('zipcode', '', 'pref', 'address1');">
+                                    <input name="zipcode" id="zipcode" type="text" maxlength='8' value="{{ $address->zipcode }}" onKeyDown="if (event.keyCode == 13) {return false;}" class="w-50" style="ime-mode: inactive" /><input type="button" id="search_zipcode" class="search-zipcode button bg-mizuiro2 text-white w-50" value="住所検索" onClick="AjaxZip3.zip2addr('zipcode', '', 'pref', 'address1');">
                                     <span class="d-block mt-16">(例）100-1000</span>
                                     <span id="zipcode-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
@@ -140,7 +140,7 @@
                                     <em>＊</em>市区郡町村
                                 </th>
                                 <td>
-                                    <input name="address1" id="address1" type="text" value="{{ $address->address1 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active" class="w-100" />
+                                    <input name="address1" id="address1" type="text" maxlength='64' value="{{ $address->address1 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active" class="w-100" />
                                     <span class="d-block mt-16">(例）横浜市上北町</span>
                                     <span id="address1-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
@@ -150,7 +150,7 @@
                                     <em>＊</em>番地
                                 </th>
                                 <td>
-                                    <input name="address2" id="address2" type="text" value="{{ $address->address2 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active" class="w-100" />
+                                    <input name="address2" id="address2" type="text" maxlength='64' value="{{ $address->address2 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active" class="w-100" />
                                     <span class="d-block mt-16">(例）3-24-555</span>
                                     <span id="address2-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
@@ -158,14 +158,14 @@
                             <tr id="address3_row">
                                 <th scope="row">ビル名</th>
                                 <td>
-                                    <input name="address3" id="address3" type="text" value="{{ $address->address3 }}" onKeyDown="if (event.keyCode == 13) {return false;}" class="w-100" style="ime-mode: active" />
+                                    <input name="address3" id="address3" type="text" maxlength='64' value="{{ $address->address3 }}" onKeyDown="if (event.keyCode == 13) {return false;}" class="w-100" style="ime-mode: active" />
                                     <span class="d-block mt-16">(例）通販ビル4F</span>
                                 </td>
                             </tr>
                             <tr id="tel_row">
                                 <th scope="row"><em>＊</em>電話番号</th>
                                 <td>
-                                    <input name="tel" id="tel" type="text" value="{{ $address->tel }}" onKeyDown="if (event.keyCode == 13) {return false;}"  class="w-100" style="ime-mode: inactive" />
+                                    <input name="tel" id="tel" type="text" maxlength='14' value="{{ $address->tel }}" onKeyDown="if (event.keyCode == 13) {return false;}"  class="w-100" style="ime-mode: inactive" />
                                     <span class="d-block mt-16">(例）1000-10-1000</span>
                                     <span id="tel-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
@@ -173,14 +173,14 @@
                             <tr>
                                 <th scope="row"><em>＊</em>メールアドレス</th>
                                 <td colspan="2">
-                                    <input name="mailaddress1" class="form-control w-100" id="mailaddress1" type="text" value="{{ $address->mailaddress1 }}" autocomplete="off" />
+                                    <input name="mailaddress1" class="form-control w-100" maxlength='256' id="mailaddress1" type="email" value="{{ $address->mailaddress1 }}" autocomplete="off" />
                                     <span id="mailaddress1-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row"><em>＊</em>メールアドレス（確認用）</th>
                                 <td colspan="2">
-                                    <input name="mailaddress2" class="form-control w-100" id="mailaddress2" type="text" value="{{ $address->mailaddress2 }}" autocomplete="off" />
+                                    <input name="mailaddress2" class="form-control w-100" maxlength='256' id="mailaddress2" type="email" value="{{ $address->mailaddress2 }}" autocomplete="off" />
                                     <span id="mailaddress2-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>

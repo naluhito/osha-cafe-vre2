@@ -139,7 +139,7 @@
 							<tr id="address3_row">
 								<th scope="row">ビル名</th>
 								<td>
-                                    <x-input id="address3" type="text" name="address3" style="ime-mode: active"  class="w-100" :value="old('address3')" required />
+                                    <x-input id="address3" type="text" name="address3" style="ime-mode: active"  class="w-100" :value="old('address3')" />
 									<span class="d-block mt-16">(例）通販ビル4F</span>
 								</td>
 							</tr>

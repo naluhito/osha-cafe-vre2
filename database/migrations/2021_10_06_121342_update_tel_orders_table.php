@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPaperOrderItemsTable extends Migration
+class UpdateTelOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddPaperOrderItemsTable extends Migration
      */
     public function up()
     {
-        Schema::table('order_items', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             //
-            $table->enum('paper', ['ホワイト', 'クラフト']);
+            $table->string('tel', 14)->change();
         });
     }
 
@@ -26,7 +26,7 @@ class AddPaperOrderItemsTable extends Migration
      */
     public function down()
     {
-        Schema::table('order_items', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
             //
         });
     }
