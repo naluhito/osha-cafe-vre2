@@ -4,7 +4,6 @@ jQuery(function($) {
 
     $('.delete').click(function()　{
         var target = $(this).data('basketid');
-        console.log(target);
         let url = 'removeBasket';
         var data = {
             id: target
@@ -26,7 +25,8 @@ jQuery(function($) {
                     return value != target;
                 });
                 $('#item'+target).remove();
-                $('#badge').text(ids.length);
+				localStorage.setItem('oshiBasket', JSON.stringify(newlist));
+                $('#badge').text(newlist.length);
                 resetTotal()
             }
         })
