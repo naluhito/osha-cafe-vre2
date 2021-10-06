@@ -303,7 +303,8 @@ jQuery(function($) {
 	    	ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.fillStyle = "white";
 			ctx.fillRect(0,0, canvas.width, canvas.height);
-			ctx.translate(0,63.5);
+//			ctx.translate(0,63.5);
+			ctx.translate(0,63);
 			if (!choiceFrame) {
 				redraw();
 			} else {
@@ -405,8 +406,8 @@ jQuery(function($) {
 
     	ctx.scale(1 / scale, 1 / scale);
     	if (frameImage !== null) {
-			x = (canvas.width / 2) - (frameWidth / 2);
-			y = (canvas.height / 2) - (frameHeight / 2);
+			x = Math.ceil(canvas.width / 2) - Math.ceil(frameWidth / 2);
+			y = Math.ceil(canvas.height / 2) - Math.ceil(frameHeight / 2);
 	    	ctx.drawImage(frameImage, x, y, frameWidth, frameHeight);
     	}
 	}
@@ -420,8 +421,8 @@ jQuery(function($) {
 			pcanvas.setAttribute('width' , paper.width);
 			pcanvas.setAttribute('height', paper.height);
 	    	ctx.drawImage(paper, 0, 0);
-			sx = (canvas.width / 2) - (frameWidth / 2);
-			sy = (canvas.height / 2) - (frameHeight / 2) + 65;
+			sx = Math.ceil(canvas.width / 2) - Math.ceil(frameWidth / 2);
+			sy = Math.ceil(canvas.height / 2) - Math.ceil(frameHeight / 2) + 63;
 			sctx = canvas.getContext('2d');
 			tranImageData = sctx.getImageData(sx, sy, frameWidth, frameHeight);
 			tranData = tranImageData.data;
@@ -459,8 +460,9 @@ jQuery(function($) {
 			pcanvas.setAttribute('width' , paper.width);
 			pcanvas.setAttribute('height', paper.height);
 	    	ctx.drawImage(paper, 0, 0);
-			sx = (canvas.width / 2) - (frameWidth / 2);
-			sy = (canvas.height / 2) - (frameHeight / 2) + 65;
+			sx = Math.ceil(canvas.width / 2) - Math.ceil(frameWidth / 2);
+//			sy = Math.ceil(canvas.height / 2) - Math.ceil(frameHeight / 2) + 54;
+			sy = Math.ceil(canvas.height / 2) - Math.ceil(frameHeight / 2) + 63;
 			dx = 55;
 			dy = 127;
 			dw = 387;
