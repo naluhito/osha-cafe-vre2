@@ -219,6 +219,7 @@ class BuyController extends Controller
                     return view('confirm', compact('address', 'check_sum', 'message'));
                 }
                 $view_param =[
+                    'order_no' => $order_no,
                     'billing_url' => $res['billingUrl'],
                     'expired_date' => $this->_date_format($res['expiredDate'])
                 ];
@@ -236,6 +237,7 @@ class BuyController extends Controller
                 $order_no = $res['orderNoF'];
                 $expired_date = $this->_date_format($res['expiredDate']);
                 $view_param =[
+                    'order_no' => $order_no,
                     'company_code' => $res['companyCode'],
                     'order_no' => $res['orderNoF'],
                     'expired_date' => $this->_date_format($res['expiredDate'])
@@ -251,6 +253,7 @@ class BuyController extends Controller
                     return view('confirm', compact('address', 'check_sum', 'message'));
                 }
                 $view_param =[
+                    'order_no' => $order_no,
                     'econ_no' => $res['econNo'],
                     'tel' => $address->tel,
                     'expired_date' => $this->_date_format($res['expiredDate'])
@@ -278,7 +281,7 @@ class BuyController extends Controller
                     ->to($address->mailaddress1)
                     ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
                     });    
-                return view('seven', compact('view_param'));            
+                return view('seven', compact('view_param'));
             } else if ($request->input('convenience') == 'fm') {
                 $param = [
                     'view_param' => $view_param
