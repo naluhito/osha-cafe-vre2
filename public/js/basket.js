@@ -26,7 +26,11 @@ jQuery(function($) {
                 });
                 $('#item'+target).remove();
 				localStorage.setItem('oshiBasket', JSON.stringify(newlist));
-                $('#badge').text(newlist.length);
+                if (newlist.length == 0) {
+                    $('#badge').text('');
+                } else {
+                    $('#badge').text(newlist.length);
+                }
                 resetTotal()
             }
         })

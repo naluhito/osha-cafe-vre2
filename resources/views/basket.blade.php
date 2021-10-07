@@ -74,7 +74,7 @@
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-6 col-xl-5">
                 <a href="choice" class="button05 text-center d-block p-16 mt-56 w-75 mx-auto">買い物を続ける</a>
-                <a href="address" class="button06 text-center d-block p-16 mt-16 w-75 mx-auto"><i class="fas fa-truck fz-20 pr-8"></i>お届け先</a>
+                <a href="address" id="address_btn" class="button06 text-center d-block p-16 mt-16 w-75 mx-auto"><i class="fas fa-truck fz-20 pr-8"></i>お届け先</a>
             </div>
         </div>
     </div>
