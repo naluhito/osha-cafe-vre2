@@ -90,28 +90,15 @@ class Order2Controller extends AdminController
             $user = User::find($user_id);
             return $user->name;
         });
-        $grid->column('name1', '発送先')->modal('発送先', function ($model) {
-            $rows = [
-                '〒' => $this->zip,
-                '住所' => $this->pref.$this->address1.$this->address2.$this->address3,
-                '氏名' => $this->name1.$this->name2,
-                '電話番号' => $this->tel,
-                'メールアドレス' => $this->mail
-            ];
-            return new Table([], $rows);
-            $rows[] = [
-                '電話番号',
-                $this->tel
-            ];
-        });
-        $grid->column('name2', ' ');
+        $grid->column('name1', '発送先氏');
+        $grid->column('name2', '発送先名');
   
-        $grid->column('zip', '郵便番号')->hide();
+        $grid->column('zip', '郵便番号');
         $grid->column('pref', '住所')->display(function() {
             return $this->pref.$this->address1.$this->address2.$this->address3;
-        })->hide();
-        $grid->column('tel', '電話番号')->hide();
-        $grid->column('mail', 'メール')->hide();
+        });
+        $grid->column('tel', '電話番号');
+        $grid->column('mail', 'メール');
 
   
         $grid->column('payment_kind', '支払方法')->display(function ($payment_kind) {

@@ -28,6 +28,7 @@ jQuery(function($) {
 				localStorage.setItem('oshiBasket', JSON.stringify(newlist));
                 if (newlist.length == 0) {
                     $('#badge').text('');
+                    $("#buy").setAttribute("disabled", true);
                 } else {
                     $('#badge').text(newlist.length);
                 }
@@ -237,6 +238,15 @@ jQuery(function($) {
 
     function getBasket() {
         var ids = JSON.parse(localStorage.getItem('oshiBasket'));
+        if (ids.length == null) {
+            $("#buy").setAttribute("disabled", true);
+        } else {
+            if (ids.length == 0) {
+                $("#buy").setAttribute("disabled", true);
+            }
+        }
+
+
         var param = {};
         param['ids'] = ids;
         let url = 'getBaskets';
