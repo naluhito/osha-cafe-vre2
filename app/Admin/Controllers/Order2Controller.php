@@ -29,9 +29,9 @@ class Order2Controller extends AdminController
     {
         $grid = new Grid(new Order());
 
-        $grid->disableExport();
-        $grid->disableRowSelector();
-        $grid->disableColumnSelector();
+//        $grid->disableExport();
+//        $grid->disableRowSelector();
+//        $grid->disableColumnSelector();
         $grid->disableCreateButton();
 
         $grid->model()->orderBy('id', 'desc');
@@ -94,9 +94,7 @@ class Order2Controller extends AdminController
             $user = User::find($user_id);
             return $user->name;
         });
-        $grid->column('name1', '発送先')->display(function () {
-            return $this->name1.$this->name2;
-        })->modal('発送先', function ($model) {
+        $grid->column('name1', '発送先')->modal('発送先', function ($model) {
             $rows = [
                 '〒' => $this->zip,
                 '住所' => $this->pref.$this->address1.$this->address2.$this->address3,
@@ -110,6 +108,16 @@ class Order2Controller extends AdminController
                 $this->tel
             ];
         });
+        $grid->column('name2', ' ');
+  
+        $grid->column('zip', '郵便番号')->hide();
+        $grid->column('pref', '住所')->display(function() {
+            return $this->pref.$this->address1.$this->address2.$this->address3;
+        })->hide();
+        $grid->column('tel', '電話番号')->hide();
+        $grid->column('mail', 'メール')->hide();
+
+  
         $grid->column('payment_kind', '支払方法')->display(function ($payment_kind) {
             if ($payment_kind == 0) {
                 return "<span class='label label-primary'>Credit</span>";
@@ -134,12 +142,21 @@ class Order2Controller extends AdminController
             return $result->format('Y年m月d日');
         })->sortable();
 
+
+        $grid->export(function ($export) {
+            $export->filename('受注.csv');
+//            $export->except(['user_id', 'paid', 'shipped', 'payment_kind']);
+            $export->only(['order_no', 'name1', 'name2', 'pref', 'tel', 'mail']);
+            $export->originalValue(['order_no', 'name1', 'name2', 'zip', 'address1', 'address2', 'address3', 'tel', 'mail']);
+        });
+
+
+
+
         $grid->actions(function ($actions) {
               $actions->append('<a href=""><i class="fa fa-eye"></i></a>');
         });
   
-        return $grid;
-
         return $grid;
     }
 

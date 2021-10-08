@@ -40,6 +40,13 @@ jQuery(function($) {
     
     function resetTotal() {
         var ids = JSON.parse(localStorage.getItem('oshiBasket'));
+        if (ids.length == 0) {
+            $('#shipping').text('');
+            $('#total-amount').text('');
+            $('#pay-amount').text('');
+            $('#tax').text('');
+            return;
+        }
         var param = {};
         param['ids'] = ids;
         let url = 'getBaskets';
@@ -196,6 +203,13 @@ jQuery(function($) {
 	}
 
     function setTotal(basket) {
+        if (basket.length == 0) {
+            $('#shipping').text('');
+            $('#total-amount').text('');
+            $('#pay-amount').text('');
+            $('#tax').text('');
+            return;
+        }
         var amount = 200;
         var totalAmount = 0;
         var totalNum = 0;
