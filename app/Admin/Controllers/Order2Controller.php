@@ -30,7 +30,7 @@ class Order2Controller extends AdminController
         $grid = new Grid(new Order());
 
 //        $grid->disableExport();
-//        $grid->disableRowSelector();
+        $grid->disableRowSelector();
 //        $grid->disableColumnSelector();
         $grid->disableCreateButton();
 
