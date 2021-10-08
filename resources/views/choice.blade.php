@@ -312,6 +312,7 @@
 <div id="overlay">
 	<div class="cv-copy">
         <h2>買い物かごに登録中です…</h2>
+		<p>※サイズの大きい画像では時間がかかる場合があります。<p>
         <p>※ブラウザを閉じないで下さい。</p>
     </div>
 	<div class="cv-spinner">

@@ -73,10 +73,6 @@ class Order2Controller extends AdminController
                 ';
 
                 $img_buffer = '
-                <p>
-	                <a href="/print_images/'.$image['image'].'" download">画像を保存</a>
-                </p>
-                <p>
                 <img src="/print_images/'.$image['image'].'" width="100" height="100">
                 </p>
                 <p>'.$image['paper'].'</p>';
@@ -131,7 +127,7 @@ class Order2Controller extends AdminController
         $grid->column('shipped', '発送済')->editable('select', [false => '未', true => '済']);
         
         $grid->column('', '金額')->display(function (){
-                return \number_format($this->amount + $this->tax + $this->shipping).'円';
+                return \number_format($this->amount + $this->shipping).'円';
         });
 
         $grid->column('created_at', __('購入日'))->display(function ($created_at){
