@@ -2,6 +2,10 @@ jQuery(function($) {
     var canvas = document.createElement('canvas');
     var loadFLg = false;
 
+    $('#address').click(function() {
+        location.href='address';
+    });
+
     $('.delete').click(function()　{
         var target = $(this).data('basketid');
         let url = 'removeBasket';
@@ -28,7 +32,7 @@ jQuery(function($) {
 				localStorage.setItem('oshiBasket', JSON.stringify(newlist));
                 if (newlist.length == 0) {
                     $('#badge').text('');
-                    $("#buy").setAttribute("disabled", true);
+                    $("#address").prop("disabled", true);
                 } else {
                     $('#badge').text(newlist.length);
                 }
@@ -239,10 +243,10 @@ jQuery(function($) {
     function getBasket() {
         var ids = JSON.parse(localStorage.getItem('oshiBasket'));
         if (ids.length == null) {
-            $("#buy").setAttribute("disabled", true);
+            $("#address").prop("disabled", true);
         } else {
             if (ids.length == 0) {
-                $("#buy").setAttribute("disabled", true);
+                $("#address").prop("disabled", true);
             }
         }
 
