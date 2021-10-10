@@ -51,7 +51,7 @@ class BuyController extends Controller
         $basket->image_frameWidth = (float)$request->input('imageInfo')['frameWidth'];
         $basket->image_frameHeight = (float)$request->input('imageInfo')['frameHeight'];
         $basket->save();
-        $basket->photo_uri = $this->_trim_photo($basket, $request->input('imageInfo')['orientation']);
+//        $basket->photo_uri = $this->_trim_photo($basket, $request->input('imageInfo')['orientation']);
         $basket->save();
         $basket_id = $basket->id;
 

@@ -1,5 +1,11 @@
 jQuery(function($) {
+	var printFrameWidth = 2000;
+	var printFrameHeight = 2134;
+	var frameWidth;
+	var frameHeight;
+	var dspScale;
 	var canvas;
+	var imageCanvas;
 	var image;
 	var isDragging = false;
 	var dragStartX = 0;
@@ -39,7 +45,7 @@ jQuery(function($) {
 		var file = {};
 		file['name'] = photo.name;
 		file['type']= photo.type;
-		file['uri'] = photoURI;
+		file['uri'] = trimPhoto();
 		data['photo'] = file;
 		data['frame'] = choiceFrame;
 		data['paper'] = paperKind;
@@ -230,30 +236,17 @@ jQuery(function($) {
 		if (dv.getUint16(app1MarkerStart) !== 65505) {
 		  return 0
 		}
-		// エンディアンを取得
 		const littleEndian = dv.getUint8(app1MarkerStart + 10) === 73
-		// フィールドの数を確認
 		const count = dv.getUint16(app1MarkerStart + 18, littleEndian)
 		for (let i = 0; i < count; i++) {
 		  const start = app1MarkerStart + 20 + i * 12
 		  const tag = dv.getUint16(start, littleEndian)
-		  // Orientation の Tag は 274
 		  if (tag === 274) {
-			// Orientation は Type が SHORT なので 2byte だけ読む
 			return dv.getUint16(start + 8, littleEndian)
 		  }
 		}
 		return 0
 	  }
-	
-
-
-
-
-
-
-
-
 
 	function handleFiles(files) {
 		var file = files[0];
@@ -284,6 +277,7 @@ jQuery(function($) {
     	canvas = document.createElement('canvas');
     	ctx = canvas.getContext('2d');
 		$("#img").append(canvas);
+		imageCanvas = document.createElement('canvas');;
 
     	image = new Image();
     	image.onload = function() {
@@ -291,20 +285,32 @@ jQuery(function($) {
 			height = image.height;
 			frameWidth = $('#frame').width();
 			frameHeight = $('#frame').height();
-			if (width < frameWidth) {
-				width = frameWidth;
+			dspScale =  frameWidth / printFrameWidth;
+			if (width < height) {
+				if (width < printFrameWidth) {
+					r = printFrameWidth / width;
+					width = width * r;
+					height = height * r;
+				}
+			} else {
+				if (height < printFrameHeight) {
+					r = printFrameHeight / height;
+					width = width * r;
+					height = height * r;
+				}	
 			}
-			if (height < frameHeight) {
-				height = frameHeight + 200;
-			}
-			canvas.setAttribute('width' , width);
-			canvas.setAttribute('height', height);
+			imageCanvas.width = width * dspScale;
+			imageCanvas.height =  height * dspScale;
+			imagrCtx = imageCanvas.getContext('2d');
+			imagrCtx.drawImage(image, 0, 0, image.width, image.height, 0, 0, imageCanvas.width, imageCanvas.height);
+			
+			canvas.setAttribute('width' , width * dspScale);
+			canvas.setAttribute('height', height * dspScale);
 			canvas.setAttribute('id', 'photo');
 	    	ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.fillStyle = "white";
 			ctx.fillRect(0,0, canvas.width, canvas.height);
-//			ctx.translate(0,63.5);
-			ctx.translate(0,63);
+			ctx.translate(0, 63);
 			if (!choiceFrame) {
 				redraw();
 			} else {
@@ -402,7 +408,7 @@ jQuery(function($) {
     	ctx = canvas.getContext('2d');
     	ctx.clearRect(0, 0, canvas.width, canvas.height);
     	ctx.scale(scale, scale);
-    	ctx.drawImage(image, dragDiffX, dragDiffY);
+    	ctx.drawImage(imageCanvas, dragDiffX, dragDiffY);
 
     	ctx.scale(1 / scale, 1 / scale);
     	if (frameImage !== null) {
@@ -461,7 +467,6 @@ jQuery(function($) {
 			pcanvas.setAttribute('height', paper.height);
 	    	ctx.drawImage(paper, 0, 0);
 			sx = Math.ceil(canvas.width / 2) - Math.ceil(frameWidth / 2);
-//			sy = Math.ceil(canvas.height / 2) - Math.ceil(frameHeight / 2) + 54;
 			sy = Math.ceil(canvas.height / 2) - Math.ceil(frameHeight / 2) + 63;
 			dx = 55;
 			dy = 127;
@@ -473,4 +478,43 @@ jQuery(function($) {
     	}
 	}
 
+	function trimPhoto() {
+		width = image.width;
+		height = image.height;
+		if (image.width < height) {
+			if (width < printFrameWidth) {
+				r = printFrameWidth / image.width;
+				width = image.width * r;
+				height = image.height * r;
+			}
+		} else {
+			if (image.height < printFrameHeight) {
+				r = printFrameHeight / image.height;
+				width = image.width * r;
+				height = image.height * r;
+			}	
+		}
+		dspScale =  printFrameWidth / frameWidth;
+
+    	canvas = document.createElement('canvas');
+		canvas.width = width;
+		canvas.height =  height;
+    	ctx = canvas.getContext('2d');
+
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+        px = dragDiffX * dspScale;
+        py = dragDiffY * dspScale;
+		ctx.scale(scale, scale);
+    	ctx.drawImage(image, 0, 0, image.width, image.height, px, py, canvas.width, canvas.height);
+    	ctx.scale(1 / scale, 1 / scale);
+
+    	pcanvas = document.createElement('canvas');
+		pcanvas.width = printFrameWidth;
+		pcanvas.height = printFrameHeight;
+    	pctx = pcanvas.getContext('2d');
+		fx = (width / 2) - (printFrameWidth / 2);
+        fy = (height / 2) - (printFrameHeight / 2);
+		pctx.drawImage(canvas, fx, fy, printFrameWidth, printFrameHeight, 0, 0, printFrameWidth, printFrameHeight);
+		return pcanvas.toDataURL("image/jpeg");
+	}
 });
