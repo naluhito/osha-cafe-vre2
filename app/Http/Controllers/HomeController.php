@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -40,9 +42,30 @@ class HomeController extends Controller
             "tel" => $request->input("tel"),
             "otoiawase" => $request->input("otoiawase"),
         );
+        Log::debug($contact);
         session(['contact' => json_encode($contact)]);
         $json = json_encode($contact);
         $contact = json_decode($json);
         return view('contact_confirm', compact('contact'));
+    }
+    public function send() {
+        if (session()->has('contact')) {
+            $contact = json_decode(session('contact'));
+            $param = [
+                'contact' => $contact
+            ];
+
+            Mail::send(['text' => 'mails.contact'], $param, function($message)  use ($contact){
+                $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+                ->to($contact->mail)
+                ->subject('【推しカフェファクトリー】お問い合わせ承りました');
+                });    
+            Mail::send(['text' => 'mails.contact'], $param, function($message)  use ($contact){
+                    $message->from('info@oshi-cafe.com', '推しカフェファクトリー')
+                    ->to($contact->mail)
+                    ->subject('【推しカフェファクトリー】お問い合わせ');
+                    });    
+            }
+        return view('contact_send');
     }
 }

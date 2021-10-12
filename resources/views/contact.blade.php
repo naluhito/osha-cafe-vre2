@@ -112,14 +112,14 @@
                             <tr>
                                 <th><label for="email">メールアドレス<span class="badge">必須</span></label></th>
                                 <td>
-                                    <input type="email" id= "mail" name="email" size="60" value="{{ $contact->mail }}" class="form-control" placeholder="info@example.com">
+                                    <input type="email" id= "mail" name="mail" size="60" value="{{ $contact->mail }}" class="form-control" placeholder="info@example.com">
                                     <span id="mail-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><label for="email2">メールアドレス（確認用）<span class="badge">必須</span></label></th>
                                 <td>
-                                    <input type="email" id= "mail2" name="email2" class="form-control" size="60" value="{{ $contact->mail2 }}" placeholder="info@example.com">
+                                    <input type="email" id= "mail2" name="mail2" class="form-control" size="60" value="{{ $contact->mail2 }}" placeholder="info@example.com">
                                     <span id="mail2-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>

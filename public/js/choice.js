@@ -285,8 +285,8 @@ jQuery(function($) {
 			height = image.height;
 			frameWidth = $('#frame').width();
 			frameHeight = $('#frame').height();
-			dspScale =  frameWidth / printFrameWidth;
-			if (width < height) {
+			dspScale =  frameHeight / printFrameHeight;
+			if (height > width) {
 				if (width < printFrameWidth) {
 					r = printFrameWidth / width;
 					width = width * r;
@@ -299,6 +299,7 @@ jQuery(function($) {
 					height = height * r;
 				}	
 			}
+
 			imageCanvas.width = width * dspScale;
 			imageCanvas.height =  height * dspScale;
 			imagrCtx = imageCanvas.getContext('2d');

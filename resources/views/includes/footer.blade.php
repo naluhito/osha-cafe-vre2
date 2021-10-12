@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-auto">
-                <a href="https://oshi-cafe.com" class="text-brown"><i class="fas fa-shopping-cart fa-3x" class="text-brown"></i></a>
+                <a href="https://oshi-cafe.com/basket" class="text-brown"><i class="fas fa-shopping-cart fa-3x" class="text-brown"></i></a>
             </div>
             <div class="col-auto">
-                <a href="https://oshi-cafe.com" class="text-brown"><i class="fab fa-instagram fa-3x" class="text-brown"></i></a>
+                <a href="https://www.instagram.com/oshi.cafe.factory/" class="text-brown"><i class="fab fa-instagram fa-3x" class="text-brown"></i></a>
             </div>
         </div>
         <h5 class="text-center mt-24">推しカフェファクトリー</h5>

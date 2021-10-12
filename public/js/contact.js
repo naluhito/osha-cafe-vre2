@@ -1,4 +1,12 @@
 jQuery(function($) {
+    $('#back').click(function(){
+        location.href='contact';
+    });
+
+    $('#send').click(function(){
+        location.href='contact_send';
+    });
+
     $('#contact_form').submit(function() {
         $(this).find('#submit').attr("disabled", true);
         if (!validation($(this))) {
