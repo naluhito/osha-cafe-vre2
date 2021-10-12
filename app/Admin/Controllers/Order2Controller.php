@@ -112,6 +112,7 @@ class Order2Controller extends AdminController
         });;
         $grid->column('paid', '支払済')->bool();
         $grid->column('shipped', '発送済')->editable('select', [false => '未', true => '済']);
+        $grid->column('receipt', '領収書');
         
         $grid->column('', '金額')->display(function (){
                 return \number_format($this->amount + $this->shipping).'円';

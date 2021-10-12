@@ -65,7 +65,8 @@ class HomeController extends Controller
                     ->to($contact->mail)
                     ->subject('【推しカフェファクトリー】お問い合わせ');
                     });    
-            }
+            session()->forget('contact');
+        }
         return view('contact_send');
     }
 }

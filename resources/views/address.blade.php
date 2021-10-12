@@ -184,6 +184,12 @@
                                     <span id="mailaddress2-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
+                            <tr>
+                                <th scope="row"></em>領収書</th>
+                                <td colspan="2">
+                                    <input name="receipt" class="form-control w-100" id="receipt" type="checkbox" value="必要" @if ($address->receipt == '必要') checked @endif/>必要
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="send text-center my-40">

@@ -129,6 +129,7 @@ class BuyController extends Controller
                     "tel" => $user->tel,
                     "mailaddress1" => $user->email,
                     "mailaddress2" => $user->email,
+                    'receipt' => ""
                 );
             } else {
                 $array = array(
@@ -144,6 +145,7 @@ class BuyController extends Controller
                     "tel" => "",
                     "mailaddress1" => "",
                     "mailaddress2" => "",
+                    'receipt' => ""
                 );
             }
             $json = json_encode($array);
@@ -166,6 +168,7 @@ class BuyController extends Controller
             "tel" => $request->input("tel"),
             "mailaddress1" => $request->input("mailaddress1"),
             "mailaddress2" => $request->input("mailaddress2"),
+            'receipt' => $request->input("receipt")
         );
         session(['address' => json_encode($address)]);
         $json = json_encode($address);
@@ -402,6 +405,7 @@ class BuyController extends Controller
         $tax = $amount - floor($amount / 1.08);
         $order->amount = $amount;
         $order->tax = $tax;
+        $order->tax = $address->receipt;
 
         $shipping = 0;
         if ($num < 10) {
