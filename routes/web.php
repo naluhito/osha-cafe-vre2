@@ -27,6 +27,8 @@ Route::get('/', function () {
   Route::get('/address', 'App\Http\Controllers\BuyController@address');
   Route::get('/choice', 'App\Http\Controllers\BuyController@choice');
   Route::get('/buy', 'App\Http\Controllers\BuyController@index');
+  Route::get('/contact', 'App\Http\Controllers\HomeController@contact');
+  Route::post('/contact_confirm', 'App\Http\Controllers\HomeController@confirm');
   
   Route::post('/settle_recive', 'App\Http\Controllers\ReceiveController@settle_recive');
   

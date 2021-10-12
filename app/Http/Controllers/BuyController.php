@@ -130,7 +130,6 @@ class BuyController extends Controller
                     "mailaddress1" => $user->email,
                     "mailaddress2" => $user->email,
                 );
-                Log::debug($user);          
             } else {
                 $array = array(
                     "name1" => "",

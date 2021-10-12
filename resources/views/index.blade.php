@@ -200,7 +200,7 @@
         <p class="kome mt-16">※500個以上の大量注文をお考えの方はお問い合わせください。</p>
         <div class="row justify-content-center mt-40">
             <div class="col-md-auto">
-                <a href="contact.php" class="btn btn-block btn-outline-brown" style="color:#806239;">お問い合わせ</a>
+                <a href="contact" class="btn btn-block btn-outline-brown" style="color:#806239;">お問い合わせ</a>
             </div>
         </div>
     </div>
