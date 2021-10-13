@@ -88,6 +88,9 @@ class Order2Controller extends AdminController
                 return 'guest';
             }
             $user = User::find($user_id);
+            if (is_null($user)) {
+                return '<span class="text-light">退会済</span>';;    
+            }
             return $user->name;
         });
         $grid->column('name1', '発送先氏');
