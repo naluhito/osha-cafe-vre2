@@ -291,13 +291,19 @@ jQuery(function($) {
 					r = printFrameWidth / width;
 					width = width * r * 2;
 					height = height * r * 2;
+				} else {
+					width *= 1.5;
+					height *= 1.5;
 				}
 			} else {
 				if (height < printFrameHeight) {
 					r = printFrameHeight / height;
 					width = width * r * 2;
 					height = height * r * 2;
-				}	
+				} else {
+					width *= 1.5;
+					height *= 1.5;
+				}
 			}
 
 			imageCanvas.width = width * dspScale;
