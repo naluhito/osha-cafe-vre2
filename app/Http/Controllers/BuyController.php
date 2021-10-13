@@ -271,6 +271,17 @@ class BuyController extends Controller
         $this->_store_items($request, $order);
         session()->forget('address');
        
+        $param = [
+            'order_no' => $order_no,
+            'name' => $address->name1.$address->name2
+        ];
+        Mail::send(['text' => 'mails.order'], $param, function($message) use ($order_no) {
+            $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+            ->to('info@oshi-cafe.com')
+            ->subject('【受注】'.$order_no);
+        });    
+
+
         if ($request->input('payment') == 'credit') {
             return view('card', compact('view_param'));
         } else {
