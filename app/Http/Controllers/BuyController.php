@@ -405,7 +405,7 @@ class BuyController extends Controller
         $tax = $amount - floor($amount / 1.08);
         $order->amount = $amount;
         $order->tax = $tax;
-        $order->tax = $address->receipt;
+        $order->receipt = $address->receipt;
 
         $shipping = 0;
         if ($num < 10) {

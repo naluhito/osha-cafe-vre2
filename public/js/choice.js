@@ -305,8 +305,8 @@ jQuery(function($) {
 			imagrCtx = imageCanvas.getContext('2d');
 			imagrCtx.drawImage(image, 0, 0, image.width, image.height, 0, 0, imageCanvas.width, imageCanvas.height);
 			
-			canvas.setAttribute('width' , width * dspScale);
-			canvas.setAttribute('height', height * dspScale);
+			canvas.width =  width * dspScale;
+			canvas.height =  height * dspScale;
 			canvas.setAttribute('id', 'photo');
 	    	ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.fillStyle = "white";
