@@ -110,7 +110,17 @@ class Order2Controller extends AdminController
             }
             return "";
         });;
-        $grid->column('paid', '支払済')->bool();
+        $grid->column('paid', '支払済')->display(function ($paid) {
+            if ($paid == 0) {
+                return "<span class='label label-primary'>未</span>";
+            } else if ($paid == 1) {
+                return "<span class='label label-success'>済</span>";
+            } else if ($paid == 11) {
+                return "<span class='label label-info'>キャンセル</span>";
+            } else {
+                return "<span class='label label-danger'>システムエラー</span>";
+            }
+        });
         $grid->column('shipped', '発送済')->editable('select', [false => '未', true => '済']);
         $grid->column('receipt', '領収書');
         

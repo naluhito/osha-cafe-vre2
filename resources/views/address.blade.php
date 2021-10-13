@@ -186,8 +186,14 @@
                             </tr>
                             <tr>
                                 <th scope="row"></em>領収書</th>
-                                <td colspan="2">
-                                    <input name="receipt" class="form-control w-100" id="receipt" type="checkbox" value="必要" @if ($address->receipt == '必要') checked @endif/>必要
+                                <td class="align-items-center">
+                                    <div class="row align-items-center px-16">
+                                        <div class="col-auto">
+                                            <input name="receipt" class="form-control" id="receipt" type="checkbox" value="必要" @if ($address->receipt == '必要') checked @endif>
+                                        </div>
+                                        <div class="col-auto">
+                                            必要
+                                        </div>
                                 </td>
                             </tr>
                         </tbody>
