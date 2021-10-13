@@ -185,14 +185,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row"></em>領収書</th>
+                                <th scope="row"></em>納品書</th>
                                 <td class="align-items-center">
                                     <div class="row align-items-center px-16">
                                         <div class="col-auto">
-                                            <input name="receipt" class="form-control" id="receipt" type="checkbox" value="必要" @if ($address->receipt == '必要') checked @endif>
+                                            <input name="receipt" class="form-control" id="receipt" type="checkbox" value="必要" @if ($address->receipt == '不要') checked @endif>
                                         </div>
                                         <div class="col-auto">
-                                            必要
+                                            不要
                                         </div>
                                 </td>
                             </tr>

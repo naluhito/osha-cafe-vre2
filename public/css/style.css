@@ -442,3 +442,7 @@ mw_wp_form .table .mwform-tel-field input[type="text"], .mw_wp_form .table .mwfo
         width: 700px;
     }
 }
+
+.upload-wrap::before{
+    padding-top:calc((768 / 720) * 100%)
+}

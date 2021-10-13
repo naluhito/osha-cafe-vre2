@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
             'pref' => ['required', 'string'],
             'address1' => ['required', 'string', 'max:64'],
             'address2' => ['required', 'string', 'max:64'],
-            'address3' => ['required', 'string', 'max:64'],
+            'address3' => ['string', 'max:64'],
             'tel' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],

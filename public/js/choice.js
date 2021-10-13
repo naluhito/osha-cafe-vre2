@@ -289,14 +289,14 @@ jQuery(function($) {
 			if (height > width) {
 				if (width < printFrameWidth) {
 					r = printFrameWidth / width;
-					width = width * r;
-					height = height * r;
+					width = width * r * 2;
+					height = height * r * 2;
 				}
 			} else {
 				if (height < printFrameHeight) {
 					r = printFrameHeight / height;
-					width = width * r;
-					height = height * r;
+					width = width * r * 2;
+					height = height * r * 2;
 				}	
 			}
 
