@@ -99,7 +99,7 @@ jQuery(function($) {
 
 	$('.c01').click(function(){
 		choiceFrame = $(this).val();
-		$("#confirmFrame").attr('src', 'frame/' + choiceFrame);
+		$("#confirmFrame").attr('src', 'img/frame_pv/' + choiceFrame);
 		$('#confirmModal').modal('show');
 	});
     

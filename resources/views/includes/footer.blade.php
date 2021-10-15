@@ -18,8 +18,11 @@
             <li><a href="https://oshi-cafe.com/#l-delivery" class="text-brown"><span class="fa-li"><i class="fas fa-circle"></i></span>納期について</a></li>
             <li><a href="https://oshi-cafe.com/#l-payment" class="text-brown"><span class="fa-li"><i class="fas fa-circle"></i></span>支払い・発送方法</a></li>
             <li><a href="https://oshi-cafe.com/#l-other" class="text-brown"><span class="fa-li"><i class="fas fa-circle"></i></span>その他（返品・交換/著作権・肖像権/納品書・請求書・領収書）</a></li>
+            <li><a href="https://oshi-cafe.com/contact" class="text-brown"><span class="fa-li"><i class="fas fa-circle" aria-hidden="true"></i></span>お問い合わせ</a></li>
         </ul>
-        <p class="small text-center mt-48">
+        <a href="https://lin.ee/9CPX4p1"><img border="0" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" style="width:126px;"></a>
+        <p class="fz-12 text-center">こちらからもお問い合わせいただけます。</p>        
+            <p class="small text-center mt-48">
             <i class="far fa-copyright"></i> 2021
             <?php
                 $thisYear = date('Y');

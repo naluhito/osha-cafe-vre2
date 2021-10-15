@@ -69,19 +69,19 @@
 </div>
 <?php
     // ==============================
-    //  推しとカフェタイム
+    //  #推しカフェファクトリー
     // ==============================
 ?>
 <div class="container-wrap bg-pink-thin">
     <div class="container">
-        <img src="/img/SVG/home-customersvoice-ttl.svg" alt="推しとカフェタイム" style="width:352px;">
-        <h2 class="text-center mt-16">♯推しとカフェタイム</h2>
+        <img src="/img/SVG/home-customersvoice-ttl.svg" alt="#推しカフェファクトリー" style="width:352px;">
+        <h2 class="text-center mt-16">♯推しカフェファクトリー</h2>
         <div class="row gtr-8 row-cols-3 mt-24">
-            <div class="col"><img src="/img/oshiinsta01.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col"><img src="/img/oshiinsta02.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col"><img src="/img/oshiinsta03.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col mt-8"><img src="/img/oshiinsta04.jpg" alt="♯推しとカフェタイム"></div>
-            <div class="col mt-8"><img src="/img/oshiinsta05.jpg" alt="♯推しとカフェタイム"></div>
+            <div class="col"><img src="/img/oshiinsta01.jpg" alt="#推しカフェファクトリー"></div>
+            <div class="col"><img src="/img/oshiinsta02.jpg" alt="#推しカフェファクトリー"></div>
+            <div class="col"><img src="/img/oshiinsta03.jpg" alt="#推しカフェファクトリー"></div>
+            <div class="col mt-8"><img src="/img/oshiinsta04.jpg" alt="#推しカフェファクトリー"></div>
+            <div class="col mt-8"><img src="/img/oshiinsta05.jpg" alt="#推しカフェファクトリー"></div>
         </div>
         <p class="text-center mt-24 mb-0">画像をアップロードするだけ！</p>
         <div class="text-center">
@@ -274,7 +274,7 @@
         <h3 class="h3 fz-16 mt-24">納品書・請求書・領収書</h3>
         <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>送付先に商品の金額がわからないようにしてほしい（納品書を同封しないでほしい）</h4>
         <ul class="fz-14" style="padding-left: 20px;">
-            <li>納品書に商品金額を記載しておりますので、納品書がご不要な方はご注文時の備考欄に【納品書不要】とお書きください。</li>
+            <li>納品書に商品金額を記載しておりますので、納品書が不要な方は、お届け先入力の画面で【不要】にチェックを入れてください。</li>
         </ul>
         <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>納品書はいただけますか？</h4>
         <ul class="fz-14" style="padding-left: 20px;">
