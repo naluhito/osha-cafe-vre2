@@ -17,7 +17,10 @@ Route::get('/', function () {
      return view('index');
 //     return view('welcome');
   });
-  
+  Route::get('about', function () {
+    return view('about');
+ });
+ 
   Route::post('/decision', 'App\Http\Controllers\BuyController@decision');
   Route::post('/confirm', 'App\Http\Controllers\BuyController@confirm');
   Route::get('/basket', 'App\Http\Controllers\BuyController@basket');

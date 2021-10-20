@@ -30,9 +30,9 @@
 					<h4 class="fz-12 font-weight-bold pb-4 border-bottom bg-light p-8">パスワード</h4>
 					<p class="fz-14">・・・・・・・・</p>
 				</div>
-				{{-- <div class="text-right"> --}}
-					{{-- <a href="#" class="btn px-40 py-16 bg-mizuiro text-white">変更する</a> --}}
-				{{-- </div> --}}
+{{--				<div class="text-right">
+					<a href="#" class="btn px-40 py-16 bg-mizuiro text-white">変更する</a>
+				</div> --}}
 			</div>
 			<div class="col-md-10 mt-40">
 				<div class="bg-primary rounded-10 p-16">

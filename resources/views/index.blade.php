@@ -24,7 +24,7 @@
         <!-- <p class="text-center text-primary font-weight-bold lh-12 fz-22">最短2分で完成！<br>オリジナルドリップバッグが<br>1個200円から作れる！</p> -->
         <h2 class="text-center font-weight-bold fz-20 mt-32"><span class="brackets">Oshi Cafe factoryとは？</span></h2>
         <p class="text-center mt-24">コーヒー豆専門店が自家焙煎した<br>最高品質のコーヒーを100％使用！<br>1個からオリジナルパッケージが作れる<br>「推し活応援」オリジナルドリップバッグサービス！</p>
-        <p class="text-right"><a href="/about.php" class="border-bottom border-brown text-brown">もっと詳しく</a></p>
+        <p class="text-right"><a href="about" class="border-bottom border-brown text-brown">もっと詳しく</a></p>
     </div>
 </div>
 <?php
@@ -72,6 +72,7 @@
     //  #推しカフェファクトリー
     // ==============================
 ?>
+{{--
 <div class="container-wrap bg-pink-thin">
     <div class="container">
         <img src="/img/SVG/home-customersvoice-ttl.svg" alt="#推しカフェファクトリー" style="width:352px;">
@@ -90,6 +91,7 @@
         <p class="text-center"><a href="/#l-flow" class="text-dark border-bottom border-width-2 d-inline-block mt-24">ご購入までの流れはこちら</a></p>
     </div>
 </div>
+--}}
 <?php
     // ==============================
     //  3ステップで簡単作成！

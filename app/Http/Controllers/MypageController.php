@@ -32,6 +32,11 @@ class MypageController extends Controller
         return view('mypage', compact('auth', 'order_list', 'message'));
     }
 
+    public function edit() {
+        $user = Auth::user();
+        return view('mypage_edit');
+    }
+
     public function delete_account(Request $request) {
         $pass = Auth::user()->password;
         Log::debug($request->input("password"));
