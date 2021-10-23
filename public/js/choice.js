@@ -514,7 +514,7 @@ jQuery(function($) {
 		canvas.height =  height;
     	ctx = canvas.getContext('2d');
 
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+//		ctx.clearRect(0, 0, canvas.width, canvas.height);
         px = dragDiffX * dspScale;
         py = dragDiffY * dspScale;
 		ctx.scale(scale, scale);
