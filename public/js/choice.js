@@ -488,20 +488,20 @@ jQuery(function($) {
 	function trimPhoto() {
 		width = image.width;
 		height = image.height;
-		if (image.width < height) {
+		if (height > width) {
 			if (width < printFrameWidth) {
-				r = printFrameWidth / image.width;
-				width = image.width * r;
-				height = image.height * r;
+				r = printFrameWidth / width;
+				width = width * r * 2;
+				height = height * r * 2;
 			} else {
 				width *= 1.5;
 				height *= 1.5;
 			}
 		} else {
-			if (image.height < printFrameHeight) {
-				r = printFrameHeight / image.height;
-				width = image.width * r;
-				height = image.height * r;
+			if (height < printFrameHeight) {
+				r = printFrameHeight / height;
+				width = width * r * 2;
+				height = height * r * 2;
 			} else {
 				width *= 1.5;
 				height *= 1.5;
