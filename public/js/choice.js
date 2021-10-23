@@ -518,7 +518,8 @@ jQuery(function($) {
         px = dragDiffX * dspScale;
         py = dragDiffY * dspScale;
 		ctx.scale(scale, scale);
-    	ctx.drawImage(image, 0, 0, image.width, image.height, px, py, canvas.width, canvas.height);
+    	ctx.drawImage(image, 0, 0, image.width, image.height, px, py, width, height);
+//    	ctx.drawImage(image, 0, 0, image.width, image.height, px, py, canvas.width, canvas.height);
     	ctx.scale(1 / scale, 1 / scale);
 
     	pcanvas = document.createElement('canvas');
