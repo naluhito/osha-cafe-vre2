@@ -493,13 +493,19 @@ jQuery(function($) {
 				r = printFrameWidth / image.width;
 				width = image.width * r;
 				height = image.height * r;
+			} else {
+				width *= 1.5;
+				height *= 1.5;
 			}
 		} else {
 			if (image.height < printFrameHeight) {
 				r = printFrameHeight / image.height;
 				width = image.width * r;
 				height = image.height * r;
-			}	
+			} else {
+				width *= 1.5;
+				height *= 1.5;
+			}
 		}
 		dspScale =  printFrameWidth / frameWidth;
 
