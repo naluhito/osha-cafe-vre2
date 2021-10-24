@@ -42,7 +42,6 @@ class HomeController extends Controller
             "tel" => $request->input("tel"),
             "otoiawase" => $request->input("otoiawase"),
         );
-        Log::debug($contact);
         session(['contact' => json_encode($contact)]);
         $json = json_encode($contact);
         $contact = json_decode($json);

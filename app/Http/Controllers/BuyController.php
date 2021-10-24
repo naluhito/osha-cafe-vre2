@@ -341,7 +341,6 @@ class BuyController extends Controller
             $order_item = new OrderItem();
             $order_item->order_id = $order->id;
             $filename = sprintf("%s_%03d.jpeg", $order->order_no, $count);
-            Log::debug($filename);
 
             $this->_create_print_image($filename, $basket);
             $order_item->image = $filename;
@@ -451,7 +450,6 @@ class BuyController extends Controller
         $response = Http::asForm()->post($url, $param);
         $xml  = simplexml_load_string($response);
         $res = json_decode( json_encode($xml), TRUE );
-        Log::debug($res);
         return $res;
     }
 
@@ -467,12 +465,9 @@ class BuyController extends Controller
             'buyer_name_kanji' => $address->name1.$address->name2,
             'buyer_email' => $address->mailaddress1
         ];
-        Log::debug($param);
         $response = Http::asForm()->post($url, $param);
-        Log::debug($response);
         $xml  = simplexml_load_string($response);
         $res = json_decode( json_encode($xml), TRUE );
-        Log::debug($res);
         return $res;
     }
     
@@ -490,11 +485,9 @@ class BuyController extends Controller
             'buyer_tel' => $address->tel,
             'buyer_email' => $address->mailaddress1
         ];
-        Log::debug($param);
         $response = Http::asForm()->post($url, $param);
         $xml  = simplexml_load_string($response);
         $res = json_decode( json_encode($xml), TRUE );
-        Log::debug($res);
         return $res;
     }
     
@@ -524,7 +517,6 @@ class BuyController extends Controller
         $response = Http::asForm()->post($url, $param);
         $xml  = simplexml_load_string($response);
         $res = json_decode( json_encode($xml), TRUE );
-        Log::debug($res);
         return $res;
     }
 

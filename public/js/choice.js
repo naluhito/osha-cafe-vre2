@@ -1,8 +1,8 @@
 jQuery(function($) {
 	var printFrameWidth = 2000;
 	var printFrameHeight = 2134;
-	var frameWidth;
-	var frameHeight;
+//	var frameWidth;
+//	var frameHeight;
 	var dspScale;
 	var canvas;
 	var imageCanvas;
@@ -261,7 +261,6 @@ jQuery(function($) {
 		var arrayReader = new FileReader();
 		arrayReader.onload = function (e) {
 			orientation = getOrientation(e.target.result);
-			console.log(orientation);
 		}
 		arrayReader.readAsArrayBuffer(file);
 
@@ -289,20 +288,14 @@ jQuery(function($) {
 			if (height > width) {
 				if (width < printFrameWidth) {
 					r = printFrameWidth / width;
-					width = width * r * 2;
-					height = height * r * 2;
-				} else {
-					width *= 1.5;
-					height *= 1.5;
+					width = width * r * 1.2;
+					height = height * r * 1.2;
 				}
 			} else {
 				if (height < printFrameHeight) {
 					r = printFrameHeight / height;
-					width = width * r * 2;
-					height = height * r * 2;
-				} else {
-					width *= 1.5;
-					height *= 1.5;
+					width = width * r * 1.2;
+					height = height * r * 1.2;
 				}
 			}
 
@@ -370,7 +363,6 @@ jQuery(function($) {
 		
 	function toucDragStart(e) {
 		e.preventDefault();
-		console.log('ontouchstart');
 	    isDragging = true;
 		var touch = event.targetTouches[0];
 		dragStartX = touch.pageX;	
@@ -379,7 +371,6 @@ jQuery(function($) {
 	
 	function toucDrag(e) {
 		e.preventDefault();
-		console.log('ontouchmove');
 		if (isDragging) {
 			var touch = event.targetTouches[0];
 			x = touch.pageX;	
@@ -392,7 +383,6 @@ jQuery(function($) {
 	
 	function toucDragEnd(e) {
 		e.preventDefault();
-		console.log('ontouchend');
 	    isDragging = false;
 	    canvasX = dragDiffX;
 	    canvasY = dragDiffY;
@@ -431,8 +421,8 @@ jQuery(function($) {
     	paper = new Image();
     	paper.src = 'img/kraftpaper.png';
     	paper.onload = function() {
-			pcanvas.setAttribute('width' , paper.width);
-			pcanvas.setAttribute('height', paper.height);
+			pcanvas.width = paper.width;
+			pcanvas.height = paper.height;
 	    	ctx.drawImage(paper, 0, 0);
 			sx = Math.ceil(canvas.width / 2) - Math.ceil(frameWidth / 2);
 			sy = Math.ceil(canvas.height / 2) - Math.ceil(frameHeight / 2) + 63;
@@ -449,8 +439,8 @@ jQuery(function($) {
 				}
 			}
 	    	wcanvas = document.createElement('canvas');
-			wcanvas.setAttribute('width' , frameWidth);
-			wcanvas.setAttribute('height', frameHeight);
+			wcanvas.width = frameWidth;
+			wcanvas.height = frameHeight;
 	    	wctx = wcanvas.getContext('2d');
 			wctx.putImageData(tranImageData, 0, 0);
 			dx = 55;
@@ -470,8 +460,8 @@ jQuery(function($) {
     	paper = new Image();
     	paper.src = 'img/whitepaper.png';
     	paper.onload = function() {
-			pcanvas.setAttribute('width' , paper.width);
-			pcanvas.setAttribute('height', paper.height);
+			pcanvas.width =  paper.width;
+			pcanvas.height = paper.height;
 	    	ctx.drawImage(paper, 0, 0);
 			sx = Math.ceil(canvas.width / 2) - Math.ceil(frameWidth / 2);
 			sy = Math.ceil(canvas.height / 2) - Math.ceil(frameHeight / 2) + 63;
@@ -491,20 +481,14 @@ jQuery(function($) {
 		if (height > width) {
 			if (width < printFrameWidth) {
 				r = printFrameWidth / width;
-				width = width * r * 2;
-				height = height * r * 2;
-			} else {
-				width *= 1.5;
-				height *= 1.5;
+				width = width * r * 1.2;
+				height = height * r * 1.2;
 			}
 		} else {
 			if (height < printFrameHeight) {
 				r = printFrameHeight / height;
-				width = width * r * 2;
-				height = height * r * 2;
-			} else {
-				width *= 1.5;
-				height *= 1.5;
+				width = width * r * 1.2;
+				height = height * r * 1.2;
 			}
 		}
 		dspScale =  printFrameWidth / frameWidth;
@@ -514,7 +498,7 @@ jQuery(function($) {
 		canvas.height =  height;
     	ctx = canvas.getContext('2d');
 
-//		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
         px = dragDiffX * dspScale;
         py = dragDiffY * dspScale;
 		ctx.scale(scale, scale);
