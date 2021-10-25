@@ -59,9 +59,9 @@ class HomeController extends Controller
                 ->to($contact->mail)
                 ->subject('【推しカフェファクトリー】お問い合わせ承りました');
                 });    
-            Mail::send(['text' => 'mails.contact'], $param, function($message)  use ($contact){
-                    $message->from('info@oshi-cafe.com', '推しカフェファクトリー')
-                    ->to($contact->mail)
+            Mail::send(['text' => 'mails.contact_staff'], $param, function($message)  use ($contact){
+                    $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+                    ->to('info@oshi-cafe.com')
                     ->subject('【推しカフェファクトリー】お問い合わせ');
                     });    
             session()->forget('contact');

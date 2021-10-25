@@ -3,7 +3,7 @@
 
 ーーーーーーーーーー
 管理画面を確認してください。
-https://oshi-cafe.com
+https://oshi-cafe.com/admin
 
 
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
