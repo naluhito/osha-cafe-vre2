@@ -143,7 +143,7 @@ class Order2Controller extends AdminController
         $grid->export(function ($export) {
             $export->filename('受注.csv');
 //            $export->except(['user_id', 'paid', 'shipped', 'payment_kind']);
-            $export->only(['order_no', 'name1', 'name2', 'pref', 'tel', 'mail']);
+            $export->only(['order_no', 'name1', 'name2', 'zip',     'pref', 'tel', 'mail']);
             $export->originalValue(['order_no', 'name1', 'name2', 'zip', 'address1', 'address2', 'address3', 'tel', 'mail']);
         });
 
