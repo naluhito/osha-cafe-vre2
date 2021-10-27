@@ -220,6 +220,7 @@
         <p class="text-center font-weight-bold fz-26 mt-24"><span class="border border-brown border-width-4 rounded-10 d-inline-block p-16">ご購入から 約2営業日で発送</span></p>
         <p class="text-center">本日のご注文で最短4日でのお届けとなります。<br class="d-none d-md-block">500個以上のご注文、またはお急ぎの場合は<br class="d-none d-md-block"><a href="https://oshi-cafe.com/contact.php">こちら</a>よりお問い合わせください。</p>
         <p class="text-md-center fz-12">出荷まで2日程度お時間をいただきます。期日がある場合はお早めにご注文下さいますよう、お願いいたします。</p>
+        <p class="text-md-center fz-12">コンビニ決済の方は、ご入金確認後に発送作業をさせていただきます。</p>
     </div>
 </div>
 <?php
