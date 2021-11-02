@@ -6,10 +6,13 @@ use App\Models\Order;
 use App\Models\OrderBean;
 use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
+use App\Admin\Extensions\CheckShipped;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 Use Encore\Admin\Widgets\Table;
+use Illuminate\Support\Facades\Log;
+use Encore\Admin\Admin;
 
 class Order2Controller extends AdminController
 {
@@ -125,6 +128,9 @@ class Order2Controller extends AdminController
             }
         });
         $grid->column('shipped', '発送済')->editable('select', [false => '未', true => '済']);
+        $grid->column('send', ' ')->display(function (){
+            return "<a class='btn btn-xs btn-success fa fa-envelope-o grid-send-row' data-id='{$this->id}'></a>";
+        });
         $grid->column('receipt', '納品書');
         
         $grid->column('', '金額')->display(function (){
@@ -139,6 +145,10 @@ class Order2Controller extends AdminController
             return $result->format('Y年m月d日');
         })->sortable();
 
+        $grid->actions(function ($actions) {
+            $actions->disableDelete();
+//            $actions->append(new CheckShipped($actions->getKey()));
+        });
 
         $grid->export(function ($export) {
             $export->filename('受注.csv');
@@ -147,14 +157,39 @@ class Order2Controller extends AdminController
             $export->originalValue(['order_no', 'name1', 'name2', 'zip', 'address1', 'address2', 'address3', 'tel', 'mail']);
         });
 
+        Admin::script($this->script());
 
-
-
-        $grid->actions(function ($actions) {
-              $actions->append('<a href=""><i class="fa fa-eye"></i></a>');
-        });
-  
         return $grid;
+    }
+
+    protected function script()
+    {
+        return <<<SCRIPT
+
+$('.grid-send-row').on('click', function () {
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': LA.token
+        },
+        method: 'post',
+        url: 'shipped_mail',
+        dataType: "json",
+        data: {
+            id: $(this).data('id'),
+        }
+    })
+    .done(function(data){
+        if (data.status === 'OK') {
+            toastr.success('発送メールを送信しました');
+        } else {
+            toastr.warning('未発送のためメールは送信されませんでした');
+        }
+    })
+    .fail(function(data){
+    });        
+});
+
+SCRIPT;
     }
 
     /**
@@ -230,4 +265,5 @@ class Order2Controller extends AdminController
 
         return $form;
     }
+
 }

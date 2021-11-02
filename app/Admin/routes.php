@@ -16,5 +16,6 @@ Route::group([
     $router->resource('cafe/orders', Order2Controller::class);
     $router->resource('cafe/users', UserController::class);
     $router->resource('cafe/beans', BeanController::class);
+    $router->post('cafe/shipped_mail', 'ToolsController@shipped_mail');
 
 });
