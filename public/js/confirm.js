@@ -3,9 +3,38 @@ jQuery(function($) {
     var loadFLg = false;
 
     $('#confirm_form').submit(function() {
-        $("#buy").setAttribute("disabled", true);
-        //        localStorage.removeItem('oshiBasket');
+        $(this).find('#buy').attr("disabled", true);
+        if (!validation($(this))) {
+            $(this).find('#buy').attr("disabled", false);
+            return false;
+        }
     });
+    
+    function validation(form) {
+        var check = true;
+
+        var payment = form.find('input[name="payment"]:checked').val();
+        if (payment === undefined) {
+            form.find('#error').text('お支払い方法を選択してください');
+            check = false;
+        } else {
+            form.find('#error').empty();
+        }
+
+        if (payment === 'convenience') {
+            var convenience = form.find('input[name="convenience"]:checked').val();
+            if (convenience === undefined) {
+                form.find('#error').text('コンビニを選択してください');
+                check = false;
+            } else {
+                form.find('#error').empty();
+            }
+    
+        }
+        return check;
+    }
+
+        //        localStorage.removeItem('oshiBasket');
     function createItem(item) {
         loadFLg = true;
         var uri = item.photo_uri;

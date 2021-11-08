@@ -54,7 +54,7 @@
 </div>
 <div class="container-wrap">
 	<div class="container pb-40 px-0">
-	<form name="confirm_form" action="decision" method="post">
+	<form name="confirm_form" id="confirm_form" action="decision" method="post">
 		@csrf
 		<p class="text-danger text-center py-40">{!! $message !!}</p>
 		<div class="row justify-content-center">
@@ -158,6 +158,7 @@
 				</p>
 				<div class="p-16" style="border: 2px solid #f2b2ce; border-radius: 0 0 10px 10px;">
 					<div>
+					<span id="error" class="d-block text-danger ml-24 lh-32"></span>
 						<input type="radio" name="payment" id="pay-credit" value="credit" class="mr-8 credit"><span class="fz-20">クレジット</span>
 						<div class="creditinfo mb-24">
 							<input type="button" class="btn btn-primary2 w-100 text-white p-16 ls-02" value="クレジット情報入力" id="create-token-launch">
