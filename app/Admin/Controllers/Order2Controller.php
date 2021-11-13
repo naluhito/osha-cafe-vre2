@@ -55,7 +55,7 @@ class Order2Controller extends AdminController
 
             $rows = [];
             foreach ($images as $image) {
-                $beans = OrderBean::with('bean')->where('id', $image['id'])->get();
+                $beans = OrderBean::with('bean')->where('order_item_id', $image['id'])->get();
                 $buffer = '
                 <table class="kounyuhin table table-bordered tbl-2column mt-0">
                 <tbody>';
