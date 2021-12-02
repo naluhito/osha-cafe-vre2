@@ -26,6 +26,7 @@
         <h2 class="text-center font-weight-bold fz-20 mt-32"><span class="brackets">Oshi Cafe factoryとは？</span></h2>
         <p class="text-center mt-24">コーヒー豆専門店が自家焙煎した<br>最高品質のコーヒーを100％使用！<br>1個からオリジナルパッケージが作れる<br>「推し活応援」オリジナルドリップバッグサービス！</p>
         <p class="text-right"><a href="about" class="border-bottom border-brown text-brown">もっと詳しく</a></p>
+        <img src="/img/SVG/eraberu.svg" alt="" class="" style="width: 350px;">
     </div>
 </div>
 <?php
@@ -73,17 +74,18 @@
     //  #推しカフェファクトリー
     // ==============================
 ?>
-{{--
+
 <div class="container-wrap bg-pink-thin">
     <div class="container">
         <img src="/img/SVG/home-customersvoice-ttl.svg" alt="#推しカフェファクトリー" style="width:352px;">
         <h2 class="text-center mt-16">♯推しカフェファクトリー</h2>
         <div class="row gtr-8 row-cols-3 mt-24">
-            <div class="col"><img src="/img/oshiinsta01.jpg" alt="#推しカフェファクトリー"></div>
-            <div class="col"><img src="/img/oshiinsta02.jpg" alt="#推しカフェファクトリー"></div>
-            <div class="col"><img src="/img/oshiinsta03.jpg" alt="#推しカフェファクトリー"></div>
-            <div class="col mt-8"><img src="/img/oshiinsta04.jpg" alt="#推しカフェファクトリー"></div>
-            <div class="col mt-8"><img src="/img/oshiinsta05.jpg" alt="#推しカフェファクトリー"></div>
+            <div class="col"><img src="/img/oshiinsta06.jpg" alt="#推しカフェファクトリー"></div>
+            <div class="col"><img src="/img/oshiinsta07.png" alt="#推しカフェファクトリー"></div>
+            <div class="col"><img src="/img/oshiinsta08.jpg" alt="#推しカフェファクトリー"></div>
+            <div class="col mt-8"><img src="/img/oshiinsta09.png" alt="#推しカフェファクトリー"></div>
+            <div class="col mt-8"><img src="/img/oshiinsta10.png" alt="#推しカフェファクトリー"></div>
+            <div class="col mt-8"><img src="/img/oshiinsta11.png" alt="#推しカフェファクトリー"></div>
         </div>
         <p class="text-center mt-24 mb-0">画像をアップロードするだけ！</p>
         <div class="text-center">
@@ -93,6 +95,7 @@
         <p class="text-center"><a href="/#l-flow" class="text-dark border-bottom border-width-2 d-inline-block mt-24">ご購入までの流れはこちら</a></p>
     </div>
 </div>
+
 <?php
     // ==============================
     //  3ステップで簡単作成！

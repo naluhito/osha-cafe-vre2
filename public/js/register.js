@@ -14,14 +14,31 @@ jQuery(function($) {
             form.find('#name1-error').text('※未入力');
             check = false;
         } else {
-            form.find('#name1-error').empty();
+            if (!name1.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+                form.find('#name1-error').text('※全角で入力してください');
+                check = false;
+            } else {
+                form.find('#name1-error').empty();
+            }
         }
         var name2 = form.find('#name2').val();
         if (name2 === '') {
             form.find('#name2-error').text('※未入力');
             check = false;
         } else {
-            form.find('#name2-error').empty();
+            if (!name2.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+                form.find('#name2-error').text('※全角で入力してください');
+                check = false;
+            } else {
+                form.find('#name2-error').empty();
+            }
+        }
+        if (check) {
+            var name = name1 + name2;
+            if (name.length > 20) {
+                form.find('#name1-error').text('※姓と名あわせて20文字以内で入力してください');
+                check = false;
+            }
         }
         var name3 = form.find('#name3').val();
         if (name3 === '') {
@@ -70,14 +87,29 @@ jQuery(function($) {
             form.find('#tel-error').text('※未入力');
             check = false;
         } else {
-            form.find('#tel-error').empty();
+            if(!tel.match(/^[0-9\-]+$/)){
+                form.find('#tel-error').text('半角数字とハイフン(-)のみで入力してください');
+                check = false;
+            } else {
+                if (tel.length > 13) {
+                    form.find('#name1-error').text('※13文字以内で入力してください');
+                    check = false;
+                } else {
+                    form.find('#tel-error').empty();
+                }
+            }
         }
-        var mail = form.find('#mail').val();
+        var mail = form.find('#email').val();
         if (mail === '') {
             form.find('#mail-error').text('※未入力');
             check = false;
         } else {
-            form.find('#mail-error').empty();
+            if (mail.length > 50) {
+                form.find('#mail-error').text('※50文字以内で入力してください');
+                check = false;
+            } else {
+                form.find('#mail-error').empty();
+            }
         }
         var password = form.find('#password').val();
         if (password === '') {

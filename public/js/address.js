@@ -14,15 +14,33 @@ jQuery(function($) {
             form.find('#name1-error').text('※未入力');
             check = false;
         } else {
-            form.find('#name1-error').empty();
+            if (!name1.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+                form.find('#name1-error').text('※全角で入力してください');
+                check = false;
+            } else {
+                form.find('#name1-error').empty();
+            }
         }
         var name2 = form.find('#name2').val();
         if (name2 === '') {
             form.find('#name2-error').text('※未入力');
             check = false;
         } else {
-            form.find('#name2-error').empty();
+            if (!name2.match(/^[^\x01-\x7E\xA1-\xDF]+$/)) {
+                form.find('#name2-error').text('※全角で入力してください');
+                check = false;
+            } else {
+                form.find('#name2-error').empty();
+            }
         }
+        if (check) {
+            var name = name1 + name2;
+            if (name.length > 20) {
+                form.find('#name1-error').text('※姓と名あわせて20文字以内で入力してください');
+                check = false;
+            }
+        }
+
         var name3 = form.find('#name3').val();
         if (name3 === '') {
             form.find('#name3-error').text('※未入力');
@@ -74,7 +92,11 @@ jQuery(function($) {
                 form.find('#tel-error').text('半角数字とハイフン(-)のみで入力してください');
                 check = false;
             } else {
-                form.find('#tel-error').empty();
+                if (tel.length > 13) {
+                    form.find('#name1-error').text('※13文字以内で入力してください');
+                } else {
+                    form.find('#tel-error').empty();
+                }
             }
         }
         var mailaddress1 = form.find('#mailaddress1').val();
@@ -82,7 +104,11 @@ jQuery(function($) {
             form.find('#mailaddress1-error').text('※未入力');
             check = false;
         } else {
-            form.find('#mailaddress1-error').empty();
+            if (mailaddress1.length > 50) {
+                form.find('#mailaddress1-error').text('※50文字以内で入力してください');
+            } else {
+                form.find('#mailaddress1-error').empty();
+            }
         }
         var mailaddress2 = form.find('#mailaddress2').val();
         if (mailaddress2 === '') {

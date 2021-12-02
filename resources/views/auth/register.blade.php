@@ -26,11 +26,11 @@
                                 <td class="name_td">
                                     <div class="row no-gutters">
                                         <div class="col-6 pr-4">
-                                            <span class="mr-8">姓</span><x-input id="name1" type="text" name="name1" style="ime-mode: active; width:84%;" :value="old('name1')" required autofocus />
+                                            <span class="mr-8">姓</span><x-input id="name1" type="text" name="name1" maxlength='20' style="ime-mode: active; width:84%;" :value="old('name1')" required autofocus />
                                             <span id="name1-error" class="d-block text-danger ml-24 lh-32"></span>
                                         </div>
                                         <div class="col-6 pl-4">
-                                            <span class="mr-8">名</span><x-input id="name2" type="text" name="name2" style="ime-mode: active; width:84%;" :value="old('name2')" required />
+                                            <span class="mr-8">名</span><x-input id="name2" type="text" name="name2" maxlength='20' style="ime-mode: active; width:84%;" :value="old('name2')" required />
                                             <span id="name2-error" class="d-block text-danger ml-24 lh-32"></span>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
 							<tr id="tel_row">
 								<th scope="row"><em>＊</em>電話番号</th>
 								<td>
-                                    <x-input id="tel" type="text" name="tel" style="ime-mode: inactive"  class="w-100" :value="old('tel')" required />
+                                    <x-input id="tel" type="text" name="tel" maxlength='13' style="ime-mode: inactive"  class="w-100" :value="old('tel')" required />
 									<span class="d-block mt-16">(例）1000-10-1000</span>
                                     <span id="tel-error" class="d-block text-danger ml-24 lh-32"></span>
 								</td>
@@ -154,7 +154,7 @@
 							<tr>
 								<th scope="row"><em>＊</em>メールアドレス</th>
 								<td colspan="2">
-                                    <x-input id="email" class="form-control w-100" type="email" name="email" :value="old('email')" autocomplete="off" required />
+                                    <x-input id="email" class="form-control w-100" type="email" name="email" maxlength='50' :value="old('email')" autocomplete="off" required />
                                     <span id="mail-error" class="d-block text-danger ml-24 lh-32"></span>
 								</td>
 							</tr>

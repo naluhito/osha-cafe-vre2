@@ -139,7 +139,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8 p-16">
 				<p class="font-weight-bold text-primary mb-0 mt-8">◎お届け方法</p>
-				<p>クロネコヤマト<br class="d-md-none"></p>
+				<p>クロネコヤマト・日本郵便<br class="d-md-none"></p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎お届け先</p>
 				<p class="mb-0">{{ $address->zipcode }}<br class="d-md-none"> {{ $address->pref }}{{ $address->address1 }}{{ $address->address2 }}<br class="d-md-none"> {{ $address->address3 }}
