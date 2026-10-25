@@ -152,6 +152,7 @@
                                 <td>
                                     <input name="address2" id="address2" type="text" maxlength='64' value="{{ $address->address2 }}" onKeyDown="if (event.keyCode == 13) {return false;}" style="ime-mode: active" class="w-100" />
                                     <span class="d-block mt-16">(例）3-24-555</span>
+                                    <span class="d-block mt-16 fz-12 text-warning">【番地に誤りがないかご確認ください】住所に間違いがある場合はお届けできません。再発送の場合は送料をご負担いただきます。</span>
                                     <span id="address2-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
@@ -159,7 +160,8 @@
                                 <th scope="row">ビル名</th>
                                 <td>
                                     <input name="address3" id="address3" type="text" maxlength='64' value="{{ $address->address3 }}" onKeyDown="if (event.keyCode == 13) {return false;}" class="w-100" style="ime-mode: active" />
-                                    <span class="d-block mt-16">(例）通販ビル4F</span>
+                                    <span class="d-block mt-16">(例）通販ビル4F 301号室</span>
+                                    <span class="d-block mt-16 fz-12 text-warning">【ビル名や部屋番号に誤りがないかご確認ください】住所に間違いがある場合はお届けできません。再発送の場合は送料をご負担いただきます。</span>
                                 </td>
                             </tr>
                             <tr id="tel_row">
@@ -174,6 +176,7 @@
                                 <th scope="row"><em>＊</em>メールアドレス</th>
                                 <td colspan="2">
                                     <input name="mailaddress1" class="form-control w-100" maxlength='50' id="mailaddress1" type="email" value="{{ $address->mailaddress1 }}" autocomplete="off" />
+                                    <span class="d-block mt-16 fz-12 text-danger">※携帯メールなど受信設定をしている方は「oshi-cafe.com」からのメールが受信できるよう、ご注文前にドメイン設定をしておいてください。</span>
                                     <span id="mailaddress1-error" class="d-block text-danger ml-24 lh-32"></span>
                                 </td>
                             </tr>
@@ -189,11 +192,13 @@
                                 <td class="align-items-center">
                                     <div class="row align-items-center px-16">
                                         <div class="col-auto">
-                                            <input name="receipt" class="form-control" id="receipt" type="checkbox" value="必要" @if ($address->receipt == '不要') checked @endif>
+                                            <input name="receipt" class="form-control" id="receipt" type="checkbox" value="必要" @if ($address->receipt == '必要') checked @endif>
                                         </div>
                                         <div class="col-auto">
-                                            不要
+                                            必要
                                         </div>
+                                    </div>
+                                    <span class="d-block mt-16 fz-12 text-danger">※必要な方はチェックしてください。</span>
                                 </td>
                             </tr>
                         </tbody>

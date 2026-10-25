@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-auto">
-                <p class="">以下のフォームより、必要事項を入力のうえ送信してください。お客様にも、お問い合わせ内容が自動返信されます。<br class="d-none d-md-block">自動返信がされてない場合はお客様のメールアドレスのお間違いの可能性、もしくは迷惑フォルダに入っている可能性もございます。<br class="d-none d-md-block">48時間以内に当サイトより改めてご返信差し上げます。<br class="d-none d-md-block">もしも返信がない場合には、お手数をおかけしますが099-201-5529までお電話ください。</p>
+                <p class="">以下のフォームより、必要事項を入力のうえ送信してください。お客様にも、お問い合わせ内容が自動返信されます。<br class="d-none d-md-block"><span class="text-danger font-weight-bold">自動返信がされてない場合はお客様のメールアドレスのお間違いの可能性、もしくは迷惑フォルダに入っている可能性もございます。</span><br class="d-none d-md-block">48時間以内に当サイトより改めてご返信差し上げます。<br class="d-none d-md-block">もしも返信がない場合には、お手数をおかけしますが099-201-5529までお電話ください。</p>
             </div>
         </div>
     </div>

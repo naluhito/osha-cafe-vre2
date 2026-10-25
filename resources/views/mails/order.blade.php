@@ -1,6 +1,15 @@
 {{ $name }}様より注文がありました。
 注文番号：{{ $order_no }}
 
+氏名：{{ $name }}
+メールアドレス：{{ $mail }}
+電話番号：{{ $tel }}
+住所：{{ $zipcode }} {{ $address1 }} {{ $address2 }} {{ $address3 }}
+注文詳細
+@foreach ($items as $item)
+・{{ $item }}
+@endforeach
+
 ーーーーーーーーーー
 管理画面を確認してください。
 https://oshi-cafe.com/admin

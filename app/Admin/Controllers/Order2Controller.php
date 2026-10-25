@@ -38,6 +38,7 @@ class Order2Controller extends AdminController
         $grid->disableCreateButton();
 
         $grid->model()->orderBy('id', 'desc');
+//        $grid->model()->take(8100);
         $grid->filter(function ($filter) {
             $filter->column(1/2, function ($filter) {
                 $filter->disableIdFilter();
@@ -54,17 +55,22 @@ class Order2Controller extends AdminController
             });
 
             $rows = [];
+            $row[] = '';
+            $buffer = $this->name1.$this->name2.'　'.$this->pref.$this->address1.$this->address2.' '.$this->address3.'　'.$this->tel;
+            $row[] = $buffer;
+            $rows[] = $row;
             foreach ($images as $image) {
                 $beans = OrderBean::with('bean')->where('order_item_id', $image['id'])->get();
                 $buffer = '
                 <table class="kounyuhin table table-bordered tbl-2column mt-0">
                 <tbody>';
                 foreach ($beans as $bean) {
-                    if ($bean->kind == 0) {
+                    if ($bean->bean->kind == 0) {
                         $type = 'ドリップバッグタイプ';
                     } else {
                         $type = 'コーヒーバッグタイプ';
                     }
+//                    $type = '';
                     $buffer = $buffer.'
                         <tr><th class="w-md-25 bg-768-gray">'.$type.' '.$bean->bean->name.'</th>
                         <th class="w-md-25 text-right">'.$bean->quantity.'</th></tr>';
@@ -101,7 +107,7 @@ class Order2Controller extends AdminController
   
         $grid->column('zip', '郵便番号');
         $grid->column('pref', '住所')->display(function() {
-            return $this->pref.$this->address1.$this->address2.$this->address3;
+            return $this->pref.$this->address1.$this->address2.' '.$this->address3;
         });
         $grid->column('tel', '電話番号');
         $grid->column('mail', 'メール');
@@ -116,6 +122,7 @@ class Order2Controller extends AdminController
             }
             return "";
         });;
+
         $grid->column('paid', '支払済')->display(function ($paid) {
             if ($paid == 0) {
                 return "<span class='label label-primary'>未</span>";
@@ -127,6 +134,7 @@ class Order2Controller extends AdminController
                 return "<span class='label label-danger'>システムエラー</span>";
             }
         });
+
         $grid->column('shipped', '発送済')->editable('select', [false => '未', true => '済']);
         $grid->column('send', ' ')->display(function (){
             return "<a class='btn btn-xs btn-success fa fa-envelope-o grid-send-row' data-id='{$this->id}'></a>";
@@ -144,6 +152,7 @@ class Order2Controller extends AdminController
             $result = new \DateTime($created_at);
             return $result->format('Y年m月d日');
         })->sortable();
+
 
         $grid->actions(function ($actions) {
             $actions->disableDelete();

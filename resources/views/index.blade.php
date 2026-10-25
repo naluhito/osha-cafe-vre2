@@ -5,9 +5,9 @@
 <div class="position-relative" id="l-slider">
     <div class="position-relative d-flex flex-column justify-content-center" id="slider-home">
         <img src="/img/logo-slider.png" alt="Oshi Cafe Factory" class="slider-logo">
-        <!-- <div class="text-center">
-            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
-        </div> -->
+        {{--<div class="text-center">
+            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32 mt-32">作ってみる！</a>
+        </div>--}}
     </div>
 </div>
 <?php
@@ -17,10 +17,70 @@
 ?>
 <div class="container-wrap" id="l-originaldripbag">
     <div class="container">
-         <img src="/img/SVG/setumeibun.svg" alt="" class="" style="width: 550px;">
+        <div class="row justify-content-center mb-24">
+            <div class="col-md-9 border border-primary p-16 p-md-32">
+                <p class="text-center fz-20 pb-16 font-weight-bold">メンテナンスのお知らせ</p>
+                <p class="text-justify pb-24">メンテナンスに伴い、一時ご注文の受付を停止させていただいておりますが、作業に遅れが生じており、終了予定時刻を2026年10月23日18:00頃まで延長させていただきます。皆様には大変ご不便をおかけいたしますが、何卒ご理解とご容赦のほどお願い申し上げます。</p>
+        <div class="row justify-content-center mt-20">
+            <div class="col-md-auto">
+                <p class="fz-14 text-center">お急ぎの方はLINE公式アカウントからご注文ください。</p>
+                <a href="https://lin.ee/9CPX4p1">
+                    <img border="0" src="/img/line-de.png" style="width:168px;">
+                </a>
+            </div>
+        </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-40">
+            <div class="col-md-9 p-16 p-md-24 rounded-lg text-center text-pink" style="background: linear-gradient(90deg, #fce8f0 0%, #fdf4e8 50%, #e8f4fd 100%);">
+                <p class="text-center fz-18 mb-0 font-weight-bold">今年の夏はアイスコーヒーで推し活！</p>
+                <a href="https://mikoya134.com/howtomakeicecoffee/" target="_blank" class="text-center text-pink fz-18">作り方を見る＞＞</a>
+            </div>
+        </div>
+        {{--<div class="row justify-content-center mb-24">
+            <div class="col-md-9 border border-primary p-16 p-md-32">
+                <p class="text-center fz-20 pb-16 font-weight-bold">【GW中の発送について】</p>
+                <p class="text-justify pb-24">日頃より、推しカフェファクトリーをご利用いただき誠にありがとうございます。 <br>勝手ながらゴールデンウィーク中は当店お休みのため、お届け期間を変更させていただきます。<span class="font-weight-bold fz-18">4月27日（月）までのご注文分は5月2日（土）に発送。4月28日（火）以降のご注文分は5月7日（木）から順次発送</span>となります。皆様には大変ご不便をおかけ致しますが、何卒ご容赦いただきますようお願い申し上げます。</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-24">
+            <div class="col-md-9 border border-primary p-16 p-md-32">
+                <p class="text-center fz-20 pb-16 font-weight-bold">【お盆中の発送について】</p>
+                <p class="text-justify pb-24">日頃より、推しカフェファクトリーをご利用いただき誠にありがとうございます。 <br>勝手ながらお盆期間中は当店お休みのため、お届け期間を変更させていただきます。<span class="font-weight-bold fz-18">8月11日（月）以降の受付分は8月17日（日）からの</span>順次発送となります。皆様には大変ご不便をおかけ致しますが、何卒ご容赦いただきますようお願い申し上げます。</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-24">
+            <div class="col-md-9 border border-primary p-16 p-md-32">
+                <p class="text-center fz-20 pb-16 font-weight-bold">【納期にについて】</p>
+                <p class="text-justify pb-24">日頃より、推しカフェファクトリーをご利用いただき誠にありがとうございます。 <br>只今多くのご注文をいただいており、勝手ながら<span class="font-weight-bold fz-18">ご購入から8営業日後の発送</span>とさせていただきます。ご注文順に順次発送しておりますので、大変ご不便をおかけ致しますが、何卒ご容赦いただきますようお願い申し上げます。</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-24">
+            <div class="col-md-9 border border-primary p-16 p-md-32">
+                <p class="text-center fz-20 pb-16 font-weight-bold">本人認証サービス「3Dセキュア」対応に伴うメンテナンス実施のお知らせ</p>
+                <p class="text-justify pb-24">日頃より、推しカフェファクトリーをご利用いただき誠にありがとうございます。<br>この度、より安全にお楽しみいただくため、クレジットカード決済において本人認証サービス「3Dセキュア2.0」を導入することとなりました。<br><br>本人認証サービス（3Dセキュア2.0）とはインターネット上でクレジットカード決済をより安全に行うために、VISA、Mastercard、JCB、AMEXが推奨するクレジットカード不正利用対策のための本人認証サービスです。取引の大半は追加認証なしに認証が完了し、高リスクと判断される取引にのみ、ワンタイムパスワード等の追加認証が行われます。<br>※本人認証の方法は、カード会社により異なります<br><br>これに伴い、システムメンテナンスを実施させていただきます。<br><br>■メンテナンス期間<br><span class="font-weight-bold fz-18">2025年1月27日(月)10:00～18:00（予定）</span><br>※開始・終了時刻は前後する場合がございます。<br>※メンテナンス期間中はご注文のお手続きができません。あらかじめご了承ください。</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-24">
+            <div class="col-md-9 border border-primary p-16 p-md-32">
+                <p class="text-center fz-20 pb-16 font-weight-bold">【年末年始の発送について】</p>
+                <p class="text-justify pb-24">日頃より、推しカフェファクトリーをご利用いただき誠にありがとうございます。 <br>年末年始の休業にともない、お届け期間が変更となります。<span class="font-weight-bold fz-18">12月26日（金）受付分までは12月30日（火）に発送</span>させていただきます。年末年始の期間中も注文は受け付けておりますが、<span class="font-weight-bold fz-18">12月27日（土）以降のご注文は2026年1月6日（火）から順次発送</span>させていただきます。大変ご不便をおかけ致しますが、何卒ご容赦いただきますようお願い申し上げます。</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-24">
+            <div class="col-md-9 border border-primary p-16 p-md-32">
+                <p class="text-center fz-20 pb-16 font-weight-bold">【料金改定について】</p>
+                <p class="text-justify pb-24">いつもご利用いただきありがとうございます。<r>誠に申し訳ございませんが珈琲豆をはじめ、資材などさまざまなものの価格高騰がなかなか落ち着かない状況が続いております。<br>これまでいろいろと工夫を重ねてまいりましたが、これ以上価格の維持が難しい状況となりましたため、大変心苦しいのですが、現在1個220円で販売しております「推しカフェファクトリー」を<span class="font-weight-bold fz-18">2026年4月1日より1個260円</span>に値上げさせていただくこととなりました。<br>ご負担をおかけしてしまい誠に申し訳ございませんが、今後ともどうぞよろしくお願いいたします。</p>
+                <p class="text-justify pb-24">2026年4月1日10時現在、システムメンテナンスは終了しております。</p>
+            </div>
+        </div>--}}
+
+
+         <img src="/img/SVG/setumeibun3.svg" alt="" class="" style="width: 550px;">
          <div class="text-center mt-32 mb-56">
-            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a> 
-            {{--    <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p> --}}
+            {{-- <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a> --}}
+            <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p>
         </div>
         <!-- <p class="text-center text-primary font-weight-bold lh-12 fz-22">最短2分で完成！<br>オリジナルドリップバッグが<br>1個200円から作れる！</p> -->
         <h2 class="text-center font-weight-bold fz-20 mt-32"><span class="brackets">Oshi Cafe factoryとは？</span></h2>
@@ -89,8 +149,8 @@
         </div>
         <p class="text-center mt-24 mb-0">画像をアップロードするだけ！</p>
         <div class="text-center">
-            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
-            {{--<p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p>--}}
+            {{-- <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a> --}}
+            <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p>
         </div>
         <p class="text-center"><a href="/#l-flow" class="text-dark border-bottom border-width-2 d-inline-block mt-24">ご購入までの流れはこちら</a></p>
     </div>
@@ -153,8 +213,8 @@
     </div>
     <p class="text-center mt-24 mb-0">画像をアップロードするだけ！</p>
     <div class="text-center">
-        <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
-         {{--<p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p> --}}
+        {{-- <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a> --}}
+        <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p>
     </div>
 </div>
 <?php
@@ -165,29 +225,6 @@
 <div class="container-wrap bg-pink-thin" id="l-price">
     <div class="container">
         <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">料金について</span></h2>
-        <!--<p class="bg-primary rounded-pill text-center text-white py-4 mt-24 mb-8">1種類の画像でたくさん作る場合</p>
-        <div class="card border-primary border-width-4 rounded-10">
-            <div class="card-header bg-primary row no-gutters">
-                <div class="col-6 text-center text-white">個数</div>
-                <div class="col-6 text-center text-white">料金</div>
-            </div>
-            <div class="card-body p-0">
-                <div class="row no-gutters align-items-center lh-14 border-bottom">
-                    <div class="col-6 text-center border-right py-16">1〜19個まで</div>
-                    <div class="col-6 text-center py-16">200円</div>
-                </div>
-                <div class="row no-gutters align-items-center lh-14 border-bottom">
-                    <div class="col-6 text-center border-right py-16">20〜49個まで<span class="text-primary fz-14 d-block">（送料無料）</span></div>
-                    <div class="col-6 text-center py-16">190円</div>
-                </div>
-                <div class="row no-gutters align-items-center lh-14">
-                    <div class="col-6 text-center border-right py-16">50〜99個まで<span class="text-primary fz-14 d-block">（送料無料）</span></div>
-                    <div class="col-6 text-center py-16">180円</div>
-                </div>
-            </div>
-        </div>
-        <p class="kome">※100個以上の大量注文をお考えの方はお問い合わせください。</p>
-        <p class="bg-skyblue rounded-pill text-center text-white py-4 mt-40 mb-8">1個ずつ違う画像で作る場合</p>-->
         <div class="card border-skyblue border-width-4 rounded-10">
             <div class="card-header bg-skyblue row no-gutters">
                 <div class="col-6 text-center text-white">個数</div>
@@ -196,11 +233,11 @@
             <div class="card-body p-0">
                 <div class="row no-gutters align-items-center lh-14 border-bottom">
                     <div class="col-6 text-center border-right py-16">1〜9個まで</div>
-                    <div class="col-6 text-center py-16">200円</div>
+                    <div class="col-6 text-center py-16">260円</div>
                 </div>
                 <div class="row no-gutters align-items-center lh-14 border-bottom">
                     <div class="col-6 text-center border-right py-16">10個以上<span class="text-primary fz-14 d-block">（送料無料）</span></div>
-                    <div class="col-6 text-center py-16">200円</div>
+                    <div class="col-6 text-center py-16">260円</div>
                 </div>
             </div>
         </div>
@@ -208,6 +245,14 @@
         <div class="row justify-content-center mt-40">
             <div class="col-md-auto">
                 <a href="contact" class="btn btn-block btn-outline-brown" style="color:#806239;">お問い合わせ</a>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-40">
+            <div class="col-md-auto">
+                <a href="https://lin.ee/9CPX4p1">
+                    <img border="0" src="/img/line-de.png" style="width:168px;">
+                </a>
+                <p class="fz-12 text-center">こちらからもお問い合わせいただけます。</p>
             </div>
         </div>
     </div>
@@ -220,12 +265,29 @@
 <div class="container-wrap" id="l-delivery">
     <div class="container">
         <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">納期について</span></h2>
-        <p class="text-center font-weight-bold fz-26 mt-24"><span class="border border-brown border-width-4 rounded-10 d-inline-block p-16">ご購入から 約2営業日で発送</span></p>
-        <p class="text-center">本日のご注文で最短4日でのお届けとなります。<br class="d-none d-md-block">500個以上のご注文、またはお急ぎの場合は<br class="d-none d-md-block"><a href="https://oshi-cafe.com/contact.php">こちら</a>よりお問い合わせください。</p>
-        <p class="text-md-center fz-12">出荷まで2日程度お時間をいただきます。期日がある場合はお早めにご注文下さいますよう、お願いいたします。</p>
-        <p class="text-md-center fz-12">コンビニ決済の方は、ご入金確認後に発送作業をさせていただきます。</p>
+        {{-- <div class="row justify-content-center my-24">
+            <div class="col-md-9 border border-primary p-16 p-md-32">
+                <p class="text-justify pb-24">日頃より、推しカフェファクトリーをご利用いただき誠にありがとうございます。 <br>只今多くのご注文をいただいており、勝手ながら<span class="font-weight-bold fz-18">ご購入から8営業日後の発送</span>とさせていただきます。ご注文順に順次発送しておりますので、大変ご不便をおかけ致しますが、何卒ご容赦いただきますようお願い申し上げます。</p>
+            </div>
+        </div>
+        <p class="text-justify text-md-center text-danger pb-24">GW期間中は納期が変わります。<br>4月27日（土）受付分までは5月2日（木）までに発送、4月28日（日）受付分以降は5月8日（水）から順次発送。</p> --}}
+        <p class="text-center font-weight-bold fz-26 mt-24"><span class="border border-brown border-width-4 rounded-10 d-block d-md-inline-block p-16">ご購入から <br class="d-md-none">最短4営業日で発送</span></p>
+        <p class="text-md-center">●ご注文から出荷まで、最短4営業日ほどお時間をいただいております。<br class="d-none d-md-block">月曜・火曜の店休日を挟む場合は、発送まで1週間ほどかかることがございます。<br>お早めにご注文くださいますようお願いいたします。</p>
+        <p class="text-center">●お急ぎの方や、500個以上のご注文の場合は、<br class="d-none d-md-block">「<a href="https://lin.ee/9CPX4p1">LINEお問い合わせ</a>」よりお問い合わせください。</p>
+        <p class="text-md-center">●ギフト包装（有料）をご希望の方、お届け日指定（有料）をご希望の方も、事前に「<a href="https://lin.ee/9CPX4p1">LINEお問い合わせ</a>」からご連絡ください。<br>※送料も別途かかります。</p>
+        <p class="text-md-center text-danger fz-14">コンビニ決済の方は、ご入金確認後に制作作業をさせていただきます。</p>
     </div>
 </div>
+{{--<div class="container-wrap" id="l-delivery">
+    <div class="container">
+        <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">納期について</span></h2>
+        <p class="text-center font-weight-bold fz-26 mt-24"><span class="border border-brown border-width-4 rounded-10 d-inline-block p-16">ご購入から 約2営業日で発送</span></p>
+        <p class="text-center">本日のご注文で最短4日でのお届けとなります。<br class="d-none d-md-block">500個以上のご注文、またはお急ぎの場合は<br class="d-none d-md-block"><a href="https://oshi-cafe.com/contact">こちら</a>よりお問い合わせください。</p>
+        <p class="text-md-center fz-12">出荷まで2日程度お時間をいただきます。期日がある場合はお早めにご注文下さいますよう、お願いいたします。</p>
+        <p class="text-md-center fz-12">また、店休日のため月曜火曜のご注文分は翌々日以降の発送となりますのでご了承ください。</p>
+        <p class="text-md-center text-danger fz-14">コンビニ決済の方は、ご入金確認後に発送作業をさせていただきます。</p>
+    </div>
+</div>--}}
 <?php
     // ==============================
     //  支払い・発送方法
@@ -235,12 +297,12 @@
     <div class="container fz-14">
         <h2 class="h2 text-center"><span class="border-bottom border-width-2 border-brown d-inline-block pb-8">支払い・発送方法</span></h2>
         <h3 class="h3 fz-16 mt-24">支払い方法について</h3>
-        <h4 class="h4 fz-14"><i class="fas fa-square mr-4 mt-16"></i>コンビニ決済払い</h4>
-        <p>ご購入後送られてくるメールの内容をご確認の上、コンビニでお支払いください。</p>
+        <h4 class="h4 fz-14"><i class="fas fa-square mr-4 mt-16"></i>コンビニ決済前払い</h4>
+        <p>ご注文後送られてくるメールの内容をご確認の上、コンビニでお支払いください。<br>※ご注文後10日までにお支払いの確認ができない場合はキャンセルとさせていただきます。</p>
         <h4 class="h4 fz-14"><i class="fas fa-square mr-4"></i>クレジットカード払い</h4>
         <p>お客様が入力されたカード情報は当店に送られることなく、さらにカード情報入力画面は暗号化（SSL）で保護されています。 </p>
         <h3 class="h3 fz-16 mt-24">配送・送料について</h3>
-        <h4 class="h4 fz-14 mt-16"><i class="fas fa-square mr-4"></i>ネコポスまたはクリックポスト。※数量が多い場合はクロネコヤマト（宅急便）でお届けいたします。</h4>
+        <h4 class="h4 fz-14 mt-16"><i class="fas fa-square mr-4"></i>クリックポスト。※数量が多い場合は日本郵便（宅配便）でお届けいたします。</h4>
         <p>送料 300円。10個以上のお買い上げで送料無料。</p>
     </div>
 </div>
@@ -282,11 +344,11 @@
         <h3 class="h3 fz-16 mt-24">納品書・請求書・領収書</h3>
         <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>送付先に商品の金額がわからないようにしてほしい（納品書を同封しないでほしい）</h4>
         <ul class="fz-14" style="padding-left: 20px;">
-            <li>納品書に商品金額を記載しておりますので、納品書が不要な方は、お届け先入力の画面で【不要】にチェックを入れてください。</li>
+            <li>納品書に商品金額を記載しております。基本納品書は同封しておりません。</li>
         </ul>
         <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>納品書はいただけますか？</h4>
         <ul class="fz-14" style="padding-left: 20px;">
-            <li>納品書は商品と同梱してお送り致します。</li>
+            <li>納品書が必要な方は、お届け先入力の画面で【必要】にチェックを入れてください。納品書は商品と同梱してお送り致します。</li>
         </ul>
         <h4 class="h4 fz-14"><i class="fas fa-square mr-4" aria-hidden="true"></i>領収書は発行出来ますか？</h4>
         <ul class="fz-14" style="padding-left: 20px;">

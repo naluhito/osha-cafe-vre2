@@ -80,7 +80,7 @@ class BeanController extends AdminController
         $form->text('features2', __('Features2'));
         $form->text('features3', __('Features3'));
         $form->textarea('note', __('Note'));
-        $form->image('image', __('Image'));
+        $form->text('image', __('Image'));
         $form->switch('disp', __('Disp'))->default(1);
         $form->number('kind', __('Kind'));
 

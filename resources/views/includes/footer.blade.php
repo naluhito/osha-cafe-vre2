@@ -1,5 +1,9 @@
 <div class="container-wrap bg-rainbow" id="l-footer">
     <div class="container">
+        <div class="p-16 mb-32 border border-brown rounded">
+            <h6 class="text-center text-danger">お届けについてのご注意</h6>
+            <p class="text-md-center">出荷まで4営業日程度お時間をいただきます。期日がある場合はお早めにご注文下さいますよう、お願いいたします。<br>また、店休日のため月曜火曜のご注文分は翌日以降の制作作業となりますのでご了承ください。</p>
+        </div>
         <div class="row justify-content-center">
             <div class="col-auto">
                 <a href="https://oshi-cafe.com/basket" class="text-brown"><i class="fas fa-shopping-cart fa-3x" class="text-brown"></i></a>

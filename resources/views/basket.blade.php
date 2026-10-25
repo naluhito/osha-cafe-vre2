@@ -34,6 +34,7 @@
                 <div class="col-md-7 mt-24 mt-md-0">
                     <div id="drip" style="display: none">
                         <p class="bg-dark text-white fz-14 mt-24 px-32 py-8 d-inline-block text-center" class="" style="border-radius: 5px;">ドリップバッグ</p>
+<span id="paper"></span>
                         <table class="kounyuhin table table-bordered tbl-2column mt-0">
                             <tbody>
                             <tr id="item-tbl" style="display: none">
@@ -47,6 +48,7 @@
 
                     <div id="coffee" style="display: none">
                         <p class="bg-dark text-white fz-14 mt-24 px-32 py-8 d-inline-block text-center" class="" style="border-radius: 5px;">コーヒーバッグ</p>
+<span id="paper"></span>
                         <table class="kounyuhin table table-bordered tbl-2column mt-0">
                             <tbody>
                             <tr id="item-tbl" style="display: none">

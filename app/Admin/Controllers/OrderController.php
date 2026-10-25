@@ -30,11 +30,13 @@ class OrderController extends AdminController
      */
     protected function grid()
     {
+	Logger('Order in');
         $grid = new Grid(new Order());
         $grid->disableExport();
         $grid->disableRowSelector();
         $grid->disableColumnSelector();
         $grid->model()->orderBy('id', 'desc');
+        $grid->model()->take(100);
         $grid->filter(function ($filter) {
             $filter->column(1/2, function ($filter) {
                 $filter->disableIdFilter();

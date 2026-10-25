@@ -30,42 +30,56 @@
 					<h4 class="fz-12 font-weight-bold pb-4 border-bottom bg-light p-8">パスワード</h4>
 					<p class="fz-14">・・・・・・・・</p>
 				</div>
-{{--				<div class="text-right">
-					<a href="#" class="btn px-40 py-16 bg-mizuiro text-white">変更する</a>
-				</div> --}}
+				<div class="text-right">
+					<a href="mypage_edit" class="btn px-40 py-16 bg-mizuiro text-white">変更する</a>
+				</div>
 			</div>
 			<div class="col-md-10 mt-40">
 				<div class="bg-primary rounded-10 p-16">
 					<h3 class="font-weight-bold fz-16"><i class="fas fa-square mr-4"></i>注文履歴</h3>
 				</div>
-                @foreach($order_list as $order)
-                <div class="border-bottom px-8 py-16">
-                    <div class="row align-items-center">
-                        <div class="col-12 col-md-4">
-                            <div class="row align-items-center">
-                                <div class="col-12 col-sm">
-                                    <p class="fz-14 mb-0">{{ $order['date']->format('Y/m/d') }}</p>
-                                    <p class="fz-14">受注番号：{{ $order['order_no'] }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        @foreach($order['items'] as $item)
-                        <div class="col-12 col-md-3">
-                            <div class="p-16">
-                                <div class="row align-items-center">
-                                    <div class="col-4 col-sm">
-                                        <img id="frame" src="print_images/{{ $item->image }}" style="width:100%;">
-                                    </div>
-                                    <div class="col-8 col-sm">
-                                        <p class="fz-14 mb-0"><!--再注文ボタンとか--></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-                @endforeach
+
+
+				@foreach($order_list as $order)
+				<div class="border-bottom px-8 py-16">
+					<div class="row align-items-center">
+						<div class="col-12 col-md-3">
+							<div class="row align-items-center">
+								<div class="col-12 col-sm">
+									<p class="fz-14 mb-0 text-center text-md-left">{{ $order['date']->format('Y/m/d') }}</p>
+									<p class="fz-14 mb-0 text-center text-md-left">受注番号：{{ $order['order_no'] }}</p>
+									<p class="fz-14 text-center text-md-left">{{ number_format($order['amount']) }}円</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-md-9">
+						@foreach($order['items'] as $item)
+							<div class="p-16">
+								<div class="row align-items-center">
+									<div class="col-12 col-md-2">
+										<img id="frame" src="print_images/{{ $item->image }}" style="width:100%;" class="mb-8">
+									</div>
+									<div class="col-12 col-md-10 px-0">
+										<p class="fz-14 mb-4 mb-md-0">【ベース／{{ $item->paper }}】</p>
+										<ul class="list-unstyled">
+										@foreach($item['beans'] as $bean)
+											<li class="fz-12 mb-4 mb-md-0">
+											@if ($bean->bean != null)
+{{ $bean->bean->name }}<span class="font-weight-bold">{{ $bean->bean->kind == 0 ? 'ドリップバッグ' : 'コーヒーバッグ'}}×{{ $bean->quantity}}個</span>
+											@else
+現在取り扱いのない商品です
+											@endif
+											</li>
+										@endforeach
+										</ul>
+									</div>
+								</div>
+							</div>
+						@endforeach
+						</div>
+					</div>
+				</div>
+				@endforeach
             </div>
 
 

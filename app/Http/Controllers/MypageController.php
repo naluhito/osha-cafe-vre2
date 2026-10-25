@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\OrderBean;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,11 +21,14 @@ class MypageController extends Controller
         foreach ($orders as $val) {
             $image_list = [];
             foreach ($val->items as $item) {
+                $bean = OrderBean::with('bean')->where('order_item_id', $item['id'])->get();
+                $item['beans'] = $bean;
                 $image_list[] = $item;
             }
             $order_list[] = [
                 'date' => $val->created_at,
                 'order_no' => $val->order_no,
+                'amount' => $val->amount,
                 'items' => $image_list
             ];
         }
@@ -34,7 +38,24 @@ class MypageController extends Controller
 
     public function edit() {
         $user = Auth::user();
-        return view('mypage_edit');
+        return view('mypage_edit', compact('user'));
+    }
+
+    public function update(Request $request) {
+        $form =  $request->all();
+        $user = Auth::user();
+
+        unset($form['_token']);
+        $form['name'] = $form['name1'].$form['name2'];
+        if (isset($form['password'])) {
+            $form['password'] = Hash::make($form['password']);
+            unset($form['password_confirmation']);
+        } else {
+            unset($form['password']);
+            unset($form['password_confirmation']);
+        }
+        $user->fill($form)->save();
+        return redirect("/mypage");
     }
 
     public function delete_account(Request $request) {
@@ -61,11 +82,14 @@ class MypageController extends Controller
         foreach ($orders as $val) {
             $image_list = [];
             foreach ($val->items as $item) {
+                $bean = OrderBean::with('bean')->where('order_item_id', $item['id'])->get();
+                $item['beans'] = $bean;
                 $image_list[] = $item;
             }
             $order_list[] = [
                 'date' => $val->created_at,
                 'order_no' => $val->order_no,
+                'amount' => $val->amount,
                 'items' => $image_list
             ];
         }

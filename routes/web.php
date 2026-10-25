@@ -27,6 +27,9 @@ Route::get('/', function () {
   Route::post('/storebasket', 'App\Http\Controllers\BuyController@storebasket');
   Route::post('/getBaskets', 'App\Http\Controllers\BuyController@getBaskets');
   Route::post('/removeBasket', 'App\Http\Controllers\BuyController@removeBasket');
+  Route::post('/recive3d', 'App\Http\Controllers\BuyController@recive3d');
+  Route::post('/recive3dTimeout', 'App\Http\Controllers\BuyController@recive3dTimeout');
+  
   Route::get('/address', 'App\Http\Controllers\BuyController@address');
   Route::get('/choice', 'App\Http\Controllers\BuyController@choice');
   Route::get('/buy', 'App\Http\Controllers\BuyController@index');
@@ -38,13 +41,15 @@ Route::get('/', function () {
   
   Route::group(['middleware' => 'auth'], function () {
   Route::get('/mypage', 'App\Http\Controllers\MypageController@index');
+  Route::get('/mypage_edit', 'App\Http\Controllers\MypageController@edit');
+  Route::post('/mypage_update', 'App\Http\Controllers\MypageController@update');
   Route::post('/delete_account', 'App\Http\Controllers\MypageController@delete_account');
   });
   //  Route::match(['get', 'post'], '/login', 'App\Http\Controllers\UserController@login');
 //  Route::get('/regist', 'App\Http\Controllers\UserController@regist');
 //  Route::post('/registmail', 'App\Http\Controllers\UserController@registmail');
 
-Route::get('/test', 'App\Http\Controllers\TestController@test');
+//Route::get('/test', 'App\Http\Controllers\TestController@test');
   
   Route::get('/law', function () {
     return view('law');

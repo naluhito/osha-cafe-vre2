@@ -31,6 +31,7 @@ class UserController extends AdminController
         $grid->disableColumnSelector();
         $grid->disableCreateButton();
 
+	$grid->model()->take(5);
         $grid->filter(function ($filter) {
             $filter->column(1/2, function ($filter) {
                 $filter->disableIdFilter();

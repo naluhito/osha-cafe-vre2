@@ -13,6 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        '/settle_recive'
+        '/settle_recive',
+        '/recive3dTimeout',
+        '/recive3d',
     ];
 }

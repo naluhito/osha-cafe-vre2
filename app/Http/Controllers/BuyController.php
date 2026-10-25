@@ -174,10 +174,129 @@ class BuyController extends Controller
         $json = json_encode($address);
         $address = json_decode($json);
 
-        $access_key = "81663032";
+        $access_key = "81663033";
         $check_sum = hash('sha256', $access_key);
         $message = '';
         return view('confirm', compact('address', 'check_sum', 'message'));
+    }
+
+    public function recive3d(Request $request) {
+        $order_id = $request['id'];
+        $res = $this->_procedure_3d($request);
+        if ($res['returnCode'] == '1') {
+            if ($res['errorCode'] == 'A092000001') {
+                return redirect('/');
+            }
+            $order = Order::find($order_id);
+            $amount = $order->amount;
+            $shipping = $order->shipping;
+            $address_order = array(
+                "name1" => $order->name1,
+                "name2" => $order->name2,
+                "name3" => $order->name3,
+                "name4" => $order->name4,
+                "zipcode" => $order->zip,
+                "pref" => $order->pref,
+                "address1" => $order->address1,
+                "address2" => $order->address2,
+                "address3" => $order->address3,
+                "tel" => $order->tel,
+                "mailaddress1" => $order->mail,
+                "mailaddress2" => $order->mail,
+                'receipt' => $order->receipt
+            );
+            session(['address' => json_encode($address_order)]);
+            $json = json_encode($address_order);
+            $address = json_decode($json);
+    
+            $err_order = new Order();
+            $err_order->where('id', $order->id)->delete();
+            Logger('######## '.$order_id.'['.$res['errorCode'].']3Dセキュア異常終了');
+            $access_key = "81663033";
+            $check_sum = hash('sha256', $access_key);
+            $message = '['.$res['errorCode'].'] 決済処理でエラーが発生しました。';
+            return view('confirm', compact('address', 'check_sum', 'message'));
+
+        }
+        $order = Order::find($order_id);
+        $this->_store_paid($order->order_no, $res['returnDate']);
+        $date = $this->_date_format($res['returnDate']);
+        $view_param =[
+            'order_number' => $order->order_no,
+            'amount' => $order->amount + $order->shipping,
+            'process_date' => $date,
+        ];
+
+        $order_items = [];
+        $images = OrderItem::where('order_id', $order->id)->get();
+        foreach ($images as $image) {
+            $beans = OrderBean::with('bean')->where('order_item_id', $image['id'])->get();
+            foreach ($beans as $bean) {
+                if ($bean->bean->kind == 0) {
+                    $type = 'ドリップバッグタイプ';
+                } else {
+                    $type = 'コーヒーバッグタイプ';
+                }
+                $order_items[] = $image['image'].' '.$image['paper'].' '.$type.' '.$bean->bean->name.' '.$bean->quantity.'個';
+            }
+        }
+
+        $order_no = $order->order_no;
+        $param = [
+            'order_no' => $order->order_no,
+            'name' => $order->name1.$order->name2,
+            'mail' => $order->mail,
+            "tel" => $order->tel,
+            "zipcode" => $order->zip,
+            "pref" => $order->pref,
+            "address1" => $order->address1,
+            "address2" => $order->address2,
+            "address3" => $order->address3,
+            "items" => $order_items
+        ];
+        Mail::send(['text' => 'mails.order'], $param, function($message) use ($order_no) {
+            $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+            ->to('info@oshi-cafe.com')
+            ->subject('【受注】'.$order_no);
+        });
+
+        Mail::send(['text' => 'mails.card'], $param, function($message) use ($order) {
+            $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+            ->to($order->mail)
+            ->subject('【推しカフェファクトリー】ご注文ありがとうございます♪');
+        });
+
+        return view('card', compact('view_param'));
+    }
+
+    public function recive3dTimeout(Request $request) {
+        $order = Order::where('order_no', $request->order_no)->first();
+        $amount = $order->amount;
+        $shipping = $order->shipping;
+        $address_order = array(
+            "name1" => $order->name1,
+            "name2" => $order->name2,
+            "name3" => $order->name3,
+            "name4" => $order->name4,
+            "zipcode" => $order->zip,
+            "pref" => $order->pref,
+            "address1" => $order->address1,
+            "address2" => $order->address2,
+            "address3" => $order->address3,
+            "tel" => $order->tel,
+            "mailaddress1" => $order->mail,
+            "mailaddress2" => $order->mail,
+            'receipt' => $order->receipt
+        );
+        session(['address' => json_encode($address_order)]);
+        $json = json_encode($address_order);
+        $address = json_decode($json);
+        Logger('######## '.$request->order_no.'3D Time out');
+
+        $err_order = new Order();
+        $err_order->where('id', $order->id)->delete();
+        return response('result=ok', 200)
+                  ->header('Content-Type', 'text/plain');; 
     }
 
     public function decision(Request $request) {
@@ -187,13 +306,15 @@ class BuyController extends Controller
         $amount = $order->amount;
         $shipping = $order->shipping;
         $address = json_decode(session('address'));
+        $html = '';
 
         if ($request->input('payment') == 'credit') {
-            $res = $this->_procedure_card($order_no, $amount+$shipping, $address, $request->input('webcollectToken'));
+            $res = $this->_procedure_card($amount+$shipping, $address, $request->input('webcollectToken'));
             if ($res['returnCode'] != '0') {
+                Logger('####決済エラー['.$order->order_no.'] returnCode='.$res['returnCode'].'errorCode='.$res['errorCode']);
                 $err_order = new Order();
                 $err_order->where('id', $order->id)->delete();
-                $access_key = "81663032";
+                $access_key = "81663033";
                 $check_sum = hash('sha256', $access_key);
                 if ($res['errorCode'] == 'A082000010') {
                     $message = '['.$res['creditErrorCode'].'] 決済処理でエラーが発生しました。<br>ご利用のカード会社様へ直接お問い合わせください';
@@ -201,14 +322,9 @@ class BuyController extends Controller
                     $message = '['.$res['errorCode'].'] 決済処理でエラーが発生しました。';
                 }
                 return view('confirm', compact('address', 'check_sum', 'message'));
-            }
-            $this->_store_paid($order_no, $res['returnDate']);
-            $date = $this->_date_format($res['returnDate']);
-            $view_param =[
-                'order_number' => $order_no,
-                'amount' => $amount,
-                'process_date' => $date,
-            ];
+            }            
+            // threeDAuthHtmlをviewにセット
+            $html = $res['threeDAuthHtml'];
         } else {
             if ($request->input('convenience') == 'seven') {
                 $res = $this->_procedure_seven($order_no, $amount+$shipping, $address);
@@ -268,23 +384,45 @@ class BuyController extends Controller
                 $ids[] = $val;
             }
         }
-        $this->_store_items($request, $order);
+        $this->_store_items($ids, $order);
         session()->forget('address');
-       
-        $param = [
-            'order_no' => $order_no,
-            'name' => $address->name1.$address->name2
-        ];
-        Mail::send(['text' => 'mails.order'], $param, function($message) use ($order_no) {
-            $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
-            ->to('info@oshi-cafe.com')
-            ->subject('【受注】'.$order_no);
-        });    
-
 
         if ($request->input('payment') == 'credit') {
-            return view('card', compact('view_param'));
+            return view('threeda', compact('html'));
+//            return view('card', compact('view_param'));
         } else {
+            $order_items = [];
+            $images = OrderItem::where('order_id', $order->id)->get();
+            foreach ($images as $image) {
+                $beans = OrderBean::with('bean')->where('order_item_id', $image['id'])->get();
+                foreach ($beans as $bean) {
+                    if ($bean->bean->kind == 0) {
+                        $type = 'ドリップバッグタイプ';
+                    } else {
+                        $type = 'コーヒーバッグタイプ';
+                    }
+                    $order_items[] = $image['image'].' '.$image['paper'].' '.$type.' '.$bean->bean->name.' '.$bean->quantity.'個';
+                }
+            }
+
+            $param = [
+                'order_no' => $order_no,
+                'name' => $address->name1.$address->name2,
+                'mail' => $address->mailaddress1,
+                "tel" => $address->tel,
+                "zipcode" => $address->zipcode,
+                "pref" => $address->pref,
+                "address1" => $address->address1,
+                "address2" => $address->address2,
+                "address3" => $address->address3,
+                "items" => $order_items
+            ];
+            Mail::send(['text' => 'mails.order'], $param, function($message) use ($order_no) {
+                $message->from('no-reply@oshi-cafe.com', '推しカフェファクトリー')
+                ->to('info@oshi-cafe.com')
+                ->subject('【受注】'.$order_no);
+            });    
+    
             if ($request->input('convenience') == 'seven') {
                 $param = [
                     'view_param' => $view_param
@@ -317,7 +455,8 @@ class BuyController extends Controller
                 return view('lowson', compact('view_param'));
             }
         }
-    }
+
+}
 
     private function _store_paid($order_no, $date) {
         $order = new Order();
@@ -327,13 +466,13 @@ class BuyController extends Controller
         $data->save();
     }
 
-    private function _store_items($request, $order) {
-        $ids = array();
-        foreach ($request->input('basket') as $key=>$val) {
-            if ($val != null) {
-                $ids[] = $val;
-            }
-        }
+    private function _store_items($ids, $order) {
+//        $ids = array();
+//        foreach ($request->input('basket') as $key=>$val) {
+//            if ($val != null) {
+//                $ids[] = $val;
+//            }
+//        }
         $basket = new Basket();
         $baskets = $basket->whereIn('id', $ids)->get();
         $count = 1;
@@ -411,7 +550,7 @@ class BuyController extends Controller
         $order->address3 = $address->address3;
         $order->tel = $address->tel;
         $order->mail = $address->mailaddress1;
-        $amount = $num * 200;
+        $amount = $num * 260; // 20260401料金改定
         $tax = $amount - floor($amount / 1.08);
         $order->amount = $amount;
         $order->tax = $tax;
@@ -428,24 +567,68 @@ class BuyController extends Controller
         $order_number = sprintf("OC-%06d", $order_id);
         $order->order_no = $order_number;
         $order->save();
+
+        session(['order_id' => $order_id]);
+
         return $order;
 
     }
 
-    private function _procedure_card($order_number, $price, $address, $token) {
+    private function _procedure_card($price, $address, $token) {
+        $order = Order::find(session('order_id'));
+        // トークン決済登録
         $url = 'https://api.kuronekoyamato.co.jp/api/creditToken';
-//        $url = 'https://ptwebcollect.jp/test_gateway/creditToken.api';
         $param = [
             'function_div' => 'A08',
             'trader_code' => '970651403',
             'device_div' => '1',
-            'order_no' => $order_number,
+//            'order_no' => strval(session('order_id')),
+            'order_no' => $order->order_no,
             'settle_price' => $price,
             'buyer_name_kanji' => $address->name1.$address->name2,
             'buyer_tel' => $address->tel,
             'buyer_email' => $address->mailaddress1,
             'pay_way' => '1',
-            'token' => $token
+            'token' => $token,
+            'trader_ec_url' => 'https://oshi-cafe.com/recive3d?id=' . session('order_id'),
+            'return_url_3ds_timeout' => 'https://oshi-cafe.com/recive3dTimeout'
+        ];
+        $response = Http::asForm()->post($url, $param);
+        $xml  = simplexml_load_string($response);
+        $res = json_decode( json_encode($xml), TRUE );
+        $order = Order::find(session('order_id'));
+        $order->threed_d_token = $res['threeDToken'];
+        $order->save();
+
+        return $res;
+    }
+
+    private function _procedure_3d($returned_items) {
+        $order = Order::find($returned_items['id']);
+        // トークン決済登録３Ｄセキュア結果用
+        $url = 'https://api.kuronekoyamato.co.jp/api/creditToken3D';
+        $param = [
+            'function_div' => 'A09',
+            'trader_code' => '970651403',
+//            'order_no ' => $returned_items['id'],
+            'order_no' => $order->order_no,
+            'comp_cd' => $returned_items['COMP_CD'],
+            'token' => $returned_items['TOKEN'],
+            'card_exp' => $returned_items['CARD_EXP'],
+            'item_price' => $returned_items['ITEM_PRICE'],
+            'item_tax' => $returned_items['ITEM_TAX'],
+            'cust_cd' => $returned_items['CUST_CD'],
+            'shop_id'  => $returned_items['SHOP_ID'],
+            'term_cd' => $returned_items['TERM_CD'],
+            'crd_res_cd' => $returned_items['CRD_RES_CD'],
+            'res_ve' => $returned_items['RES_VE'],
+            'res_pa' => $returned_items['RES_PA'],
+            'res_code' => $returned_items['RES_CODE'],
+            'three_d_inf' => $returned_items['3D_INF'] == '' ? '                                                                                         ' : $returned_items['3D_INF'],
+            'three_d_tran_id' => $returned_items['3D_TRAN_ID'],
+            'send_dt' => $returned_items['SEND_DT'],
+            'hash_value' => $returned_items['HASH_VALUE'],
+            'three_d_token' => $order->threed_d_token,
         ];
         $response = Http::asForm()->post($url, $param);
         $xml  = simplexml_load_string($response);

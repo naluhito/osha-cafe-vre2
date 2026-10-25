@@ -29,7 +29,15 @@ jQuery(function($) {
             } else {
                 form.find('#error').empty();
             }
-    
+        } else {
+            var tolen = form.find('input[name="webcollectToken"]').val();
+            console.log(tolen);
+            if (tolen === 'convenience') {
+                form.find('#error').text('クレジット情報を入力してください');
+                check = false;
+            } else {
+                form.find('#error').empty();
+            }
         }
         return check;
     }

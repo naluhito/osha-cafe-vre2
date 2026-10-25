@@ -71,6 +71,7 @@
 						</a>
 					</div>
 				</div>
+				<p class="fz-12 mt-8">※ご確認用の低解像度画像を表示しています。気になる方は運営までお問合せください。</p>
 			</div>
 		</div>
 		<div class="row justify-content-center mt-24">
@@ -139,7 +140,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8 p-16">
 				<p class="font-weight-bold text-primary mb-0 mt-8">◎お届け方法</p>
-				<p>クロネコヤマト・日本郵便<br class="d-md-none"></p>
+				<p>日本郵便<br class="d-md-none"></p>
 				<hr>
 				<p class="font-weight-bold text-primary mb-0 mt-24">◎お届け先</p>
 				<p class="mb-0">{{ $address->zipcode }}<br class="d-md-none"> {{ $address->pref }}{{ $address->address1 }}{{ $address->address2 }}<br class="d-md-none"> {{ $address->address3 }}
@@ -166,7 +167,7 @@
 								class="webcollect-token-api"
 								src="https://api.kuronekoyamato.co.jp/api/token/js/tokenlib.js"
 								data-trader-cd="970651403"
-								data-auth-div="2"
+								data-auth-div="3"
 								data-opt-serv-div="00"
 								data-check-sum={{ $check_sum }}
 								data-callback="after">
