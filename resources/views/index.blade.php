@@ -79,8 +79,8 @@
 
          <img src="/img/SVG/setumeibun3.svg" alt="" class="" style="width: 550px;">
          <div class="text-center mt-32 mb-56">
-            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
-            <!-- <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p> -->
+            <!-- <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a> -->
+            <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p>
         </div>
         <p class="text-center text-primary font-weight-bold lh-12 fz-22">最短2分で完成！<br>オリジナルドリップバッグが<br>1個200円から作れる！</p>
         <h2 class="text-center font-weight-bold fz-20 mt-32"><span class="brackets">Oshi Cafe factoryとは？</span></h2>
