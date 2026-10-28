@@ -31,7 +31,7 @@
         </div>
             </div>
         </div>
-
+        
         <div class="row justify-content-center mb-40">
             <div class="col-md-9 p-16 p-md-24 rounded-lg text-center text-pink" style="background: linear-gradient(90deg, #fce8f0 0%, #fdf4e8 50%, #e8f4fd 100%);">
                 <p class="text-center fz-18 mb-0 font-weight-bold">今年の夏はアイスコーヒーで推し活！</p>
@@ -79,10 +79,10 @@
 
          <img src="/img/SVG/setumeibun3.svg" alt="" class="" style="width: 550px;">
          <div class="text-center mt-32 mb-56">
-            {{-- <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a> --}}
-            <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p>
+            <a href="buy" class="btn btn-rainbow fz-24 pl-40 px-32">作ってみる！</a>
+            <!-- <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p> -->
         </div>
-        <!-- <p class="text-center text-primary font-weight-bold lh-12 fz-22">最短2分で完成！<br>オリジナルドリップバッグが<br>1個200円から作れる！</p> -->
+        <p class="text-center text-primary font-weight-bold lh-12 fz-22">最短2分で完成！<br>オリジナルドリップバッグが<br>1個200円から作れる！</p>
         <h2 class="text-center font-weight-bold fz-20 mt-32"><span class="brackets">Oshi Cafe factoryとは？</span></h2>
         <p class="text-center mt-24">コーヒー豆専門店が自家焙煎した<br>最高品質のコーヒーを100％使用！<br>1個からオリジナルパッケージが作れる<br>「推し活応援」オリジナルドリップバッグサービス！</p>
         <p class="text-right"><a href="about" class="border-bottom border-brown text-brown">もっと詳しく</a></p>

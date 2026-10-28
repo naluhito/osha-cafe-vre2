@@ -106,10 +106,11 @@ jQuery(function($) {
         $.each(item.beans, function() {
             if (this.bean.kind == 0) {
                 drip = basket.find('#drip');
+		drip.find('#paper').text(item.paper);
                 clone = drip.find("#item-tbl").clone();
                 clone.find("#name").text(this.bean.name);
                 clone.find("#num").text(formatter.format(this.number)+'個');
-                var amount = 200 * this.number;
+                var amount = 260 * this.number;
                 clone.find("#amount").html(formatter.format(amount)+'<span class="fz-14">円</span>');
                 clone.attr('id', '');
                 drip.find("#item-tbl").before(clone);
@@ -120,10 +121,11 @@ jQuery(function($) {
         $.each(item.beans, function() {
             if (this.bean.kind == 1) {
                 coffee = basket.find('#coffee');
+		coffee.find('#paper').text(item.paper);
                 clone = coffee.find("#item-tbl").clone();
                 clone.find("#name").text(this.bean.name);
                 clone.find("#num").text(formatter.format(this.number)+'個');
-                var amount = 200 * this.number
+                var amount = 260 * this.number
                 clone.find("#amount").html(formatter.format(amount)+'<span class="fz-14">円</span>');
                 $('#item-tbl').before(clone);
                 clone.attr('id', '');
@@ -215,7 +217,7 @@ jQuery(function($) {
             $('#tax').text('');
             return;
         }
-        var amount = 200;
+        var amount = 260;
         var totalAmount = 0;
         var totalNum = 0;
         var shipping = 0;

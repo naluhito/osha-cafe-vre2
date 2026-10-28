@@ -32,7 +32,7 @@ jQuery(function($) {
         } else {
             var tolen = form.find('input[name="webcollectToken"]').val();
             console.log(tolen);
-            if (tolen === 'convenience') {
+            if (tolen === undefined) {
                 form.find('#error').text('クレジット情報を入力してください');
                 check = false;
             } else {
@@ -78,7 +78,7 @@ jQuery(function($) {
                 clone = drip.find("#item-tbl").clone();
                 clone.find("#name").text(this.bean.name);
                 clone.find("#num").text(formatter.format(this.number)+'個');
-                var amount = 200 * this.number;
+                var amount = 260 * this.number;
                 clone.find("#amount").html(formatter.format(amount)+'<span class="fz-14">円</span>');
                 clone.attr('id', '');
                 drip.find("#item-tbl").before(clone);
@@ -92,7 +92,7 @@ jQuery(function($) {
                 clone = coffee.find("#item-tbl").clone();
                 clone.find("#name").text(this.bean.name);
                 clone.find("#num").text(formatter.format(this.number)+'個');
-                var amount = 200 * this.number
+                var amount = 260 * this.number
                 clone.find("#amount").html(formatter.format(amount)+'<span class="fz-14">円</span>');
                 $('#item-tbl').before(clone);
                 clone.attr('id', '');
@@ -176,7 +176,7 @@ jQuery(function($) {
 	}
 
     function setTotal(basket) {
-        var amount = 200;
+        var amount = 260;
         var totalAmount = 0;
         var totalNum = 0;
         var shipping = 0;

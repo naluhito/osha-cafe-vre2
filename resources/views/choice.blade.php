@@ -55,8 +55,8 @@
 	<div class="container pb-40">
 		<div class="row justify-content-center">
 			<div class="col-md-7 col-lg-6 col-xl-5">
-			    <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p>
-				{{-- <div id='btn1_1'>
+{{-- 			    <p class="text-danger text-center">ただいまメンテナンス中です。しばらくお待ちください。</p> --}}
+				<div id='btn1_1'>
 					<div class="btn btn-primary w-100 text-white p-24 ls-02 d-block">
 						<a id="choice01">フレーム・無地　を選ぶ</a>
 					</div>
@@ -98,7 +98,7 @@
 				<div id='btn4' style="display: none">
 	                <a href="basket" class="button05 text-center d-block p-16 mt-40 mt-md-64 w-75 mx-auto"><i class="fas fa-shopping-cart fz-20 pr-8"></i>買い物かごへ</a>
 				</div>
-                <a href="choice" class="button04 text-center d-block p-16 mt-24 w-75 mx-auto">リセット</a> --}}
+                <a href="choice" class="button04 text-center d-block p-16 mt-24 w-75 mx-auto">リセット</a>
 			</div>
 		</div>
 	</div>

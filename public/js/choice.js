@@ -404,6 +404,9 @@ jQuery(function($) {
 	function redraw() {
     	ctx = canvas.getContext('2d');
     	ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = "rgb(255, 255, 255)";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     	ctx.scale(scale, scale);
     	ctx.drawImage(imageCanvas, dragDiffX, dragDiffY);
 
@@ -499,6 +502,9 @@ jQuery(function($) {
     	ctx = canvas.getContext('2d');
 
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = "rgb(255, 255, 255)";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		
         px = dragDiffX * dspScale;
         py = dragDiffY * dspScale;
 		ctx.scale(scale, scale);
